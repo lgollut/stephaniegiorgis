@@ -1,0 +1,112 @@
+{
+  "id": "documentation",
+  "type": "SharedSlice",
+  "name": "Documentation",
+  "description": "Documentation",
+  "variations": [
+    {
+      "id": "image",
+      "name": "Image",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Image",
+      "imageUrl": "",
+      "primary": {
+        "layout": {
+          "type": "Select",
+          "config": {
+            "label": "Layout",
+            "placeholder": "",
+            "options": [
+              "Slider",
+              "Grid 1/1",
+              "Grid 1/2",
+              "Grid 2/1",
+              "Grid 2/2"
+            ],
+            "default_value": "Slider"
+          }
+        }
+      },
+      "items": {
+        "image": {
+          "type": "Image",
+          "config": {
+            "label": "Image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        }
+      }
+    },
+    {
+      "id": "sound",
+      "name": "Sound",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Sound",
+      "imageUrl": "",
+      "primary": {},
+      "items": {
+        "poster": {
+          "type": "Image",
+          "config": {
+            "label": "Poster",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "sound": {
+          "type": "Link",
+          "config": {
+            "label": "Sound",
+            "placeholder": "",
+            "select": "media"
+          }
+        }
+      }
+    },
+    {
+      "id": "video",
+      "name": "Video",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Video",
+      "imageUrl": "",
+      "primary": {},
+      "items": {
+        "poster": {
+          "type": "Image",
+          "config": {
+            "label": "Poster",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "video": {
+          "type": "Link",
+          "config": {
+            "label": "Video",
+            "placeholder": "",
+            "select": "media"
+          }
+        },
+        "ratio": {
+          "type": "Select",
+          "config": {
+            "label": "Ratio",
+            "placeholder": "",
+            "options": [
+              "1:1",
+              "3:2",
+              "2:3",
+              "4:3",
+              "16:9",
+              "9:16"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

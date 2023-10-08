@@ -1,0 +1,22 @@
+{
+  "id": "main_navigation",
+  "label": "Main Navigation",
+  "format": "custom",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "navigation_links": {
+              "type": "SharedSlice"
+            }
+          }
+        }
+      }
+    }
+  }
+}

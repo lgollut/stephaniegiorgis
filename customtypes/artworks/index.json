@@ -1,6 +1,6 @@
 {
-  "id": "works",
-  "label": "Works",
+  "id": "artworks",
+  "label": "Artworks",
   "format": "page",
   "repeatable": false,
   "status": true,

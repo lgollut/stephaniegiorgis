@@ -36,6 +36,7 @@ const GridSlice = ({ slice }: GridProps): JSX.Element => {
     <Grid
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
+      minWidth="sm"
     >
       {slice.items.map(({ artwork }) => {
         if (!hasArtworkData(artwork)) {

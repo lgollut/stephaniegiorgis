@@ -19,7 +19,7 @@ interface ArchivesDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<ArchivesDocumentDataSlicesSlice>;
+  slices: prismic.SliceZone<ArchivesDocumentDataSlicesSlice>
   /**
    * Meta Description field in *Archives*
    *
@@ -28,7 +28,7 @@ interface ArchivesDocumentData {
    * - **API ID Path**: archives.meta_description
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
+   */;
   meta_description: prismic.KeyTextField;
 
   /**
@@ -151,7 +151,7 @@ interface ArtworkDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<ArtworkDocumentDataSlicesSlice>;
+  slices: prismic.SliceZone<ArtworkDocumentDataSlicesSlice>
   /**
    * Meta title field in *Artwork*
    *
@@ -160,7 +160,7 @@ interface ArtworkDocumentData {
    * - **API ID Path**: artwork.meta_title
    * - **Tab**: SEO
    * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
+   */;
   meta_title: prismic.KeyTextField;
 
   /**
@@ -199,6 +199,72 @@ export type ArtworkDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<
     Simplify<ArtworkDocumentData>,
     'artwork',
+    Lang
+  >;
+
+type ArtworksDocumentDataSlicesSlice = GridSlice;
+
+/**
+ * Content for Artworks documents
+ */
+interface ArtworksDocumentData {
+  /**
+   * Slice Zone field in *Artworks*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: artworks.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<ArtworksDocumentDataSlicesSlice>
+  /**
+   * Meta Description field in *Artworks*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: artworks.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Artworks*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: artworks.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+
+  /**
+   * Meta Title field in *Artworks*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: artworks.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField;
+}
+
+/**
+ * Artworks document from Prismic
+ *
+ * - **API ID**: `artworks`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ArtworksDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<ArtworksDocumentData>,
+    'artworks',
     Lang
   >;
 
@@ -295,7 +361,7 @@ interface PresentationDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<PresentationDocumentDataSlicesSlice>;
+  slices: prismic.SliceZone<PresentationDocumentDataSlicesSlice>
   /**
    * Meta Description field in *Presentation*
    *
@@ -304,7 +370,7 @@ interface PresentationDocumentData {
    * - **API ID Path**: presentation.meta_description
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
+   */;
   meta_description: prismic.KeyTextField;
 
   /**
@@ -346,74 +412,12 @@ export type PresentationDocument<Lang extends string = string> =
     Lang
   >;
 
-type WorksDocumentDataSlicesSlice = GridSlice;
-
-/**
- * Content for Works documents
- */
-interface WorksDocumentData {
-  /**
-   * Slice Zone field in *Works*
-   *
-   * - **Field Type**: Slice Zone
-   * - **Placeholder**: *None*
-   * - **API ID Path**: works.slices[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#slices
-   */
-  slices: prismic.SliceZone<WorksDocumentDataSlicesSlice>;
-  /**
-   * Meta Description field in *Works*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A brief summary of the page
-   * - **API ID Path**: works.meta_description
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  meta_description: prismic.KeyTextField;
-
-  /**
-   * Meta Image field in *Works*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: works.meta_image
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  meta_image: prismic.ImageField<never>;
-
-  /**
-   * Meta Title field in *Works*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A title of the page used for social media and search engines
-   * - **API ID Path**: works.meta_title
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  meta_title: prismic.KeyTextField;
-}
-
-/**
- * Works document from Prismic
- *
- * - **API ID**: `works`
- * - **Repeatable**: `false`
- * - **Documentation**: https://prismic.io/docs/custom-types
- *
- * @typeParam Lang - Language API ID of the document.
- */
-export type WorksDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithoutUID<Simplify<WorksDocumentData>, 'works', Lang>;
-
 export type AllDocumentTypes =
   | ArchivesDocument
   | ArtworkDocument
+  | ArtworksDocument
   | MainNavigationDocument
-  | PresentationDocument
-  | WorksDocument;
+  | PresentationDocument;
 
 /**
  * Primary content in *Documentation → Primary*
@@ -643,6 +647,16 @@ export interface LinkListSliceDefaultItem {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   description: prismic.RichTextField;
+
+  /**
+   * Screenshot field in *LinkList → Items*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: link_list.items[].screenshot
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  screenshot: prismic.ImageField<'Square'>;
 }
 
 /**
@@ -789,7 +803,7 @@ declare module '@prismicio/client' {
   interface CreateClient {
     (
       repositoryNameOrEndpoint: string,
-      options?: prismic.ClientConfig,
+      options?: prismic.ClientConfig
     ): prismic.Client<AllDocumentTypes>;
   }
 
@@ -801,15 +815,15 @@ declare module '@prismicio/client' {
       ArtworkDocument,
       ArtworkDocumentData,
       ArtworkDocumentDataSlicesSlice,
+      ArtworksDocument,
+      ArtworksDocumentData,
+      ArtworksDocumentDataSlicesSlice,
       MainNavigationDocument,
       MainNavigationDocumentData,
       MainNavigationDocumentDataSlicesSlice,
       PresentationDocument,
       PresentationDocumentData,
       PresentationDocumentDataSlicesSlice,
-      WorksDocument,
-      WorksDocumentData,
-      WorksDocumentDataSlicesSlice,
       AllDocumentTypes,
       DocumentationSlice,
       DocumentationSliceImagePrimary,

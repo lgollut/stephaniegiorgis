@@ -32,7 +32,7 @@ export default async function RootLayout({
   return (
     <html lang="en" className={clsx(fontClass, html)}>
       <body className={body}>
-        <Stack className={bodyContainer}>
+        <Stack space="xl" className={bodyContainer}>
           <SliceZone slices={data.slices} components={components} />
           {children}
         </Stack>

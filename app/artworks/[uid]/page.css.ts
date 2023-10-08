@@ -12,12 +12,17 @@ export const artworkPage = style({
 });
 
 globalStyle(`${artworkPage} > *`, {
-  flexGrow: 0,
+  flexGrow: 1,
   flexShrink: 1,
   flexBasis: '50%',
 
   maxHeight: '100%',
-  overflow: 'scroll',
+
+  '@media': {
+    'screen and (min-width: 1024px)': {
+      overflow: 'scroll',
+    },
+  },
 });
 
 export const artworkData = style({
@@ -27,5 +32,15 @@ export const artworkData = style({
 });
 
 export const artworkDescription = style({
-  marginTop: `min(10vh, ${vars.spacing['6xl']}) !important`,
+  marginTop: vars.spacing.lg,
+
+  '@media': {
+    'screen and (max-width: 1023px)': {
+      textAlign: 'start',
+    },
+
+    'screen and (min-width: 1024px)': {
+      marginTop: `min(10vh, ${vars.spacing['6xl']})`,
+    },
+  },
 });

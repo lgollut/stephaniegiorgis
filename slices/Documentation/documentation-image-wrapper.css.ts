@@ -23,7 +23,11 @@ export const documentationWrapper = recipe({
         gridTemplateColumns: '1fr',
         gridTemplateRows: 'auto',
       },
-      '1/2': {},
+      '1/2': {
+        gridTemplateColumns: '1fr 1fr',
+        gridTemplateRows: '1.54fr 0.5fr',
+      },
+      '2/1': {},
       '2/2': {
         gridTemplateColumns: '1fr 1fr',
         gridTemplateRows: '1.123fr 0.5fr',

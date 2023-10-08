@@ -17,9 +17,16 @@ export const DocumentationImageWrapper = ({
   const items = useMemo(
     () =>
       slice.items.map((item, index) => (
-        <DocumentationImageItem item={item} key={index} />
+        <DocumentationImageItem
+          item={item}
+          key={index}
+          style={{
+            gridColumn:
+              layout === '1/2' && index === 0 ? '1 / span 2' : undefined,
+          }}
+        />
       )),
-    [slice],
+    [slice, layout],
   );
 
   if (grid) {

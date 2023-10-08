@@ -1,7 +1,8 @@
-import { PrismicRichText, SliceZone } from '@prismicio/react';
+import { PrismicRichText } from '@prismicio/react';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
+import { RenderedDocumentation } from '@/app/artworks/[uid]/documentation';
 import {
   artworkData,
   artworkDescription,
@@ -10,10 +11,10 @@ import {
 import { Box } from '@/components/box';
 import { Cover } from '@/components/cover';
 import { Heading } from '@/components/heading';
+import { Hidden } from '@/components/hidden';
 import { Stack } from '@/components/stack';
 import { Text } from '@/components/text';
 import { createClient } from '@/prismicio';
-import { components } from '@/slices';
 
 type Params = { uid: string };
 
@@ -65,6 +66,7 @@ export default async function ArtworkPage({ params }: { params: Params }) {
               <Heading variant="headlineSmall">{artwork.data.measure}</Heading>
               <Heading variant="headlineSmall">{artwork.data.year}</Heading>
             </Stack>
+            <Hidden use={RenderedDocumentation} at="lgUp" artwork={artwork} />
           </Stack>
           <Box space="none" className={artworkDescription}>
             <PrismicRichText
@@ -76,7 +78,7 @@ export default async function ArtworkPage({ params }: { params: Params }) {
           </Box>
         </Box>
       </Cover>
-      <SliceZone slices={artwork.data.slices} components={components} />
+      <Hidden use={RenderedDocumentation} at="mdDown" artwork={artwork} />
     </div>
   );
 }

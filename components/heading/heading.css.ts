@@ -72,5 +72,23 @@ export const headingWrapper = recipe({
         borderBottom: `1px solid ${vars.color.outlineVariant}`,
       },
     },
+
+    align: {
+      start: {
+        textAlign: 'start',
+      },
+
+      center: {
+        textAlign: 'center',
+      },
+
+      end: {
+        textAlign: 'end',
+      },
+
+      justify: {
+        textAlign: 'justify',
+      },
+    },
   },
 });

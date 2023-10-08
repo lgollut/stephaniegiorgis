@@ -14,12 +14,12 @@ export const { repositoryName } = sm;
 const routes: prismic.ClientConfig['routes'] = [
   {
     type: 'artwork',
-    path: '/:uid',
+    path: '/artworks/:uid',
   },
   {
-    type: 'works',
-    uid: 'home',
-    path: '/',
+    type: 'artworks',
+    uid: 'artworks',
+    path: '/artworks',
   },
 ];
 

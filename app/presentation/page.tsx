@@ -25,7 +25,9 @@ export default async function PresentationPage() {
       <Stack space="4xl">
         <RichText field={data.introduction} />
         <Box space="none">
-          <Heading color="muted">{'lang[ue]age et [re]présentation'}</Heading>
+          <Heading use="h2" color="muted" align="start">
+            {'lang[ue]age et [re]présentation'}
+          </Heading>
         </Box>
         <Aside
           space="xl"
@@ -41,6 +43,7 @@ export default async function PresentationPage() {
                 target="_blank"
                 rel="noreferrer"
                 color="primary"
+                variant="bodySmall"
               >
                 {'Détails du CV'}
               </Text>

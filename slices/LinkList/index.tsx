@@ -1,6 +1,12 @@
+import { isFilled, type Content } from '@prismicio/client';
 import { SliceComponentProps } from '@prismicio/react';
 
-import type { Content } from '@prismicio/client';
+import { Box } from '@/components/box';
+import { Frame } from '@/components/frame/frame';
+import { Grid } from '@/components/grid';
+import { Image } from '@/components/image';
+import { Stack } from '@/components/stack';
+import { Text } from '@/components/text';
 
 /**
  * Props for `LinkList`.
@@ -12,12 +18,35 @@ export type LinkListProps = SliceComponentProps<Content.LinkListSlice>;
  */
 const LinkList = ({ slice }: LinkListProps): JSX.Element => {
   return (
-    <section
+    <Grid
+      space="lg"
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
     >
-      Placeholder component for link_list (variation: {slice.variation}) Slices
-    </section>
+      {slice.items.map(({ link, screenshot, label }) => {
+        if (!link || !isFilled.link(link)) {
+          return null;
+        }
+
+        return (
+          <Box
+            use="a"
+            key={link.url}
+            href={link.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            color="surfaceContainerHigh"
+            space="lg"
+            rounded="base"
+          >
+            <Stack>
+              <Frame use={Image} field={screenshot.Square} ratio="1:1" />
+              <Text>{label}</Text>
+            </Stack>
+          </Box>
+        );
+      })}
+    </Grid>
   );
 };
 

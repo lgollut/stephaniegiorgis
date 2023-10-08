@@ -19,11 +19,12 @@ const Heading = <TUse extends HeadingTypes>(
     border,
     color,
     style,
+    align,
     ...rest
   } = props;
 
   return (
-    <Stack className={headingWrapper({ border })}>
+    <Stack className={headingWrapper({ border, align })}>
       <Comp
         ref={ref}
         className={clsx(heading({ variant, color, style }), className)}

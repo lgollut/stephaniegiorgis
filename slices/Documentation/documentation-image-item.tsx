@@ -7,9 +7,12 @@ import { Ratio, availableRatios } from './documentation.types';
 
 export const DocumentationImageItem = ({
   item,
+  style,
 }: {
+  style?: object;
   item: DocumentationSliceImageItem;
 }) => {
+  console.log(style);
   let ratio: Ratio = '2:3';
 
   if (item.image.dimensions) {
@@ -32,5 +35,5 @@ export const DocumentationImageItem = ({
     }
   }
 
-  return <Frame use={Image} field={item.image} ratio={ratio} />;
+  return <Frame use={Image} field={item.image} ratio={ratio} style={style} />;
 };

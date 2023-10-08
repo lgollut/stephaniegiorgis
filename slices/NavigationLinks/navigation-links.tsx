@@ -3,16 +3,24 @@
 import { type Content } from '@prismicio/client';
 import { PrismicNextLink } from '@prismicio/next';
 import { SliceComponentProps } from '@prismicio/react';
+import { Menu } from 'lucide-react';
 import { Route } from 'next';
 import { useSelectedLayoutSegment } from 'next/navigation';
 import { ReactNode } from 'react';
 
-import { logo } from '@/app/navigation.css';
 import { Box } from '@/components/box';
-import { Button } from '@/components/button';
 import { Cluster } from '@/components/cluster';
 import { Container } from '@/components/container/container';
 import { Heading } from '@/components/heading';
+import { Hidden } from '@/components/hidden';
+import { Panel } from '@/components/panel/panel';
+import { PanelContent } from '@/components/panel/panel-content';
+import { PanelTrigger } from '@/components/panel/panel-trigger';
+import { Text } from '@/components/text';
+import {
+  logo,
+  navigationLink,
+} from '@/slices/NavigationLinks/navigation-links.css';
 
 /**
  * Props for `NavigationLinks`.
@@ -34,14 +42,16 @@ export function NavigationLinks({ slice }: NavigationLinksProps) {
       item.current_segment === 'null' ? null : item.current_segment;
 
     items.push(
-      <Button
+      <Text
+        use={PrismicNextLink}
         key={item.label}
         href={item.href as Route}
-        variant="ghost"
         aria-current={segment === currentSegment ? 'page' : undefined}
+        className={navigationLink}
+        variant="bodyMedium"
       >
         {item.label}
-      </Button>,
+      </Text>,
     );
   }
 
@@ -49,14 +59,28 @@ export function NavigationLinks({ slice }: NavigationLinksProps) {
     <Container use="nav" space="none">
       <Box>
         <Cluster justify="spaceBetween">
-          <PrismicNextLink
-            href={'/'}
-            title="Go to the homepage"
-            className={logo}
-          >
-            <Heading variant="titleMedium">Stéphanie Giorgis</Heading>
-          </PrismicNextLink>
-          <Cluster>{items}</Cluster>
+          <Panel>
+            <Cluster>
+              <Hidden use={PanelTrigger} at="lgUp" icon={Menu} />
+              <PrismicNextLink
+                href={'/'}
+                title="Go to the homepage"
+                className={logo}
+              >
+                <Heading variant="titleMedium">Stéphanie Giorgis</Heading>
+              </PrismicNextLink>
+            </Cluster>
+            <Hidden use={Cluster} at="mdDown" space="xl">
+              {items}
+            </Hidden>
+            <Hidden use={PanelContent} at="lgUp">
+              {/* <Stack space="none"> */}
+              {items.map((item, index) => (
+                <Box key={index}>{item}</Box>
+              ))}
+              {/* </Stack> */}
+            </Hidden>
+          </Panel>
         </Cluster>
       </Box>
     </Container>

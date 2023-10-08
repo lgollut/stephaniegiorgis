@@ -98,9 +98,9 @@ export const button = recipe({
         },
 
         vars: {
-          [labelColor]: vars.color.onPrimary,
-          [containerColor]: vars.color.primary,
-          [stateLayerColor]: vars.color.onPrimary,
+          [labelColor]: vars.color.surface,
+          [containerColor]: vars.color.onSurface,
+          [stateLayerColor]: vars.color.surface,
         },
       },
 
@@ -110,7 +110,7 @@ export const button = recipe({
         borderColor: vars.color.outlineVariant,
 
         ':focus, :focus-visible': {
-          borderColor: vars.color.primary,
+          borderColor: vars.color.onSurface,
         },
 
         ':disabled': {
@@ -122,15 +122,15 @@ export const button = recipe({
         },
 
         vars: {
-          [labelColor]: vars.color.primary,
+          [labelColor]: vars.color.onSurface,
           [containerColor]: 'transparent',
-          [stateLayerColor]: vars.color.primary,
+          [stateLayerColor]: vars.color.onSurface,
         },
       },
 
       ghost: {
         ':focus, :focus-visible': {
-          borderColor: vars.color.primary,
+          borderColor: vars.color.onSurface,
         },
 
         ':disabled': {
@@ -146,15 +146,15 @@ export const button = recipe({
             opacity: vars.state.hovered.opacity,
 
             vars: {
-              [stateLayerColor]: vars.color.primary,
+              [stateLayerColor]: vars.color.onSurface,
             },
           },
         },
 
         vars: {
-          [labelColor]: vars.color.primary,
+          [labelColor]: vars.color.onSurface,
           [containerColor]: 'transparent',
-          [stateLayerColor]: vars.color.primary,
+          [stateLayerColor]: vars.color.onSurface,
         },
       },
     },

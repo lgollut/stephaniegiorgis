@@ -17,7 +17,7 @@ export const themeClass = createTheme(vars, {
     surface: ref.palette.neutral98,
     surfaceBright: ref.palette.neutral98,
     onSurface: ref.palette.neutral20,
-    onSurfaceMuted: ref.palette.neutral60,
+    onSurfaceMuted: ref.palette.neutral40,
 
     surfaceContainerLowest: ref.palette.neutral100,
     surfaceContainerLow: ref.palette.neutral96,

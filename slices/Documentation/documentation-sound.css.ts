@@ -8,8 +8,5 @@ export const documentationSound = style({
   alignItems: 'center',
   gap: vars.spacing.base,
 
-  width: '100%',
-  height: '100%',
-
   position: 'relative',
 });

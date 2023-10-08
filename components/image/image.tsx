@@ -6,11 +6,11 @@ import { image } from './image.css';
 import { ImageProps } from './image.types';
 
 const Image = (
-  { className, field, cover }: ImageProps,
+  { className, field, cover, ...rest }: ImageProps,
   ref: ForwardedRef<any>,
 ) => {
   return (
-    <div ref={ref} className={clsx(image({ cover }), className)}>
+    <div ref={ref} className={clsx(image({ cover }), className)} {...rest}>
       <PrismicNextImage field={field} />
       {/* {field?.copyright && <Text variant="labelSmall">{field.copyright}</Text>} */}
     </div>

@@ -8,6 +8,8 @@ export const main = style({
   display: 'flex',
   flexGrow: 1,
   alignSelf: 'center',
+  justifyContent: 'center',
+
   paddingBlockEnd: vars.spacing.base,
 
   position: 'relative',

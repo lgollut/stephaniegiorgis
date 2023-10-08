@@ -18,7 +18,9 @@ import React, {
 
 import { Button } from '@/components/button';
 import { Cluster } from '@/components/cluster';
+import { Frame } from '@/components/frame/frame';
 import { FrameVariants } from '@/components/frame/frame.types';
+import { Image } from '@/components/image';
 import {
   mediaPlayerControls,
   mediaPlayerControlsButtons,
@@ -149,7 +151,6 @@ export const MediaPlayer = ({
   className,
   ratio,
 }: MediaPlayerProps) => {
-  console.log({ type });
   const Component = useMemo(() => {
     return type === 'audio' ? AudioPlayer : VideoPlayer;
   }, [type]);
@@ -160,7 +161,6 @@ export const MediaPlayer = ({
   // durationchange loadeddata loadedmetadata
   const onDurationChange = useCallback(
     (e: SyntheticEvent) => {
-      console.log('onDurationChange', e);
       if (!(e.target instanceof HTMLMediaElement)) {
         return;
       }
@@ -175,7 +175,6 @@ export const MediaPlayer = ({
 
   const onLoadedData = useCallback(
     (e: SyntheticEvent) => {
-      console.log('onLoadedData', e);
       if (!(e.target instanceof HTMLMediaElement)) {
         return;
       }
@@ -217,7 +216,6 @@ export const MediaPlayer = ({
 
   const handleSeek = useCallback(
     (e: SyntheticEvent) => {
-      console.log('onSeek', e);
       if (
         !(e.target instanceof HTMLInputElement) ||
         e.target.type !== 'range'
@@ -278,17 +276,8 @@ export const MediaPlayer = ({
     }
   }, [player, mediaState.playing]);
 
-  // const handlePlayState = useCallback(() => {
-  //   dispatch({ type: 'play' });
-  // }, [dispatch]);
-
-  // const handlePauseState = useCallback(() => {
-  //   dispatch({ type: 'pause' });
-  // }, [dispatch]);
-
   const handleProgress = useCallback(
     (e: SyntheticEvent) => {
-      console.log('handleProgress');
       onProgressChange(e);
     },
     [onProgressChange],
@@ -311,7 +300,6 @@ export const MediaPlayer = ({
 
   const handleSeeked = useCallback(
     (e: SyntheticEvent) => {
-      console.log('seeked');
       onProgressChange(e);
       onTimeUpdate(e);
     },
@@ -320,7 +308,6 @@ export const MediaPlayer = ({
 
   const handleTimeupdate = useCallback(
     (e: SyntheticEvent) => {
-      console.log('onTimeUpdate', e);
       onTimeUpdate(e);
     },
     [onTimeUpdate],
@@ -335,7 +322,6 @@ export const MediaPlayer = ({
 
   const handleLoadedData = useCallback(
     (e: SyntheticEvent) => {
-      console.log('onLoadedData', e);
       onDurationChange(e);
       onLoadedData(e);
     },
@@ -344,7 +330,6 @@ export const MediaPlayer = ({
 
   const handleLoadedMetadata = useCallback(
     (e: SyntheticEvent) => {
-      console.log('onLoadedMetadata', e);
       onDurationChange(e);
     },
     [onDurationChange],
@@ -408,14 +393,7 @@ export const MediaPlayer = ({
         {}
       }
     >
-      {/* {poster && (
-        <Frame
-          use={Image}
-          field={poster}
-          ratio={ratio}
-          // style={{ width: '100%', height: '100%' }}
-        />
-      )} */}
+      {poster && <Frame use={Image} field={poster} ratio={ratio} />}
       <Component
         playerRef={setPlayer}
         src={src}
@@ -429,8 +407,6 @@ export const MediaPlayer = ({
         onPlaying={handlePlaying}
         onSeeking={handleSeeking}
         onProgress={handleProgress}
-        onCanPlay={() => console.log('onCanPlay')}
-        onLoadStart={() => console.log('onLoadStart')}
       />
 
       <div className={mediaPlayerControls}>

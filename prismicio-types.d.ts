@@ -555,7 +555,13 @@ export interface DocumentationSliceImagePrimary {
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   layout: prismic.SelectField<
-    'Slider' | 'Grid 1/1' | 'Grid 1/2' | 'Grid 2/1' | 'Grid 2/2',
+    | 'Slider'
+    | 'Grid 1/1'
+    | 'Grid 1/2'
+    | 'Grid 2/1'
+    | 'Grid 2/2'
+    | 'Grid 1/1/1'
+    | 'Grid 1/1/2',
     'filled'
   >;
 }

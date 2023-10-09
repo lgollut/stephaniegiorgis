@@ -3,7 +3,6 @@ import { ReactNode, useMemo } from 'react';
 
 import { MediaPlayer } from '@/components/media-player';
 import { DocumentationSliceVideo } from '@/prismicio-types';
-import { documentationImage } from '@/slices/Documentation/documentation-image.css';
 import { documentationVideo } from '@/slices/Documentation/documentation-video.css';
 import { assertSliceVariation } from '@/utils/assert-variation';
 
@@ -37,7 +36,5 @@ export const DocumentationVideo = ({ slice }: DocumentationVideoProps) => {
     return players;
   }, [slice]);
 
-  return (
-    <div className={documentationImage({ column: true })}>{videoElements}</div>
-  );
+  return videoElements;
 };

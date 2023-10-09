@@ -9,7 +9,6 @@ const Image = (
   { className, field, cover, ...rest }: ImageProps,
   ref: ForwardedRef<any>,
 ) => {
-  console.log(field);
   return (
     <div ref={ref} className={clsx(image({ cover }), className)} {...rest}>
       <PrismicNextImage field={field} />

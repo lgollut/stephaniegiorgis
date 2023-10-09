@@ -3,7 +3,6 @@ import { ReactNode, useMemo } from 'react';
 
 import { MediaPlayer } from '@/components/media-player';
 import { DocumentationSliceSound } from '@/prismicio-types';
-import { documentationImage } from '@/slices/Documentation/documentation-image.css';
 import { documentationSound } from '@/slices/Documentation/documentation-sound.css';
 import { assertSliceVariation } from '@/utils/assert-variation';
 
@@ -37,7 +36,5 @@ export const DocumentationSound = ({ slice }: DocumentationSoundProps) => {
     return players;
   }, [slice]);
 
-  return (
-    <div className={documentationImage({ column: true })}>{audioElements}</div>
-  );
+  return audioElements;
 };

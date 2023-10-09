@@ -5,13 +5,13 @@ import { grid } from './grid.css';
 import { GridProps } from './grid.types';
 
 const Grid = (
-  { minWidth = 'base', space, className, ...props }: GridProps,
+  { minWidth = 'base', space, className, fullWidth, ...props }: GridProps,
   ref: ForwardedRef<any>,
 ) => {
   return (
     <div
       ref={ref}
-      className={clsx(grid({ minWidth, space }), className)}
+      className={clsx(grid({ minWidth, space, fullWidth }), className)}
       {...props}
     />
   );

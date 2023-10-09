@@ -13,8 +13,6 @@ const gridBase = style({
   alignContent: 'start',
   gridTemplateColumns: `repeat(auto-fill, minmax(min(${minWidth}, 100%), 1fr))`,
 
-  width: '100%',
-
   vars: {
     [spaceVar]: vars.spacing.base,
     [minWidth]: '100%',
@@ -93,6 +91,12 @@ export const grid = recipe({
         vars: {
           [minWidth]: calc.multiply(vars.spacing.base, 8),
         },
+      },
+    },
+
+    fullWidth: {
+      true: {
+        width: '100%',
       },
     },
   },

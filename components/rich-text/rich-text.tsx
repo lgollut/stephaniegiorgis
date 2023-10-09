@@ -7,6 +7,11 @@ import { alignEnd, blockquote, richText } from './rich-text.css';
 import { RichTextProps } from './rich-text.types';
 
 const components: JSXMapSerializer = {
+  hyperlink: ({ children, node }) => (
+    <Text use="a" href={node.data.url}>
+      {children}
+    </Text>
+  ),
   paragraph: ({ children, ...rest }) => {
     const labelSpan = rest.node.spans.find((span) => span.type === 'label');
 

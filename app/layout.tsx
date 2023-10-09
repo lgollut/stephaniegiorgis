@@ -6,12 +6,14 @@ import { SliceZone } from '@prismicio/react';
 import { clsx } from 'clsx';
 import { ReactNode } from 'react';
 
+import { Box } from '@/components/box';
 import { Stack } from '@/components/stack';
+import { Text } from '@/components/text';
 import { createClient, repositoryName } from '@/prismicio';
 import { components } from '@/slices';
 import { fontClass } from '@/styles/font';
 
-import { html, body, bodyContainer } from './layout.css';
+import { html, body, footer } from './layout.css';
 
 import type { Metadata } from 'next';
 
@@ -33,11 +35,18 @@ export default async function RootLayout({
   return (
     <html lang="en" className={clsx(fontClass, html)}>
       <body className={body}>
-        <Stack space="xl" className={bodyContainer}>
+        <Stack space="xl">
           <SliceZone slices={data.slices} components={components} />
           {children}
         </Stack>
         <PrismicPreview repositoryName={repositoryName} />
+        <div className={footer}>
+          <Box space="sm">
+            <Text variant="bodySmall">
+              {'Stéphanie Giorgis © 2023. All Rights Reserved'}
+            </Text>
+          </Box>
+        </div>
       </body>
     </html>
   );

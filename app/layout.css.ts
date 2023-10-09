@@ -6,8 +6,6 @@ import { typography } from '@/styles/typography.css';
 
 export const html = style({
   minHeight: '100vh',
-  display: 'flex',
-  flexDirection: 'column',
 });
 
 export const body = style([
@@ -16,7 +14,9 @@ export const body = style([
   {
     display: 'flex',
     flexDirection: 'column',
-    flexGrow: 1,
+    justifyContent: 'space-between',
+
+    minHeight: '100vh',
 
     backgroundColor: vars.color.surfaceContainer,
 
@@ -24,6 +24,11 @@ export const body = style([
   },
 ]);
 
-export const bodyContainer = style({
-  flexGrow: 1,
+export const footer = style({
+  display: 'flex',
+  justifyContent: 'center',
+
+  marginTop: vars.spacing['3xl'],
+
+  backgroundColor: vars.color.surfaceContainerHighest,
 });

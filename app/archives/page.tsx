@@ -9,7 +9,7 @@ export default async function ArchivesPage() {
   const archives = await client.getSingle('archives');
 
   return (
-    <Container>
+    <Container style={{ display: 'flex', justifyContent: 'center' }}>
       <SliceZone slices={archives.data.slices} components={components} />
     </Container>
   );

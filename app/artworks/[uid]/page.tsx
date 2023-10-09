@@ -1,4 +1,3 @@
-import { PrismicRichText } from '@prismicio/react';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
@@ -12,15 +11,11 @@ import { Box } from '@/components/box';
 import { Cover } from '@/components/cover';
 import { Heading } from '@/components/heading';
 import { Hidden } from '@/components/hidden';
+import { RichText } from '@/components/rich-text/rich-text';
 import { Stack } from '@/components/stack';
-import { Text } from '@/components/text';
 import { createClient } from '@/prismicio';
 
 type Params = { uid: string };
-
-/**
- * This page renders a Prismic Document dynamically based on the URL.
- */
 
 export async function generateMetadata({
   params,
@@ -74,12 +69,9 @@ export default async function ArtworkPage({ params }: { params: Params }) {
             />
           </Stack>
           <Box space="none" className={artworkDescription}>
-            <PrismicRichText
-              field={artwork.data.description}
-              components={{
-                paragraph: ({ children }) => <Text>{children}</Text>,
-              }}
-            />
+            <Stack>
+              <RichText field={artwork.data.description} />
+            </Stack>
           </Box>
         </Box>
       </Cover>
@@ -96,14 +88,8 @@ export default async function ArtworkPage({ params }: { params: Params }) {
 export async function generateStaticParams() {
   const client = createClient();
 
-  /**
-   * Query all Documents from the API, except the homepage.
-   */
   const artworks = await client.getAllByType('artwork');
 
-  /**
-   * Define a path for every Document.
-   */
   return artworks.map((artwork) => {
     return { uid: artwork.uid };
   });

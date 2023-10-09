@@ -1,73 +1,28 @@
-'use client';
-
-import { Check } from 'lucide-react';
-import { useCallback, useState, useTransition } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
-
-import { MessageInputs } from '@/app/contact/page.types';
-import { sendForm } from '@/app/contact/send-form';
-import { Button } from '@/components/button';
-import { Cluster } from '@/components/cluster';
+import { ContactForm } from '@/app/contact/contact-form';
+import { contactPage, contactPageForm } from '@/app/contact/page.css';
 import { Container } from '@/components/container/container';
-import { Input } from '@/components/input/input';
-import { Stack } from '@/components/stack';
-import { Text } from '@/components/text';
-import { Textarea } from '@/components/textarea/textarea';
+import { Frame } from '@/components/frame/frame';
+import { Image } from '@/components/image';
+import { createClient } from '@/prismicio';
 
-export default function ContactPage() {
-  const { register, handleSubmit, reset, watch } = useForm<MessageInputs>();
-  const [sent, setSent] = useState(false);
-
-  const [isPending, startTransition] = useTransition();
-
-  const onSubmit: SubmitHandler<MessageInputs> = useCallback(
-    (data) => {
-      startTransition(async () => {
-        const res = await sendForm(data);
-
-        if (res && res.id) {
-          setSent(true);
-          reset();
-        }
-      });
-    },
-    [setSent, reset, startTransition],
-  );
+export default async function ContactPage() {
+  const client = createClient();
+  const contact = await client.getSingle('contact');
 
   return (
-    <Container maxWidth="extraSmall">
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Stack space="lg">
-          <Stack use="label" space="xs">
-            <Text>{'Votre nom'}</Text>
-            <Input {...register('name', { required: true })} />
-          </Stack>
-          <Stack use="label" space="xs">
-            <Text>{'Votre email'}</Text>
-            <Input type="email" {...register('email', { required: true })} />
-          </Stack>
-          <Stack use="label" space="xs">
-            <Text>{'Sujet du message'}</Text>
-            <Input {...register('subject', { required: true })} />
-          </Stack>
-          <Stack use="label" space="xs">
-            <Text>{'Message'}</Text>
-            <Textarea {...register('message', { required: true })} />
-          </Stack>
-
-          <Cluster space="lg">
-            <Button type="submit" disabled={isPending}>
-              {'Envoyer'}
-            </Button>
-            {sent && (
-              <Cluster space="sm">
-                <Check size={24} />
-                <Text>{'Message envoyé'}</Text>
-              </Cluster>
-            )}
-          </Cluster>
-        </Stack>
-      </form>
+    <Container>
+      <div className={contactPage}>
+        <Frame
+          use={Image}
+          field={contact.data.image['2/3']}
+          ratio="2:3"
+          cover
+          style={{
+            flex: '0 1 30%',
+          }}
+        />
+        <ContactForm className={contactPageForm} />
+      </div>
     </Container>
   );
 }

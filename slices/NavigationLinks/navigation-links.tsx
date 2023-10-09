@@ -57,7 +57,7 @@ export function NavigationLinks({ slice }: NavigationLinksProps) {
 
   return (
     <Container use="nav" space="none">
-      <Box>
+      <Box space={['xl', 'base', 'none', 'base']}>
         <Cluster justify="spaceBetween">
           <Panel>
             <Cluster>
@@ -74,11 +74,9 @@ export function NavigationLinks({ slice }: NavigationLinksProps) {
               {items}
             </Hidden>
             <Hidden use={PanelContent} at="lgUp">
-              {/* <Stack space="none"> */}
               {items.map((item, index) => (
                 <Box key={index}>{item}</Box>
               ))}
-              {/* </Stack> */}
             </Hidden>
           </Panel>
         </Cluster>

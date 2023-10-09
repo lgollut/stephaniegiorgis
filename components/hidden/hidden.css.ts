@@ -1,5 +1,7 @@
 import { recipe } from '@vanilla-extract/recipes';
 
+import { utilities } from '@/styles/layers.css';
+
 export const breakpoints = {
   always: 0,
   xsUp: 376,
@@ -24,73 +26,109 @@ export const hidden = recipe({
       },
 
       xsUp: {
-        '@media': {
-          [`screen and (min-width: ${breakpoints.xsUp}px)`]: {
-            display: 'none',
+        '@layer': {
+          [utilities]: {
+            '@media': {
+              [`screen and (min-width: ${breakpoints.xsUp}px)`]: {
+                display: 'none',
+              },
+            },
           },
         },
       },
 
       xsDown: {
-        '@media': {
-          [`screen and (max-width: ${breakpoints.xsDown}px)`]: {
-            display: 'none',
+        '@layer': {
+          [utilities]: {
+            '@media': {
+              [`screen and (max-width: ${breakpoints.xsDown}px)`]: {
+                display: 'none',
+              },
+            },
           },
         },
       },
 
       smUp: {
-        '@media': {
-          [`screen and (min-width: ${breakpoints.smUp}px)`]: {
-            display: 'none',
+        '@layer': {
+          [utilities]: {
+            '@media': {
+              [`screen and (min-width: ${breakpoints.smUp}px)`]: {
+                display: 'none',
+              },
+            },
           },
         },
       },
 
       smDown: {
-        '@media': {
-          [`screen and (max-width: ${breakpoints.smDown}px)`]: {
-            display: 'none',
+        '@layer': {
+          [utilities]: {
+            '@media': {
+              [`screen and (max-width: ${breakpoints.smDown}px)`]: {
+                display: 'none',
+              },
+            },
           },
         },
       },
 
       mdUp: {
-        '@media': {
-          [`screen and (min-width: ${breakpoints.mdUp}px)`]: {
-            display: 'none',
+        '@layer': {
+          [utilities]: {
+            '@media': {
+              [`screen and (min-width: ${breakpoints.mdUp}px)`]: {
+                display: 'none',
+              },
+            },
           },
         },
       },
 
       mdDown: {
-        '@media': {
-          [`screen and (max-width: ${breakpoints.mdDown}px)`]: {
-            display: 'none',
+        '@layer': {
+          [utilities]: {
+            '@media': {
+              [`screen and (max-width: ${breakpoints.mdDown}px)`]: {
+                display: 'none',
+              },
+            },
           },
         },
       },
 
       lgUp: {
-        '@media': {
-          [`screen and (min-width: ${breakpoints.lgUp}px)`]: {
-            display: 'none',
+        '@layer': {
+          [utilities]: {
+            '@media': {
+              [`screen and (min-width: ${breakpoints.lgUp}px)`]: {
+                display: 'none',
+              },
+            },
           },
         },
       },
 
       lgDown: {
-        '@media': {
-          [`screen and (max-width: ${breakpoints.lgDown}px)`]: {
-            display: 'none',
+        '@layer': {
+          [utilities]: {
+            '@media': {
+              [`screen and (max-width: ${breakpoints.lgDown}px)`]: {
+                display: 'none',
+              },
+            },
           },
         },
       },
 
       xlUp: {
-        '@media': {
-          [`screen and (min-width: ${breakpoints.xlUp}px)`]: {
-            display: 'none',
+        '@layer': {
+          [utilities]: {
+            '@media': {
+              [`screen and (min-width: ${breakpoints.xlUp}px)`]: {
+                display: 'none',
+              },
+            },
           },
         },
       },

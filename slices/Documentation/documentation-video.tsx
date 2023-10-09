@@ -28,7 +28,7 @@ export const DocumentationVideo = ({ slice }: DocumentationVideoProps) => {
           className={documentationVideo}
           type="video"
           poster={poster}
-          ratio={isFilled.select(ratio) ? ratio : '2:3'}
+          ratio={ratio}
           src={video.url}
         />,
       );

@@ -49,14 +49,14 @@
           "multi": "preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl,paragraph"
         }
       },
-      "cover": {
+      "cover_image": {
         "type": "Image",
         "config": {
-          "label": "Cover",
+          "label": "Cover Image",
           "constraint": {},
           "thumbnails": [
             {
-              "name": "square",
+              "name": "1:1",
               "width": 1024,
               "height": 1024
             }

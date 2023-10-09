@@ -12,12 +12,12 @@ export default async function Page() {
     Content.ArtworksDocument & {
       items: {
         artwork: {
-          data: Pick<Content.ArtworkDocument['data'], 'title' | 'cover'>;
+          data: Pick<Content.ArtworkDocument['data'], 'title' | 'cover_image'>;
         };
       };
     }
   >('artworks', {
-    fetchLinks: ['artwork.title', 'artwork.cover'],
+    fetchLinks: ['artwork.title', 'artwork.cover_image'],
   });
 
   return <SliceZone slices={artworks.data.slices} components={components} />;

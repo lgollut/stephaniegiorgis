@@ -4,6 +4,7 @@ import {
   type ContentRelationshipField,
 } from '@prismicio/client';
 import { PrismicLink, SliceComponentProps } from '@prismicio/react';
+import { useMemo } from 'react';
 
 import { Frame } from '@/components/frame/frame';
 import { Grid } from '@/components/grid';
@@ -32,23 +33,30 @@ const hasArtworkData = <
  * Component for "Grid" Slices.
  */
 const GridSlice = ({ slice }: GridProps): JSX.Element => {
+  const items = useMemo(() => {
+    return slice.items.reverse().map(({ artwork }) => {
+      if (!hasArtworkData(artwork)) {
+        return null;
+      }
+      return (
+        <PrismicLink key={artwork.id} href={`/artworks/${artwork.uid}`}>
+          <Frame
+            use={Image}
+            field={artwork.data.cover_image['1:1']}
+            ratio="1:1"
+          />
+        </PrismicLink>
+      );
+    });
+  }, [slice]);
+
   return (
     <Grid
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       minWidth="sm"
     >
-      {slice.items.map(({ artwork }) => {
-        if (!hasArtworkData(artwork)) {
-          return null;
-        }
-
-        return (
-          <PrismicLink key={artwork.id} href={`/artworks/${artwork.uid}`}>
-            <Frame use={Image} field={artwork.data.cover.square} ratio="1:1" />
-          </PrismicLink>
-        );
-      })}
+      {items}
     </Grid>
   );
 };

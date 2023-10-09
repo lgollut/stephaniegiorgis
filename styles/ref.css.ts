@@ -29,6 +29,18 @@ const hsl = {
   neutral96: '209deg 17% 96%',
   neutral98: '209deg 17% 98%',
   neutral100: '209deg 17% 100%',
+
+  neutralVariant0: '0 0% 0%',
+  neutralVariant10: '0 0% 10%',
+  neutralVariant20: '0 0% 20%',
+  neutralVariant30: '0 0% 30%',
+  neutralVariant40: '0 0% 40%',
+  neutralVariant50: '0 0% 50%',
+  neutralVariant60: '0 0% 60%',
+  neutralVariant70: '0 0% 70%',
+  neutralVariant80: '0 0% 80%',
+  neutralVariant90: '0 0% 90%',
+  neutralVariant100: '0 0% 100%',
 };
 
 export const ref = createGlobalTheme(':root', {
@@ -61,6 +73,18 @@ export const ref = createGlobalTheme(':root', {
     neutral96: `hsl(${hsl.neutral94})`,
     neutral98: `hsl(${hsl.neutral98})`,
     neutral100: `hsl(${hsl.neutral100})`,
+
+    neutralVariant0: `hsl(${hsl.neutralVariant0})`,
+    neutralVariant10: `hsl(${hsl.neutralVariant10})`,
+    neutralVariant20: `hsl(${hsl.neutralVariant20})`,
+    neutralVariant30: `hsl(${hsl.neutralVariant30})`,
+    neutralVariant40: `hsl(${hsl.neutralVariant40})`,
+    neutralVariant50: `hsl(${hsl.neutralVariant50})`,
+    neutralVariant60: `hsl(${hsl.neutralVariant60})`,
+    neutralVariant70: `hsl(${hsl.neutralVariant70})`,
+    neutralVariant80: `hsl(${hsl.neutralVariant80})`,
+    neutralVariant90: `hsl(${hsl.neutralVariant90})`,
+    neutralVariant100: `hsl(${hsl.neutralVariant100})`,
   },
 
   hsl,

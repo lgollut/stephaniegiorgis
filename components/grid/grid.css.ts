@@ -13,6 +13,8 @@ const gridBase = style({
   alignContent: 'start',
   gridTemplateColumns: `repeat(auto-fill, minmax(min(${minWidth}, 100%), 1fr))`,
 
+  width: '100%',
+
   vars: {
     [spaceVar]: vars.spacing.base,
     [minWidth]: '100%',

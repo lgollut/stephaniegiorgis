@@ -13,25 +13,56 @@ export const DocumentationImageWrapper = ({
 }: {
   grid: boolean;
   slice: DocumentationSliceImage;
-} & DocumentationWrapperVariants) => {
-  const items = useMemo(
-    () =>
-      slice.items.map((item, index) => (
-        <DocumentationImageItem
-          item={item}
-          key={index}
-          style={{
-            gridColumn:
-              layout === '1/2' && index === 0 ? '1 / span 2' : undefined,
-          }}
-        />
-      )),
-    [slice, layout],
-  );
+  layout: DocumentationWrapperVariants['layout'];
+}) => {
+  const upperRow = useMemo(() => {
+    const items =
+      layout && ['1/2', '1/1'].includes(layout)
+        ? slice.items.slice(0, 1)
+        : slice.items.slice(0, 2);
+    return (
+      <div
+        style={{
+          display: 'flex',
+          gap: '16px',
+        }}
+      >
+        {items.map((item, index) => (
+          <DocumentationImageItem item={item} key={index} />
+        ))}
+      </div>
+    );
+  }, [slice, layout]);
+
+  const lowerRow = useMemo(() => {
+    const items =
+      layout && ['1/1', '1/2'].includes(layout)
+        ? slice.items.slice(1)
+        : slice.items.slice(2);
+    return (
+      <div
+        style={{
+          display: 'flex',
+          gap: '16px',
+        }}
+      >
+        {items.map((item, index) => (
+          <DocumentationImageItem item={item} key={index} />
+        ))}
+      </div>
+    );
+  }, [slice, layout]);
 
   if (grid) {
-    return <div className={documentationWrapper({ layout })}>{items}</div>;
+    return (
+      // <div className={container}>
+      <div className={documentationWrapper({ layout })}>
+        {upperRow}
+        {lowerRow}
+      </div>
+      // </div>
+    );
   }
 
-  return items;
+  return upperRow;
 };

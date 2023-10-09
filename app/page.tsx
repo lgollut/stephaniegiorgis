@@ -1,7 +1,31 @@
-import { Text } from '@/components/text';
+import { SliceZone } from '@prismicio/react';
+import { Metadata } from 'next';
 
-const HomePage = () => {
-  return <Text>Homepage</Text>;
-};
+import { Container } from '@/components/container/container';
+import { createClient } from '@/prismicio';
+import { components } from '@/slices';
 
-export default HomePage;
+export default async function Homepage() {
+  const client = createClient();
+  const page = await client.getSingle('homepage');
+
+  return (
+    <Container>
+      <SliceZone
+        slices={page.data.slices}
+        components={components}
+        context={{ ratio: '4:3' }}
+      />
+    </Container>
+  );
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  const client = createClient();
+  const page = await client.getSingle('homepage');
+
+  return {
+    title: page.data.meta_title,
+    description: page.data.meta_description,
+  };
+}

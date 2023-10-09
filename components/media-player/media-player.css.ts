@@ -78,6 +78,7 @@ export const mediaPlayerControls = style({
 
   backgroundColor: `hsl(${vars.hsl.onSurface} / 0.1)`,
   borderRadius: vars.radius.base,
+  backdropFilter: 'blur(10px)',
 
   transform: 'translateY(-100%)',
 });

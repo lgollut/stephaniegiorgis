@@ -132,15 +132,15 @@ interface ArtworkDocumentData {
   description: prismic.RichTextField;
 
   /**
-   * Cover field in *Artwork*
+   * Cover Image field in *Artwork*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: artwork.cover
+   * - **API ID Path**: artwork.cover_image
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#image
    */
-  cover: prismic.ImageField<'square'>;
+  cover_image: prismic.ImageField<'1:1'>;
 
   /**
    * Slice Zone field in *Artwork*
@@ -265,6 +265,72 @@ export type ArtworksDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<
     Simplify<ArtworksDocumentData>,
     'artworks',
+    Lang
+  >;
+
+type HomepageDocumentDataSlicesSlice = CaptionImageSlice | RichTextSlice;
+
+/**
+ * Content for Homepage documents
+ */
+interface HomepageDocumentData {
+  /**
+   * Slice Zone field in *Homepage*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<HomepageDocumentDataSlicesSlice>
+  /**
+   * Meta Description field in *Homepage*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: homepage.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Homepage*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+
+  /**
+   * Meta Title field in *Homepage*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: homepage.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField;
+}
+
+/**
+ * Homepage document from Prismic
+ *
+ * - **API ID**: `homepage`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type HomepageDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<HomepageDocumentData>,
+    'homepage',
     Lang
   >;
 
@@ -416,8 +482,64 @@ export type AllDocumentTypes =
   | ArchivesDocument
   | ArtworkDocument
   | ArtworksDocument
+  | HomepageDocument
   | MainNavigationDocument
   | PresentationDocument;
+
+/**
+ * Primary content in *CaptionImage → Primary*
+ */
+export interface CaptionImageSliceDefaultPrimary {
+  /**
+   * Image field in *CaptionImage → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: caption_image.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<'4/3'>;
+
+  /**
+   * Caption field in *CaptionImage → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: caption_image.primary.caption
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  caption: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for CaptionImage Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CaptionImageSliceDefault = prismic.SharedSliceVariation<
+  'default',
+  Simplify<CaptionImageSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *CaptionImage*
+ */
+type CaptionImageSliceVariation = CaptionImageSliceDefault;
+
+/**
+ * CaptionImage Shared Slice
+ *
+ * - **API ID**: `caption_image`
+ * - **Description**: CaptionImage
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CaptionImageSlice = prismic.SharedSlice<
+  'caption_image',
+  CaptionImageSliceVariation
+>;
 
 /**
  * Primary content in *Documentation → Primary*
@@ -450,7 +572,18 @@ export interface DocumentationSliceImageItem {
    * - **API ID Path**: documentation.items[].image
    * - **Documentation**: https://prismic.io/docs/field#image
    */
-  image: prismic.ImageField<never>;
+  image: prismic.ImageField<'2:3' | '3:2' | '1:1'>;
+
+  /**
+   * Image Ratio field in *Documentation → Items*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: 2:3
+   * - **API ID Path**: documentation.items[].image_ratio
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  image_ratio: prismic.SelectField<'2:3' | '3:2' | '1:1', 'filled'>;
 }
 
 /**
@@ -478,7 +611,7 @@ export interface DocumentationSliceSoundItem {
    * - **API ID Path**: documentation.items[].poster
    * - **Documentation**: https://prismic.io/docs/field#image
    */
-  poster: prismic.ImageField<never>;
+  poster: prismic.ImageField<'2:3' | '3:2' | '1:1'>;
 
   /**
    * Sound field in *Documentation → Items*
@@ -489,6 +622,17 @@ export interface DocumentationSliceSoundItem {
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   sound: prismic.LinkToMediaField;
+
+  /**
+   * Poster Ratio field in *Documentation → Items*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: 2:3
+   * - **API ID Path**: documentation.items[].poster_ratio
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  poster_ratio: prismic.SelectField<'2:3' | '3:2' | '1:1', 'filled'>;
 }
 
 /**
@@ -516,7 +660,7 @@ export interface DocumentationSliceVideoItem {
    * - **API ID Path**: documentation.items[].poster
    * - **Documentation**: https://prismic.io/docs/field#image
    */
-  poster: prismic.ImageField<never>;
+  poster: prismic.ImageField<'4:3' | '16:9' | '1:1'>;
 
   /**
    * Video field in *Documentation → Items*
@@ -533,10 +677,11 @@ export interface DocumentationSliceVideoItem {
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
+   * - **Default Value**: 16:9
    * - **API ID Path**: documentation.items[].ratio
    * - **Documentation**: https://prismic.io/docs/field#select
    */
-  ratio: prismic.SelectField<'1:1' | '3:2' | '2:3' | '4:3' | '16:9' | '9:16'>;
+  ratio: prismic.SelectField<'16:9' | '4:3' | '1:1', 'filled'>;
 }
 
 /**
@@ -818,6 +963,9 @@ declare module '@prismicio/client' {
       ArtworksDocument,
       ArtworksDocumentData,
       ArtworksDocumentDataSlicesSlice,
+      HomepageDocument,
+      HomepageDocumentData,
+      HomepageDocumentDataSlicesSlice,
       MainNavigationDocument,
       MainNavigationDocumentData,
       MainNavigationDocumentDataSlicesSlice,
@@ -825,6 +973,10 @@ declare module '@prismicio/client' {
       PresentationDocumentData,
       PresentationDocumentDataSlicesSlice,
       AllDocumentTypes,
+      CaptionImageSlice,
+      CaptionImageSliceDefaultPrimary,
+      CaptionImageSliceVariation,
+      CaptionImageSliceDefault,
       DocumentationSlice,
       DocumentationSliceImagePrimary,
       DocumentationSliceImageItem,

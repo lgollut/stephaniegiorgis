@@ -44,3 +44,10 @@ export const artworkDescription = style({
     },
   },
 });
+
+export const documentation = style({
+  height: '100%',
+  // display: 'flex',
+  alignItems: 'center',
+  overflow: 'unset',
+});

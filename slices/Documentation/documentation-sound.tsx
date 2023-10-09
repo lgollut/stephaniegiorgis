@@ -17,7 +17,7 @@ export const DocumentationSound = ({ slice }: DocumentationSoundProps) => {
   const audioElements = useMemo(() => {
     let players: ReactNode[] = [];
 
-    for (const { sound, poster } of slice.items) {
+    for (const { sound, poster, poster_ratio } of slice.items) {
       if (!sound || !isFilled.linkToMedia(sound)) {
         continue;
       }
@@ -29,7 +29,7 @@ export const DocumentationSound = ({ slice }: DocumentationSoundProps) => {
           type="audio"
           poster={poster}
           src={sound.url}
-          ratio="2:3"
+          ratio={poster_ratio}
         />,
       );
     }

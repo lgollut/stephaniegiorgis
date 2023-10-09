@@ -25,9 +25,9 @@ export const DocumentationImage = ({
     return null;
   }
 
-  const grid = slice.primary.layout.includes('Grid');
+  const grid = slice.primary.layout?.includes('Grid');
 
-  const layout = slice.primary.layout.split(' ')[1] as Layout;
+  const layout = slice.primary.layout?.split(' ')[1] as Layout;
 
   return (
     <div

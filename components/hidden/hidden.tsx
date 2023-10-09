@@ -1,5 +1,3 @@
-'use client';
-
 import { clsx } from 'clsx';
 import { ElementType, ForwardedRef, forwardRef, useMemo } from 'react';
 
@@ -15,6 +13,7 @@ const Hidden = <TUse extends ElementType>(
     use: Comp = 'div',
     at = 'never',
     useCss = false,
+    isSlice = false,
     className,
     ...rest
   } = props;

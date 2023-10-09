@@ -1,4 +1,5 @@
 import '@/styles/globals.css';
+import '@/styles/layers.css';
 
 import { PrismicPreview } from '@prismicio/next';
 import { SliceZone } from '@prismicio/react';

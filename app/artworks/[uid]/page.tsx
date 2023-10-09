@@ -66,7 +66,12 @@ export default async function ArtworkPage({ params }: { params: Params }) {
               <Heading variant="headlineSmall">{artwork.data.measure}</Heading>
               <Heading variant="headlineSmall">{artwork.data.year}</Heading>
             </Stack>
-            <Hidden use={RenderedDocumentation} at="lgUp" artwork={artwork} />
+            <Hidden
+              use={RenderedDocumentation}
+              at="lgUp"
+              useCss
+              artwork={artwork}
+            />
           </Stack>
           <Box space="none" className={artworkDescription}>
             <PrismicRichText
@@ -78,7 +83,12 @@ export default async function ArtworkPage({ params }: { params: Params }) {
           </Box>
         </Box>
       </Cover>
-      <Hidden use={RenderedDocumentation} at="mdDown" artwork={artwork} />
+      <Hidden
+        use={RenderedDocumentation}
+        at="mdDown"
+        useCss
+        artwork={artwork}
+      />
     </div>
   );
 }

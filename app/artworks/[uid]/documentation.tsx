@@ -2,7 +2,7 @@
 
 import { SliceZone } from '@prismicio/react';
 
-import { documentation } from '@/app/artworks/[uid]/page.css';
+import { Stack } from '@/components/stack';
 import { ArtworkDocument } from '@/prismicio-types';
 import { components } from '@/slices';
 
@@ -13,8 +13,10 @@ export const RenderedDocumentation = ({
   artwork: ArtworkDocument;
 }) => {
   return (
-    <div className={documentation} {...props}>
-      <SliceZone slices={artwork.data.slices} components={components} />
+    <div {...props}>
+      <Stack>
+        <SliceZone slices={artwork.data.slices} components={components} />
+      </Stack>
     </div>
   );
 };

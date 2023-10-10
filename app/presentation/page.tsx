@@ -44,6 +44,7 @@ export default async function PresentationPage() {
                 rel="noreferrer"
                 color="primary"
                 variant="bodySmall"
+                align="end"
               >
                 {'Détails du CV'}
               </Text>

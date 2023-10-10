@@ -3,6 +3,8 @@ import { contactPage, contactPageForm } from '@/app/contact/page.css';
 import { Container } from '@/components/container/container';
 import { Frame } from '@/components/frame/frame';
 import { Image } from '@/components/image';
+import { Stack } from '@/components/stack';
+import { Text } from '@/components/text';
 import { createClient } from '@/prismicio';
 
 export default async function ContactPage() {
@@ -12,15 +14,17 @@ export default async function ContactPage() {
   return (
     <Container>
       <div className={contactPage}>
-        <Frame
-          use={Image}
-          field={contact.data.image['2/3']}
-          ratio="2:3"
-          cover
-          style={{
-            flex: '0 1 30%',
-          }}
-        />
+        <Stack>
+          <Frame
+            use={Image}
+            field={contact.data.image['2/3']}
+            ratio="2:3"
+            cover
+          />
+          <Text use="div" align="end" variant="bodySmall">
+            {contact.data.legend}
+          </Text>
+        </Stack>
         <ContactForm className={contactPageForm} />
       </div>
     </Container>

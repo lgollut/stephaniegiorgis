@@ -286,6 +286,17 @@ interface ContactDocumentData {
   image: prismic.ImageField<'2/3'>;
 
   /**
+   * Legend field in *Contact*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact.legend
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  legend: prismic.KeyTextField;
+
+  /**
    * Slice Zone field in *Contact*
    *
    * - **Field Type**: Slice Zone

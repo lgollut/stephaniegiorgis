@@ -63,6 +63,12 @@ const markdownSerializer = wrapMapSerializer({
             {parsedText}
           </Text>
         );
+      case 'legend':
+        return (
+          <Text use="p" variant="bodySmall" align="end" className={alignEnd}>
+            {parsedText}
+          </Text>
+        );
       default:
         return <Text use="p">{parsedText}</Text>;
     }
@@ -87,6 +93,7 @@ const markdownSerializer = wrapMapSerializer({
         return <Text use="code">{parseText(children)}</Text>;
       case 'quote':
       case 'align-end':
+      case 'legend':
       case 'link':
         return <>{parseText(children)}</>;
       default:

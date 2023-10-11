@@ -3,8 +3,8 @@ import { contactPage, contactPageForm } from '@/app/contact/page.css';
 import { Container } from '@/components/container/container';
 import { Frame } from '@/components/frame/frame';
 import { Image } from '@/components/image';
+import { RichText } from '@/components/rich-text/rich-text';
 import { Stack } from '@/components/stack';
-import { Text } from '@/components/text';
 import { createClient } from '@/prismicio';
 
 export default async function ContactPage() {
@@ -23,9 +23,7 @@ export default async function ContactPage() {
             ratio="2:3"
             cover
           />
-          <Text use="div" align="end" variant="bodySmall">
-            {contact.data.legend}
-          </Text>
+          <RichText field={contact.data.legend} />
         </Stack>
         <ContactForm className={contactPageForm} />
       </div>

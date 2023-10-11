@@ -288,13 +288,13 @@ interface ContactDocumentData {
   /**
    * Legend field in *Contact*
    *
-   * - **Field Type**: Text
+   * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
    * - **API ID Path**: contact.legend
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
-  legend: prismic.KeyTextField;
+  legend: prismic.RichTextField;
 
   /**
    * Slice Zone field in *Contact*

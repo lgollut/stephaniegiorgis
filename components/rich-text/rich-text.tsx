@@ -18,6 +18,16 @@ const replaceMap = {
   ' ?': '\u202F?',
 };
 
+function replaceSpaces(text: string, nb: number) {
+  const regex = /\u{0020}(?=[\u{00A0}\u{202F}\S]*$)/gu;
+
+  for (let i = 0; i < nb; i++) {
+    text = text.replace(regex, '\u00A0');
+  }
+
+  return text;
+}
+
 function parseText(text: unknown): ReactNode {
   if (Array.isArray(text)) {
     return text.map(parseText);
@@ -27,11 +37,15 @@ function parseText(text: unknown): ReactNode {
     return text as ReactNode;
   }
 
+  let formattedText: string = text;
+
   for (const [key, value] of Object.entries(replaceMap)) {
-    text = (text as string).replaceAll(key, value);
+    formattedText = formattedText.replaceAll(key, value);
   }
 
-  return text as string;
+  formattedText = formattedText.trim();
+
+  return replaceSpaces(formattedText, 2);
 }
 
 const markdownSerializer = wrapMapSerializer({
@@ -44,7 +58,7 @@ const markdownSerializer = wrapMapSerializer({
   paragraph: ({ node, children }) => {
     const labelSpan = node.spans.find((span) => span.type === 'label');
 
-    const parsedText = parseText(children);
+    const parsedText = parseText(children) as NonNullable<ReactNode>;
 
     if (!labelSpan || labelSpan.type !== 'label') {
       return <Text use="p">{parsedText}</Text>;

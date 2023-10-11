@@ -69,6 +69,7 @@ export const createClient = ({
   const client = prismic.createClient(sm.repositoryName, mergedConfig);
 
   prismicNext.enableAutoPreviews({ client, previewData, req });
+  client.queryLatestContent();
 
   return client;
 };

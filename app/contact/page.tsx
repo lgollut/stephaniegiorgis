@@ -10,7 +10,7 @@ import { createClient } from '@/prismicio';
 export default async function ContactPage() {
   const client = createClient();
   const contact = await client.getSingle('contact', {
-    fetchOptions: { next: { tags: ['contact'] } },
+    fetchOptions: { next: { tags: ['prismic', 'contact'] } },
   });
 
   return (

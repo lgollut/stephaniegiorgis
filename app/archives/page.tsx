@@ -7,7 +7,7 @@ import { components } from '@/slices';
 export default async function ArchivesPage() {
   const client = createClient();
   const archives = await client.getSingle('archives', {
-    fetchOptions: { next: { tags: ['archives'] } },
+    fetchOptions: { next: { tags: ['prismic', 'archives'] } },
   });
 
   return (

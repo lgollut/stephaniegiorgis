@@ -8,7 +8,7 @@ import { components } from '@/slices';
 export default async function Homepage() {
   const client = createClient();
   const page = await client.getSingle('homepage', {
-    fetchOptions: { next: { tags: ['homepage'] } },
+    fetchOptions: { next: { tags: ['prismic', 'homepage'] } },
   });
 
   return (

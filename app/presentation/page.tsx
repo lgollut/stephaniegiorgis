@@ -18,7 +18,7 @@ export default async function PresentationPage() {
 
   const { data } = await client
     .getSingle('presentation', {
-      fetchOptions: { next: { tags: ['presentation'] } },
+      fetchOptions: { next: { tags: ['prismic', 'presentation'] } },
     })
     .catch(() => notFound());
 

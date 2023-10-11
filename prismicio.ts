@@ -1,6 +1,5 @@
 import * as prismic from '@prismicio/client';
 import * as prismicNext from '@prismicio/next';
-import deepmerge from 'deepmerge';
 
 import sm from './slicemachine.config.json';
 
@@ -55,21 +54,16 @@ export const createClient = ({
   req,
   ...config
 }: prismicNext.CreateClientConfig = {}) => {
-  const mergedConfig = deepmerge<prismic.ClientConfig>(
-    {
-      routes,
-      fetchOptions:
-        process.env.NODE_ENV === 'production'
-          ? { next: { tags: ['prismic'] }, cache: 'force-cache' }
-          : { next: { revalidate: 5 } },
-    },
-    config,
-  );
-
-  const client = prismic.createClient(sm.repositoryName, mergedConfig);
+  const client = prismic.createClient(sm.repositoryName, {
+    routes,
+    fetchOptions:
+      process.env.NODE_ENV === 'production'
+        ? { next: { tags: ['prismic'] }, cache: 'force-cache' }
+        : { next: { revalidate: 5 } },
+    ...config,
+  });
 
   prismicNext.enableAutoPreviews({ client, previewData, req });
-  client.queryLatestContent();
 
   return client;
 };

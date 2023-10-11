@@ -18,7 +18,7 @@ export default async function Page() {
     }
   >('artworks', {
     fetchLinks: ['artwork.title', 'artwork.cover_image'],
-    fetchOptions: { next: { tags: ['artworks'] } },
+    fetchOptions: { next: { tags: ['prismic', 'artworks'] } },
   });
 
   return <SliceZone slices={artworks.data.slices} components={components} />;

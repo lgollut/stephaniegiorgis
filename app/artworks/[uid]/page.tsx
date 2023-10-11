@@ -25,7 +25,7 @@ export async function generateMetadata({
   const client = createClient();
   const artwork = await client
     .getByUID('artwork', params.uid, {
-      fetchOptions: { next: { tags: [params.uid] } },
+      fetchOptions: { next: { tags: ['prismic', params.uid] } },
     })
     .catch(() => notFound());
 
@@ -48,7 +48,7 @@ export default async function ArtworkPage({ params }: { params: Params }) {
 
   const artwork = await client
     .getByUID('artwork', params.uid, {
-      fetchOptions: { next: { tags: [params.uid] } },
+      fetchOptions: { next: { tags: ['prismic', params.uid] } },
     })
     .catch(() => notFound());
 

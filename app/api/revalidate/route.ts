@@ -10,7 +10,7 @@ export async function POST(request: Request) {
     return new NextResponse('Invalid token', { status: 401 });
   }
 
-  const client = createClient();
+  const client = createClient({ ref: body.masterRef });
 
   const documents = await client.getAllByIDs(body.documents);
   const revalidated: string[] = [];

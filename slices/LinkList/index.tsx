@@ -2,8 +2,8 @@ import { isFilled, type Content } from '@prismicio/client';
 import { SliceComponentProps } from '@prismicio/react';
 
 import { Box } from '@/components/box';
+import { Cluster } from '@/components/cluster';
 import { Frame } from '@/components/frame/frame';
-import { Grid } from '@/components/grid';
 import { Image } from '@/components/image';
 import { Stack } from '@/components/stack';
 import { Text } from '@/components/text';
@@ -18,7 +18,7 @@ export type LinkListProps = SliceComponentProps<Content.LinkListSlice>;
  */
 const LinkList = ({ slice }: LinkListProps): JSX.Element => {
   return (
-    <Grid
+    <Cluster
       space="lg"
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
@@ -46,7 +46,7 @@ const LinkList = ({ slice }: LinkListProps): JSX.Element => {
           </Box>
         );
       })}
-    </Grid>
+    </Cluster>
   );
 };
 

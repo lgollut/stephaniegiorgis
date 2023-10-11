@@ -1,8 +1,5 @@
-import { createClient } from '@prismicio/client';
 import { revalidateTag } from 'next/cache';
 import { NextResponse } from 'next/server';
-
-import sm from '../../../slicemachine.config.json';
 
 export async function POST(request: Request) {
   const body = await request.json();
@@ -11,19 +8,20 @@ export async function POST(request: Request) {
     return new NextResponse('Invalid token', { status: 401 });
   }
 
-  const client = createClient(sm.repositoryName);
+  // const client = createClient(sm.repositoryName);
 
-  const documents = await client.getAllByIDs(body.documents);
-  const revalidated: string[] = [];
+  // const documents = await client.getAllByIDs(body.documents);
+  // const revalidated: string[] = [];
 
-  for (const document of documents) {
-    if (!document.uid) {
-      continue;
-    }
+  // for (const document of documents) {
+  //   if (!document.uid) {
+  //     continue;
+  //   }
 
-    revalidateTag(document.uid);
-    revalidated.push(document.uid);
-  }
+  //   revalidateTag(document.uid);
+  //   revalidated.push(document.uid);
+  // }
+  revalidateTag('prismic');
 
-  return NextResponse.json({ revalidated, now: Date.now() });
+  return NextResponse.json({ revalidated: true, now: Date.now() });
 }

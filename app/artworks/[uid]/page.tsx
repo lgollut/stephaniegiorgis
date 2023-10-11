@@ -24,7 +24,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const client = createClient();
   const artwork = await client
-    .getByUID('artwork', params.uid)
+    .getByUID('artwork', params.uid, {
+      fetchOptions: { next: { tags: [params.uid] } },
+    })
     .catch(() => notFound());
 
   return {

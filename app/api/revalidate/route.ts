@@ -4,6 +4,8 @@ import { NextResponse } from 'next/server';
 
 import sm from '../../../slicemachine.config.json';
 
+const defaultTag = 'prismic';
+
 export async function POST(request: Request) {
   const body = await request.json();
 
@@ -12,17 +14,26 @@ export async function POST(request: Request) {
   }
 
   const client = createClient(sm.repositoryName);
-
-  const documents = await client.getAllByIDs(body.documents);
   const revalidated: string[] = [];
 
-  for (const document of documents) {
-    if (!document.uid) {
-      continue;
-    }
+  if (
+    !body.documents ||
+    !Array.isArray(body.documents) ||
+    body.documents.length === 0
+  ) {
+    revalidateTag(defaultTag);
+    revalidated.push(defaultTag);
+  } else {
+    const documents = await client.getAllByIDs(body.documents);
 
-    revalidateTag(document.uid);
-    revalidated.push(document.uid);
+    for (const document of documents) {
+      if (!document.uid) {
+        continue;
+      }
+
+      revalidateTag(document.uid);
+      revalidated.push(document.uid);
+    }
   }
 
   return NextResponse.json({ revalidated: true, now: Date.now() });

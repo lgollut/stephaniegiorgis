@@ -5,6 +5,7 @@ import { vars } from '@/styles/contract.css';
 export const contactPage = style({
   display: 'flex',
   gap: vars.spacing.xl,
+  alignItems: 'center',
 
   '@media': {
     'screen and (max-width: 1023px)': {
@@ -14,5 +15,6 @@ export const contactPage = style({
 });
 
 export const contactPageForm = style({
-  flex: '1 0 70%',
+  flex: '1 1 70%',
+  width: '100%',
 });

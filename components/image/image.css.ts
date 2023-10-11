@@ -9,25 +9,25 @@ export const image = recipe({
   variants: {
     cover: {
       true: {
-        // width: '100%',
-        // height: '100%',
-        // position: 'absolute',
+        width: '100%',
+        height: '100%',
+        position: 'relative',
       },
     },
   },
 });
 
 globalStyle(`${image.classNames.base} > img`, {
-  // maxWidth: '100%',
-  // height: 'auto',
+  maxWidth: '100%',
+  height: 'auto',
 });
 
 globalStyle(`${image.classNames.variants.cover} > img`, {
-  // width: '100%',
-  // height: '100%',
-  // position: 'absolute',
-  // top: 0,
-  // insetInlineStart: 0,
-  // objectPosition: 'center',
-  // objectFit: 'cover',
+  width: '100%',
+  height: '100%',
+  position: 'absolute',
+  top: 0,
+  insetInlineStart: 0,
+  objectPosition: 'center',
+  objectFit: 'cover',
 });

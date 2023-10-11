@@ -1,7 +1,6 @@
 import { ContactForm } from '@/app/contact/contact-form';
 import { contactPage, contactPageForm } from '@/app/contact/page.css';
 import { Container } from '@/components/container/container';
-import { Frame } from '@/components/frame/frame';
 import { Image } from '@/components/image';
 import { RichText } from '@/components/rich-text/rich-text';
 import { Stack } from '@/components/stack';
@@ -16,15 +15,12 @@ export default async function ContactPage() {
   return (
     <Container>
       <div className={contactPage}>
-        <Stack>
-          <Frame
-            use={Image}
-            field={contact.data.image['2/3']}
-            ratio="2:3"
-            cover
-          />
-          <RichText field={contact.data.legend} />
-        </Stack>
+        <div>
+          <Stack>
+            <Image field={contact.data.image['2/3']} />
+            <RichText field={contact.data.legend} />
+          </Stack>
+        </div>
         <ContactForm className={contactPageForm} />
       </div>
     </Container>

@@ -3,7 +3,6 @@ import { SliceComponentProps } from '@prismicio/react';
 
 import { Box } from '@/components/box';
 import { Cluster } from '@/components/cluster';
-import { Frame } from '@/components/frame/frame';
 import { Image } from '@/components/image';
 import { Stack } from '@/components/stack';
 import { Text } from '@/components/text';
@@ -20,6 +19,7 @@ const LinkList = ({ slice }: LinkListProps): JSX.Element => {
   return (
     <Cluster
       space="lg"
+      justify="center"
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
     >
@@ -40,7 +40,7 @@ const LinkList = ({ slice }: LinkListProps): JSX.Element => {
             rounded="base"
           >
             <Stack>
-              <Frame use={Image} field={screenshot.Square} ratio="1:1" />
+              <Image field={screenshot.Square} />
               <Text>{label}</Text>
             </Stack>
           </Box>

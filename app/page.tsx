@@ -7,7 +7,9 @@ import { components } from '@/slices';
 
 export default async function Homepage() {
   const client = createClient();
-  const page = await client.getSingle('homepage');
+  const page = await client.getSingle('homepage', {
+    fetchOptions: { next: { tags: ['homepage'] } },
+  });
 
   return (
     <Container>

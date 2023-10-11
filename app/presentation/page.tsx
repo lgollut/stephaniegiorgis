@@ -17,7 +17,9 @@ export default async function PresentationPage() {
   const client = createClient();
 
   const { data } = await client
-    .getSingle('presentation')
+    .getSingle('presentation', {
+      fetchOptions: { next: { tags: ['presentation'] } },
+    })
     .catch(() => notFound());
 
   return (

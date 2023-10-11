@@ -30,7 +30,9 @@ export default async function RootLayout({
 }) {
   const client = createClient();
 
-  const { data } = await client.getSingle('main_navigation');
+  const { data } = await client.getSingle('main_navigation', {
+    fetchOptions: { next: { tags: ['main-navigation'] } },
+  });
 
   return (
     <html lang="en" className={clsx(fontClass, html)}>

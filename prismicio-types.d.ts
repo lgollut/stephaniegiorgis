@@ -64,7 +64,7 @@ interface ArchivesDocumentData {
  * @typeParam Lang - Language API ID of the document.
  */
 export type ArchivesDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithoutUID<
+  prismic.PrismicDocumentWithUID<
     Simplify<ArchivesDocumentData>,
     'archives',
     Lang
@@ -262,7 +262,7 @@ interface ArtworksDocumentData {
  * @typeParam Lang - Language API ID of the document.
  */
 export type ArtworksDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithoutUID<
+  prismic.PrismicDocumentWithUID<
     Simplify<ArtworksDocumentData>,
     'artworks',
     Lang
@@ -350,7 +350,7 @@ interface ContactDocumentData {
  * @typeParam Lang - Language API ID of the document.
  */
 export type ContactDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithoutUID<
+  prismic.PrismicDocumentWithUID<
     Simplify<ContactDocumentData>,
     'contact',
     Lang
@@ -416,7 +416,7 @@ interface HomepageDocumentData {
  * @typeParam Lang - Language API ID of the document.
  */
 export type HomepageDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithoutUID<
+  prismic.PrismicDocumentWithUID<
     Simplify<HomepageDocumentData>,
     'homepage',
     Lang
@@ -450,7 +450,7 @@ interface MainNavigationDocumentData {
  * @typeParam Lang - Language API ID of the document.
  */
 export type MainNavigationDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithoutUID<
+  prismic.PrismicDocumentWithUID<
     Simplify<MainNavigationDocumentData>,
     'main_navigation',
     Lang
@@ -560,7 +560,7 @@ interface PresentationDocumentData {
  * @typeParam Lang - Language API ID of the document.
  */
 export type PresentationDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithoutUID<
+  prismic.PrismicDocumentWithUID<
     Simplify<PresentationDocumentData>,
     'presentation',
     Lang

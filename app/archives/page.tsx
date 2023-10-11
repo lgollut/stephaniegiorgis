@@ -6,7 +6,9 @@ import { components } from '@/slices';
 
 export default async function ArchivesPage() {
   const client = createClient();
-  const archives = await client.getSingle('archives');
+  const archives = await client.getSingle('archives', {
+    fetchOptions: { next: { tags: ['archives'] } },
+  });
 
   return (
     <Container style={{ display: 'flex', justifyContent: 'center' }}>

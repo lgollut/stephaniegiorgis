@@ -6,9 +6,10 @@ import { createClient } from '@/prismicio';
 export async function POST(request: Request) {
   const body = await request.json();
 
-  if (body.secret !== process.env.PRISMIC_WEBHOOK_SECRET) {
+  if (body.secret !== process.env.REVALIDATE_SECRET) {
     return new NextResponse('Invalid token', { status: 401 });
   }
+
   const client = createClient();
 
   const documents = await client.getAllByIDs(body.documents);

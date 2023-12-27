@@ -1,3 +1,5 @@
+import 'photoswipe/dist/photoswipe.css';
+
 import { DocumentationSlice } from '@/prismicio-types';
 
 import { DocumentationImageWrapper } from './documentation-image-wrapper';

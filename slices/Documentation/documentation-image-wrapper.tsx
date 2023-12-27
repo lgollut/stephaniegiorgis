@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { Gallery } from 'react-photoswipe-gallery';
 
 import { Stack } from '@/components/stack';
 import {
@@ -14,7 +15,7 @@ export const DocumentationImageWrapper = ({
 }: {
   slice: DocumentationSliceImage;
 }) => {
-  const [upperRow, lowerRow] = useMemo(() => {
+  const [upperRow, lowerRow, cells] = useMemo(() => {
     const layout = slice.primary.layout?.split(' ')[1];
     const cells = layout?.split('/') || ['1'];
     const images = [...slice.items];
@@ -30,24 +31,23 @@ export const DocumentationImageWrapper = ({
       }
     }
 
-    return [
-      <div key="upperRow" className={imageRow({ column: cells[0] !== '2' })}>
-        {upperItems.map((item, index) => (
-          <DocumentationImageItem item={item} key={index} />
-        ))}
-      </div>,
-      <div key="lowerRow" className={imageRow()}>
-        {images.map((item, index) => (
-          <DocumentationImageItem item={item} key={index} />
-        ))}
-      </div>,
-    ];
+    return [upperItems, images, cells];
   }, [slice]);
 
   return (
     <Stack>
-      {upperRow}
-      {lowerRow}
+      <Gallery>
+        <div key="upperRow" className={imageRow({ column: cells[0] !== '2' })}>
+          {upperRow.map((item, index) => (
+            <DocumentationImageItem item={item} key={index} />
+          ))}
+        </div>
+        <div key="lowerRow" className={imageRow()}>
+          {lowerRow.map((item, index) => (
+            <DocumentationImageItem item={item} key={index} />
+          ))}
+        </div>
+      </Gallery>
     </Stack>
   );
 };

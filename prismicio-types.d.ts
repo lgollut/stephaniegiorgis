@@ -19,8 +19,7 @@ interface ArchivesDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<ArchivesDocumentDataSlicesSlice>
-  /**
+  slices: prismic.SliceZone<ArchivesDocumentDataSlicesSlice> /**
    * Meta Description field in *Archives*
    *
    * - **Field Type**: Text
@@ -151,8 +150,7 @@ interface ArtworkDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<ArtworkDocumentDataSlicesSlice>
-  /**
+  slices: prismic.SliceZone<ArtworkDocumentDataSlicesSlice> /**
    * Meta title field in *Artwork*
    *
    * - **Field Type**: Text
@@ -217,8 +215,7 @@ interface ArtworksDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<ArtworksDocumentDataSlicesSlice>
-  /**
+  slices: prismic.SliceZone<ArtworksDocumentDataSlicesSlice> /**
    * Meta Description field in *Artworks*
    *
    * - **Field Type**: Text
@@ -305,8 +302,7 @@ interface ContactDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<ContactDocumentDataSlicesSlice>
-  /**
+  slices: prismic.SliceZone<ContactDocumentDataSlicesSlice> /**
    * Meta Description field in *Contact*
    *
    * - **Field Type**: Text
@@ -371,8 +367,7 @@ interface HomepageDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<HomepageDocumentDataSlicesSlice>
-  /**
+  slices: prismic.SliceZone<HomepageDocumentDataSlicesSlice> /**
    * Meta Description field in *Homepage*
    *
    * - **Field Type**: Text
@@ -515,8 +510,7 @@ interface PresentationDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<PresentationDocumentDataSlicesSlice>
-  /**
+  slices: prismic.SliceZone<PresentationDocumentDataSlicesSlice> /**
    * Meta Description field in *Presentation*
    *
    * - **Field Type**: Text
@@ -587,7 +581,7 @@ export interface CaptionImageSliceDefaultPrimary {
    * - **API ID Path**: caption_image.primary.image
    * - **Documentation**: https://prismic.io/docs/field#image
    */
-  image: prismic.ImageField<'4/3'>;
+  image: prismic.ImageField<'4:3' | '2:3' | '3:2'>;
 
   /**
    * Caption field in *CaptionImage → Primary*
@@ -598,6 +592,17 @@ export interface CaptionImageSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   caption: prismic.KeyTextField;
+
+  /**
+   * Image Ratio field in *CaptionImage → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: 4:3
+   * - **API ID Path**: caption_image.primary.image_ratio
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  image_ratio: prismic.SelectField<'4:3' | '2:3' | '3:2', 'filled'>;
 }
 
 /**
@@ -1043,7 +1048,7 @@ declare module '@prismicio/client' {
   interface CreateClient {
     (
       repositoryNameOrEndpoint: string,
-      options?: prismic.ClientConfig
+      options?: prismic.ClientConfig,
     ): prismic.Client<AllDocumentTypes>;
   }
 

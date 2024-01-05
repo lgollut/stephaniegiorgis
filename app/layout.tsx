@@ -20,7 +20,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.stephaniegiorgis.ch'),
   title: 'Stéphanie Giorgis',
-  description: 'Know your cyber risks, make better business decisions',
+  description: 'Artiste plasticienne romande',
 };
 
 export default async function RootLayout({
@@ -45,7 +45,7 @@ export default async function RootLayout({
         <div className={footer}>
           <Box space="sm">
             <Text variant="bodySmall">
-              {'Stéphanie Giorgis © 2023. All Rights Reserved'}
+              {'Stéphanie Giorgis © 2024. All Rights Reserved'}
             </Text>
           </Box>
         </div>

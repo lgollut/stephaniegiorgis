@@ -13,11 +13,7 @@ export default async function Homepage() {
 
   return (
     <Container>
-      <SliceZone
-        slices={page.data.slices}
-        components={components}
-        context={{ ratio: '4:3' }}
-      />
+      <SliceZone slices={page.data.slices} components={components} />
     </Container>
   );
 }

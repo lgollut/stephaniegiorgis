@@ -10,7 +10,6 @@ const baseFrame = style({
 
   maxWidth: '100%',
   maxHeight: '100%',
-  height: 'min-content',
 
   overflow: 'hidden',
 

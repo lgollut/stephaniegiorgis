@@ -602,7 +602,10 @@ export interface CaptionImageSliceDefaultPrimary {
    * - **API ID Path**: caption_image.primary.image_ratio
    * - **Documentation**: https://prismic.io/docs/field#select
    */
-  image_ratio: prismic.SelectField<'4:3' | '2:3' | '3:2', 'filled'>;
+  image_ratio: prismic.SelectField<
+    '4:3' | '2:3' | '3:2' | 'original',
+    'filled'
+  >;
 }
 
 /**

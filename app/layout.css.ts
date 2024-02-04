@@ -15,6 +15,7 @@ export const body = style([
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
+    gap: vars.spacing['2xl'],
 
     minHeight: '100vh',
 
@@ -27,8 +28,6 @@ export const body = style([
 export const footer = style({
   display: 'flex',
   justifyContent: 'center',
-
-  marginTop: vars.spacing['3xl'],
 
   backgroundColor: vars.color.surfaceContainerHighest,
 });

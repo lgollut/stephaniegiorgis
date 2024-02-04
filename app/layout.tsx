@@ -7,7 +7,6 @@ import { clsx } from 'clsx';
 import { ReactNode } from 'react';
 
 import { Box } from '@/components/box';
-import { Stack } from '@/components/stack';
 import { Text } from '@/components/text';
 import { createClient, repositoryName } from '@/prismicio';
 import { components } from '@/slices';
@@ -37,11 +36,9 @@ export default async function RootLayout({
   return (
     <html lang="en" className={clsx(fontClass, html)}>
       <body className={body}>
-        <Stack space="xl">
-          <SliceZone slices={data.slices} components={components} />
-          {children}
-        </Stack>
-        <PrismicPreview repositoryName={repositoryName} />
+        <SliceZone slices={data.slices} components={components} />
+        {children}
+
         <div className={footer}>
           <Box space="sm">
             <Text variant="bodySmall">
@@ -49,6 +46,8 @@ export default async function RootLayout({
             </Text>
           </Box>
         </div>
+
+        <PrismicPreview repositoryName={repositoryName} />
       </body>
     </html>
   );

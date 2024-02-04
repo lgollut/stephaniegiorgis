@@ -19,7 +19,6 @@ export type CaptionImageProps = SliceComponentProps<
  * Component for "CaptionImage" Slices.
  */
 const CaptionImage = ({ slice }: CaptionImageProps): JSX.Element => {
-  console.log(slice.primary.image_ratio);
   return (
     <Stack
       use="section"
@@ -27,11 +26,15 @@ const CaptionImage = ({ slice }: CaptionImageProps): JSX.Element => {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
     >
-      <Frame
-        use={Image}
-        field={slice.primary.image[slice.primary.image_ratio]}
-        ratio={slice.primary.image_ratio}
-      />
+      {slice.primary.image_ratio === 'original' ? (
+        <Image field={slice.primary.image} cover />
+      ) : (
+        <Frame
+          use={Image}
+          field={slice.primary.image[slice.primary.image_ratio]}
+          ratio={slice.primary.image_ratio}
+        />
+      )}
       <Text use="div" variant="bodyMedium" align="end">
         {slice.primary.caption}
       </Text>

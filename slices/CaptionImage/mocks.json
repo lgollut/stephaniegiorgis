@@ -97,7 +97,7 @@
 			},
 			"image_ratio": {
 				"__TYPE__": "FieldContent",
-				"value": "3:2",
+				"value": "4:3",
 				"type": "Select"
 			}
 		},

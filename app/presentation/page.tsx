@@ -48,7 +48,7 @@ export default async function PresentationPage() {
                 variant="bodySmall"
                 align="end"
               >
-                {'Détails du CV'}
+                {'Détails du CV.'}
               </Text>
             )}
           </Stack>

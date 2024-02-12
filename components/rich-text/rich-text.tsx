@@ -43,8 +43,6 @@ function parseText(text: unknown): ReactNode {
     formattedText = formattedText.replaceAll(key, value);
   }
 
-  formattedText = formattedText.trim();
-
   return replaceSpaces(formattedText, 2);
 }
 

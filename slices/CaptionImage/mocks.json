@@ -91,9 +91,15 @@
 				}
 			},
 			"caption": {
-				"__TYPE__": "FieldContent",
-				"value": "folks",
-				"type": "Text"
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Do elit irure qui sit nostrud id id adipisicing aliquip labore est id consectetur. Incididunt Lorem enim do ut."
+						}
+					}
+				]
 			},
 			"image_ratio": {
 				"__TYPE__": "FieldContent",

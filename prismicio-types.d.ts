@@ -584,14 +584,14 @@ export interface CaptionImageSliceDefaultPrimary {
   image: prismic.ImageField<'4:3' | '2:3' | '3:2'>;
 
   /**
-   * Caption field in *CaptionImage → Primary*
+   * caption field in *CaptionImage → Primary*
    *
-   * - **Field Type**: Text
+   * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
    * - **API ID Path**: caption_image.primary.caption
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
-  caption: prismic.KeyTextField;
+  caption: prismic.RichTextField;
 
   /**
    * Image Ratio field in *CaptionImage → Primary*

@@ -37,10 +37,14 @@
           }
         },
         "caption": {
-          "type": "Text",
+          "type": "StructuredText",
           "config": {
-            "label": "Caption",
-            "placeholder": ""
+            "label": "caption",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
+            "labels": ["codespan", "quote", "align-end", "legend"]
           }
         },
         "image_ratio": {
@@ -48,12 +52,7 @@
           "config": {
             "label": "Image Ratio",
             "placeholder": "",
-            "options": [
-              "4:3",
-              "2:3",
-              "3:2",
-              "original"
-            ],
+            "options": ["4:3", "2:3", "3:2", "original"],
             "default_value": "4:3"
           }
         }

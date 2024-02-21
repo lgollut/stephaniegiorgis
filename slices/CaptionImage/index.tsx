@@ -2,8 +2,8 @@ import { SliceComponentProps } from '@prismicio/react';
 
 import { Frame } from '@/components/frame/frame';
 import { Image } from '@/components/image';
+import { RichText } from '@/components/rich-text/rich-text';
 import { Stack } from '@/components/stack';
-import { Text } from '@/components/text';
 import { CaptionImageSlice } from '@/prismicio-types';
 import { Ratio } from '@/slices/Documentation/documentation.types';
 
@@ -35,9 +35,7 @@ const CaptionImage = ({ slice }: CaptionImageProps): JSX.Element => {
           ratio={slice.primary.image_ratio}
         />
       )}
-      <Text use="div" variant="bodyMedium" align="end">
-        {slice.primary.caption}
-      </Text>
+      <RichText field={slice.primary.caption} />
     </Stack>
   );
 };

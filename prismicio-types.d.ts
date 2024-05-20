@@ -352,7 +352,10 @@ export type ContactDocument<Lang extends string = string> =
     Lang
   >;
 
-type HomepageDocumentDataSlicesSlice = CaptionImageSlice | RichTextSlice;
+type HomepageDocumentDataSlicesSlice =
+  | VideoSlice
+  | CaptionImageSlice
+  | RichTextSlice;
 
 /**
  * Content for Homepage documents
@@ -1047,6 +1050,79 @@ export type RichTextSlice = prismic.SharedSlice<
   RichTextSliceVariation
 >;
 
+/**
+ * Primary content in *Video → Primary*
+ */
+export interface VideoSliceDefaultPrimary {
+  /**
+   * Poster field in *Video → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: video.primary.poster
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  poster: prismic.ImageField<never>;
+
+  /**
+   * av1 field in *Video → Primary*
+   *
+   * - **Field Type**: Link to Media
+   * - **Placeholder**: *None*
+   * - **API ID Path**: video.primary.av1
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  av1: prismic.LinkToMediaField;
+
+  /**
+   * h264 field in *Video → Primary*
+   *
+   * - **Field Type**: Link to Media
+   * - **Placeholder**: *None*
+   * - **API ID Path**: video.primary.h264
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  h264: prismic.LinkToMediaField;
+
+  /**
+   * Ratio field in *Video → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: 16:9
+   * - **API ID Path**: video.primary.ratio
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  ratio: prismic.SelectField<'16:9' | '4:3' | '1:1', 'filled'>;
+}
+
+/**
+ * Default variation for Video Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type VideoSliceDefault = prismic.SharedSliceVariation<
+  'default',
+  Simplify<VideoSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Video*
+ */
+type VideoSliceVariation = VideoSliceDefault;
+
+/**
+ * Video Shared Slice
+ *
+ * - **API ID**: `video`
+ * - **Description**: Video
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type VideoSlice = prismic.SharedSlice<'video', VideoSliceVariation>;
+
 declare module '@prismicio/client' {
   interface CreateClient {
     (
@@ -1108,6 +1184,10 @@ declare module '@prismicio/client' {
       RichTextSliceDefaultPrimary,
       RichTextSliceVariation,
       RichTextSliceDefault,
+      VideoSlice,
+      VideoSliceDefaultPrimary,
+      VideoSliceVariation,
+      VideoSliceDefault,
     };
   }
 }

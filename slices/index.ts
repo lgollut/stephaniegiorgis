@@ -9,4 +9,5 @@ export const components = {
   link_list: dynamic(() => import('./LinkList')),
   navigation_links: dynamic(() => import('./NavigationLinks')),
   rich_text: dynamic(() => import('./RichText')),
+  video: dynamic(() => import('./Video')),
 };

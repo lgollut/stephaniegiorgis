@@ -3,7 +3,6 @@ import { ReactNode, useMemo } from 'react';
 
 import { MediaPlayer } from '@/components/media-player';
 import { DocumentationSliceVideo } from '@/prismicio-types';
-import { documentationVideo } from '@/slices/Documentation/documentation-video.css';
 import { assertSliceVariation } from '@/utils/assert-variation';
 
 type DocumentationVideoProps = {
@@ -21,13 +20,13 @@ export const DocumentationVideo = ({ slice }: DocumentationVideoProps) => {
         continue;
       }
 
+      const mediaRatio = ratio.replace(':', '/') as '16/9' | '4/3' | '1/1';
+
       players.push(
         <MediaPlayer
           key={video.name}
-          className={documentationVideo}
-          type="video"
           poster={poster}
-          ratio={ratio}
+          ratio={mediaRatio}
           src={video.url}
         />,
       );

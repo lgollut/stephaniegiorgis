@@ -3,7 +3,7 @@ import { globalStyle, style } from '@vanilla-extract/css';
 export const player = style({
   aspectRatio: '16 /9',
   backgroundColor: '#212121',
-  borderRadius: 'var(--media-border-radius)',
+  // borderRadius: 'var(--media-border-radius)',
   color: '#f5f5f5',
   contain: 'layout',
   fontFamily: 'sans-serif',

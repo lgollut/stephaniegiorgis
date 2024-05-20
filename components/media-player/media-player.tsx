@@ -41,7 +41,7 @@ export const MediaPlayer = ({
       poster={poster?.url || ''}
       playsInline
       crossOrigin
-      style={{ overflow: 'hidden' }}
+      style={{ overflow: 'hidden', borderRadius: '0', border: 'none' }}
       aspectRatio={ratio}
     >
       <MediaProvider>
@@ -52,7 +52,10 @@ export const MediaPlayer = ({
         />
       </MediaProvider>
 
-      <DefaultAudioLayout icons={defaultLayoutIcons} />
+      <DefaultAudioLayout
+        icons={defaultLayoutIcons}
+        style={{ borderRadius: '0', border: 'none' }}
+      />
       <DefaultVideoLayout icons={defaultLayoutIcons} />
     </MediaPlayerPrimitive>
   );

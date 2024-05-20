@@ -1094,6 +1094,16 @@ export interface VideoSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   ratio: prismic.SelectField<'16:9' | '4:3' | '1:1', 'filled'>;
+
+  /**
+   * Max width field in *Video → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: video.primary.max_width
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  max_width: prismic.KeyTextField;
 }
 
 /**

@@ -1,7 +1,5 @@
 import { globalStyle, style } from '@vanilla-extract/css';
 
-import { player } from '@/components/media-player/media-player.css';
-
 export const captions = style({
   position: 'absolute',
   inset: 0,
@@ -76,12 +74,3 @@ globalStyle(
     padding: 'var(--cue-padding-x) var(--cue-padding-y)',
   },
 );
-
-globalStyle(`${player}[data-preview] ${captions}`, {
-  opacity: 0,
-  visibility: 'hidden',
-});
-
-globalStyle(`${player}[data-controls] ${captions}`, {
-  bottom: 78,
-});

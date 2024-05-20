@@ -5,6 +5,7 @@ import '@vidstack/react/player/styles/default/layouts/audio.css';
 import '@vidstack/react/player/styles/default/layouts/video.css';
 
 import { PrismicImageProps } from '@prismicio/react';
+import { assignInlineVars } from '@vanilla-extract/dynamic';
 import {
   MediaPlayer as MediaPlayerPrimitive,
   MediaProvider,
@@ -16,12 +17,17 @@ import {
   DefaultVideoLayout,
   defaultLayoutIcons,
 } from '@vidstack/react/player/layouts/default';
+import { clsx } from 'clsx';
+
+import { maxWidthVar, mediaPlayer } from './media-player.css';
 
 type MediaPlayerProps = {
   poster?: PrismicImageProps['field'];
   src: VideoSrc[] | string;
   title?: string;
   ratio?: '16/9' | '4/3' | '1/1';
+  className?: string;
+  maxWidth?: string | null;
 };
 
 export const MediaPlayer = ({
@@ -29,6 +35,8 @@ export const MediaPlayer = ({
   src,
   title,
   ratio,
+  className,
+  maxWidth,
 }: MediaPlayerProps) => {
   if (!src) {
     return null;
@@ -41,8 +49,15 @@ export const MediaPlayer = ({
       poster={poster?.url || ''}
       playsInline
       crossOrigin
-      style={{ overflow: 'hidden', borderRadius: '0', border: 'none' }}
       aspectRatio={ratio}
+      className={clsx(mediaPlayer, className)}
+      style={
+        (maxWidth &&
+          assignInlineVars({
+            [maxWidthVar]: maxWidth,
+          })) ||
+        {}
+      }
     >
       <MediaProvider>
         <Poster

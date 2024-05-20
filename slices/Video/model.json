@@ -48,6 +48,13 @@
             ],
             "default_value": "16:9"
           }
+        },
+        "max_width": {
+          "type": "Text",
+          "config": {
+            "label": "Max width",
+            "placeholder": ""
+          }
         }
       },
       "items": {}

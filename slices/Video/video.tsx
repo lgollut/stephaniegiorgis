@@ -4,6 +4,8 @@ import { VideoMimeType, VideoSrc } from '@vidstack/react';
 
 import { MediaPlayer } from '@/components/media-player';
 
+import { videoWrapper } from './video.css';
+
 /**
  * Props for `Video`.
  */
@@ -39,6 +41,13 @@ export const Video = ({ slice }: VideoProps) => {
   }
 
   return (
-    <MediaPlayer poster={slice.primary.poster} ratio={mediaRatio} src={src} />
+    <div className={videoWrapper({ ratio: mediaRatio })}>
+      <MediaPlayer
+        poster={slice.primary.poster}
+        ratio={mediaRatio}
+        src={src}
+        maxWidth={slice.primary.max_width}
+      />
+    </div>
   );
 };

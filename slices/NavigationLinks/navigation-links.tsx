@@ -3,7 +3,7 @@
 import { type Content } from '@prismicio/client';
 import { PrismicNextLink } from '@prismicio/next';
 import { SliceComponentProps } from '@prismicio/react';
-import { Menu } from 'lucide-react';
+import { Instagram, Menu } from 'lucide-react';
 import { Route } from 'next';
 import { useSelectedLayoutSegment } from 'next/navigation';
 import { ReactNode } from 'react';
@@ -54,6 +54,19 @@ export function NavigationLinks({ slice }: NavigationLinksProps) {
       </Text>,
     );
   }
+
+  items.push(
+    <Text
+      use={'a'}
+      key={'instagram'}
+      href={'https://www.instagram.com/stephaniegiorgis'}
+      target="_blank"
+      className={navigationLink}
+      variant="bodyMedium"
+    >
+      <Instagram size="20" strokeWidth={1.5} />
+    </Text>,
+  );
 
   return (
     <Container use="nav" space="none">

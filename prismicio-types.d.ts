@@ -454,6 +454,31 @@ export type MainNavigationDocument<Lang extends string = string> =
     Lang
   >;
 
+/**
+ * Item in *Presentation → links*
+ */
+export interface PresentationDocumentDataLinksItem {
+  /**
+   * Link field in *Presentation → links*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: presentation.links[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+
+  /**
+   * Label field in *Presentation → links*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: presentation.links[].label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label: prismic.KeyTextField;
+}
+
 type PresentationDocumentDataSlicesSlice = never;
 
 /**
@@ -494,15 +519,15 @@ interface PresentationDocumentData {
   resume_image: prismic.ImageField<never>;
 
   /**
-   * Resume Link field in *Presentation*
+   * links field in *Presentation*
    *
-   * - **Field Type**: Link to Media
+   * - **Field Type**: Group
    * - **Placeholder**: *None*
-   * - **API ID Path**: presentation.resume_link
+   * - **API ID Path**: presentation.links[]
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   * - **Documentation**: https://prismic.io/docs/field#group
    */
-  resume_link: prismic.LinkToMediaField;
+  links: prismic.GroupField<Simplify<PresentationDocumentDataLinksItem>>;
 
   /**
    * Slice Zone field in *Presentation*
@@ -1163,6 +1188,7 @@ declare module '@prismicio/client' {
       MainNavigationDocumentDataSlicesSlice,
       PresentationDocument,
       PresentationDocumentData,
+      PresentationDocumentDataLinksItem,
       PresentationDocumentDataSlicesSlice,
       AllDocumentTypes,
       CaptionImageSlice,

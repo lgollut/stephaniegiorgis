@@ -38,19 +38,23 @@ export default async function PresentationPage() {
         >
           <Stack>
             <RichText field={data.resume} />
-            {isFilled.linkToMedia(data.resume_link) && (
-              <Text
-                use="a"
-                href={data.resume_link.url}
-                target="_blank"
-                rel="noreferrer"
-                color="primary"
-                variant="bodySmall"
-                align="end"
-              >
-                {'Détails du CV.'}
-              </Text>
-            )}
+            {data.links.map(({ link, label }) => {
+              return (
+                isFilled.linkToMedia(link) && (
+                  <Text
+                    use="a"
+                    href={link.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    color="primary"
+                    variant="bodySmall"
+                    align="end"
+                  >
+                    {label}
+                  </Text>
+                )
+              );
+            })}
           </Stack>
           <Stack space="sm">
             <Frame use={Image} field={data.resume_image} ratio="2:3" cover />

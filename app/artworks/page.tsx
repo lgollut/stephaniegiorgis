@@ -1,6 +1,7 @@
 import { SliceZone } from '@prismicio/react';
 import { Metadata } from 'next';
 
+import { Stack } from '@/components/stack';
 import { createClient } from '@/prismicio';
 import { components } from '@/slices';
 
@@ -21,7 +22,11 @@ export default async function Page() {
     fetchOptions: { next: { tags: ['prismic', 'artworks'] } },
   });
 
-  return <SliceZone slices={artworks.data.slices} components={components} />;
+  return (
+    <Stack space="6xl" divided="solid">
+      <SliceZone slices={artworks.data.slices} components={components} />
+    </Stack>
+  );
 }
 
 export async function generateMetadata(): Promise<Metadata> {

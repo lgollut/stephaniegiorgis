@@ -8,10 +8,20 @@ const Stack = <TUse extends ElementType = 'div'>(
   props: StackProps<TUse>,
   ref: ForwardedRef<any>,
 ) => {
-  const { use: Comp = 'div', space = 'base', className, ...rest } = props;
+  const {
+    use: Comp = 'div',
+    space = 'base',
+    className,
+    divided,
+    ...rest
+  } = props;
 
   return (
-    <Comp ref={ref} className={clsx(className, stack({ space }))} {...rest} />
+    <Comp
+      ref={ref}
+      className={clsx(className, stack({ space, divided }))}
+      {...rest}
+    />
   );
 };
 

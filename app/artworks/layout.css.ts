@@ -12,9 +12,3 @@ export const main = style({
 
   position: 'relative',
 });
-
-export const mainStack = style({
-  height: '100%',
-
-  position: 'relative',
-});

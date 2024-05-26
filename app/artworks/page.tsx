@@ -5,6 +5,8 @@ import { Stack } from '@/components/stack';
 import { createClient } from '@/prismicio';
 import { components } from '@/slices';
 
+import { mainStack } from './page.css';
+
 import type { Content } from '@prismicio/client';
 
 export default async function Page() {
@@ -23,7 +25,7 @@ export default async function Page() {
   });
 
   return (
-    <Stack space="6xl" divided="solid">
+    <Stack className={mainStack} space="6xl" divided="solid">
       <SliceZone slices={artworks.data.slices} components={components} />
     </Stack>
   );

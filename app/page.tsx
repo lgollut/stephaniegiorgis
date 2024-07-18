@@ -2,6 +2,7 @@ import { SliceZone } from '@prismicio/react';
 import { Metadata } from 'next';
 
 import { Container } from '@/components/container/container';
+import { Stack } from '@/components/stack';
 import { createClient } from '@/prismicio';
 import { components } from '@/slices';
 
@@ -13,7 +14,9 @@ export default async function Homepage() {
 
   return (
     <Container>
-      <SliceZone slices={page.data.slices} components={components} />
+      <Stack space="4xl">
+        <SliceZone slices={page.data.slices} components={components} />
+      </Stack>
     </Container>
   );
 }

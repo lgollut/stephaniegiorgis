@@ -3,6 +3,7 @@ import '@/styles/layers.css';
 
 import { PrismicPreview } from '@prismicio/next';
 import { SliceZone } from '@prismicio/react';
+import { Analytics } from '@vercel/analytics/react';
 import { clsx } from 'clsx';
 import { ReactNode } from 'react';
 
@@ -47,6 +48,7 @@ export default async function RootLayout({
           </Box>
         </div>
 
+        <Analytics />
         <PrismicPreview repositoryName={repositoryName} />
       </body>
     </html>

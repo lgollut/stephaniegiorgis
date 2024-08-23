@@ -13,6 +13,15 @@ const nextConfig = {
   experimental: {
     typedRoutes: true,
   },
+  async redirects() {
+    return [
+      {
+        source: '/archives',
+        destination: '/links',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = withVanillaExtract(nextConfig);

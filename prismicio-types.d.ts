@@ -588,6 +588,87 @@ export type PresentationDocument<Lang extends string = string> =
     Lang
   >;
 
+type StandardPageDocumentDataSlicesSlice =
+  | CaptionImageSlice
+  | VideoSlice
+  | LinkListSlice
+  | RichTextSlice
+  | GridSlice;
+
+/**
+ * Content for Standard Page documents
+ */
+interface StandardPageDocumentData {
+  /**
+   * title field in *Standard Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: standardPage.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Slice Zone field in *Standard Page*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: standardPage.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<StandardPageDocumentDataSlicesSlice> /**
+   * Meta Description field in *Standard Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: standardPage.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Standard Page*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: standardPage.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+
+  /**
+   * Meta Title field in *Standard Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: standardPage.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField;
+}
+
+/**
+ * Standard Page document from Prismic
+ *
+ * - **API ID**: `standardPage`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type StandardPageDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<StandardPageDocumentData>,
+    'standardPage',
+    Lang
+  >;
+
 export type AllDocumentTypes =
   | ArchivesDocument
   | ArtworkDocument
@@ -595,39 +676,40 @@ export type AllDocumentTypes =
   | ContactDocument
   | HomepageDocument
   | MainNavigationDocument
-  | PresentationDocument;
+  | PresentationDocument
+  | StandardPageDocument;
 
 /**
- * Primary content in *CaptionImage → Primary*
+ * Primary content in *CaptionImage → Default → Primary*
  */
 export interface CaptionImageSliceDefaultPrimary {
   /**
-   * Image field in *CaptionImage → Primary*
+   * Image field in *CaptionImage → Default → Primary*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: caption_image.primary.image
+   * - **API ID Path**: caption_image.default.primary.image
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   image: prismic.ImageField<'4:3' | '2:3' | '3:2'>;
 
   /**
-   * caption field in *CaptionImage → Primary*
+   * caption field in *CaptionImage → Default → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: caption_image.primary.caption
+   * - **API ID Path**: caption_image.default.primary.caption
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   caption: prismic.RichTextField;
 
   /**
-   * Image Ratio field in *CaptionImage → Primary*
+   * Image Ratio field in *CaptionImage → Default → Primary*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
    * - **Default Value**: 4:3
-   * - **API ID Path**: caption_image.primary.image_ratio
+   * - **API ID Path**: caption_image.default.primary.image_ratio
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   image_ratio: prismic.SelectField<
@@ -667,16 +749,16 @@ export type CaptionImageSlice = prismic.SharedSlice<
 >;
 
 /**
- * Primary content in *Documentation → Primary*
+ * Primary content in *Documentation → Image → Primary*
  */
 export interface DocumentationSliceImagePrimary {
   /**
-   * Layout field in *Documentation → Primary*
+   * Layout field in *Documentation → Image → Primary*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
    * - **Default Value**: Slider
-   * - **API ID Path**: documentation.primary.layout
+   * - **API ID Path**: documentation.image.primary.layout
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   layout: prismic.SelectField<
@@ -1031,15 +1113,15 @@ export type NavigationLinksSlice = prismic.SharedSlice<
 >;
 
 /**
- * Primary content in *RichText → Primary*
+ * Primary content in *RichText → Default → Primary*
  */
 export interface RichTextSliceDefaultPrimary {
   /**
-   * Content field in *RichText → Primary*
+   * Content field in *RichText → Default → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: Lorem ipsum...
-   * - **API ID Path**: rich_text.primary.content
+   * - **API ID Path**: rich_text.default.primary.content
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   content: prismic.RichTextField;
@@ -1076,56 +1158,56 @@ export type RichTextSlice = prismic.SharedSlice<
 >;
 
 /**
- * Primary content in *Video → Primary*
+ * Primary content in *Video → Default → Primary*
  */
 export interface VideoSliceDefaultPrimary {
   /**
-   * Poster field in *Video → Primary*
+   * Poster field in *Video → Default → Primary*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: video.primary.poster
+   * - **API ID Path**: video.default.primary.poster
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   poster: prismic.ImageField<never>;
 
   /**
-   * av1 field in *Video → Primary*
+   * av1 field in *Video → Default → Primary*
    *
    * - **Field Type**: Link to Media
    * - **Placeholder**: *None*
-   * - **API ID Path**: video.primary.av1
+   * - **API ID Path**: video.default.primary.av1
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   av1: prismic.LinkToMediaField;
 
   /**
-   * h264 field in *Video → Primary*
+   * h264 field in *Video → Default → Primary*
    *
    * - **Field Type**: Link to Media
    * - **Placeholder**: *None*
-   * - **API ID Path**: video.primary.h264
+   * - **API ID Path**: video.default.primary.h264
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   h264: prismic.LinkToMediaField;
 
   /**
-   * Ratio field in *Video → Primary*
+   * Ratio field in *Video → Default → Primary*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
    * - **Default Value**: 16:9
-   * - **API ID Path**: video.primary.ratio
+   * - **API ID Path**: video.default.primary.ratio
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   ratio: prismic.SelectField<'16:9' | '4:3' | '1:1', 'filled'>;
 
   /**
-   * Max width field in *Video → Primary*
+   * Max width field in *Video → Default → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: video.primary.max_width
+   * - **API ID Path**: video.default.primary.max_width
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   max_width: prismic.KeyTextField;
@@ -1190,6 +1272,9 @@ declare module '@prismicio/client' {
       PresentationDocumentData,
       PresentationDocumentDataLinksItem,
       PresentationDocumentDataSlicesSlice,
+      StandardPageDocument,
+      StandardPageDocumentData,
+      StandardPageDocumentDataSlicesSlice,
       AllDocumentTypes,
       CaptionImageSlice,
       CaptionImageSliceDefaultPrimary,

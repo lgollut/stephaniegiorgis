@@ -43,7 +43,7 @@ export default async function RootLayout({
         <div className={footer}>
           <Box space="sm">
             <Text variant="bodySmall">
-              {'Stéphanie Giorgis © 2024. All Rights Reserved'}
+              {'Stéphanie Giorgis © 2026. All Rights Reserved'}
             </Text>
           </Box>
         </div>

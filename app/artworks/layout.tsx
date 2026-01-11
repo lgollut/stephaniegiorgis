@@ -1,13 +1,18 @@
+import { clsx } from 'clsx';
 import { ReactNode } from 'react';
 
-import { Container } from '@/components/container/container';
+import { Box } from '@/components/box';
+import { container } from '@/components/container/container.css';
 
 import { main } from './layout.css';
 
 export default function ArtworksLayout({ children }: { children: ReactNode }) {
   return (
-    <Container use="main" className={main}>
+    <Box
+      use="main"
+      className={clsx(container({ space: 'lg', maxWidth: 'base' }), main)}
+    >
       {children}
-    </Container>
+    </Box>
   );
 }

@@ -1,7 +1,7 @@
+import { sys } from '@kalink-ui/seedly/styles';
 import { style, createVar } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
-import { vars } from '@/styles/contract.css';
 import { typography } from '@/styles/typography.css';
 
 const colorVar = createVar();
@@ -10,7 +10,7 @@ const baseText = style({
   color: colorVar,
 
   vars: {
-    [colorVar]: vars.color.onSurface,
+    [colorVar]: sys.color.foreground,
   },
 });
 
@@ -30,13 +30,13 @@ export const text = recipe({
     color: {
       primary: {
         vars: {
-          [colorVar]: vars.color.primary,
+          [colorVar]: sys.color.foreground,
         },
       },
 
       muted: {
         vars: {
-          [colorVar]: vars.color.onSurfaceMuted,
+          [colorVar]: `color-mix(in srgb, ${sys.color.foreground} 60%, transparent)`,
         },
       },
 

@@ -1,7 +1,6 @@
+import { sys } from '@kalink-ui/seedly/styles';
 import { style, createVar } from '@vanilla-extract/css';
 import { recipe, RecipeVariants } from '@vanilla-extract/recipes';
-
-import { vars } from '@/styles/contract.css';
 
 const containerColor = createVar();
 const stateLayerColor = createVar();
@@ -27,7 +26,7 @@ export const baseButton = style({
   whiteSpace: 'nowrap',
 
   backgroundColor: containerColor,
-  borderRadius: vars.radius.sm,
+  borderRadius: sys.shape.corner.small,
 
   cursor: 'pointer',
 
@@ -50,7 +49,7 @@ export const baseButton = style({
     opacity: 0,
     borderRadius: 'inherit',
 
-    transition: `opacity ${vars.duration.shorter} ${vars.easing.inOut}`,
+    transition: `opacity ${sys.motion.duration.short[1]} ${sys.motion.easing.standard}`,
     pointerEvents: 'none',
   },
 
@@ -60,15 +59,15 @@ export const baseButton = style({
     },
 
     '&:hover::before': {
-      opacity: vars.state.hovered.opacity,
+      opacity: sys.state.hovered.opacity,
     },
 
     '&:focus::before, &:focus-visible::before': {
-      opacity: vars.state.focused.opacity,
+      opacity: sys.state.focused.opacity,
     },
 
     '&:active::before': {
-      opacity: vars.state.pressed.opacity,
+      opacity: sys.state.pressed.opacity,
     },
   },
 });
@@ -87,74 +86,74 @@ export const button = recipe({
         borderStyle: 'none',
 
         ':hover': {
-          boxShadow: vars.elevation[1],
+          boxShadow: sys.elevation.minimal,
         },
 
         ':disabled': {
           vars: {
-            [labelColor]: `hsl(${vars.hsl.onSurface} / 0.38)`,
-            [containerColor]: `hsl(${vars.hsl.onSurface} / 0.12)`,
+            [labelColor]: `color-mix(in srgb, ${sys.color.foreground} 38%, transparent)`,
+            [containerColor]: `color-mix(in srgb, ${sys.color.foreground} 12%, transparent)`,
           },
         },
 
         vars: {
-          [labelColor]: vars.color.surface,
-          [containerColor]: vars.color.onSurface,
-          [stateLayerColor]: vars.color.surface,
+          [labelColor]: sys.color.background,
+          [containerColor]: sys.color.foreground,
+          [stateLayerColor]: sys.color.background,
         },
       },
 
       outlined: {
         borderStyle: 'solid',
         borderWidth: 1,
-        borderColor: vars.color.outlineVariant,
+        borderColor: `color-mix(in srgb, ${sys.color.foreground} 20%, transparent)`,
 
         ':focus, :focus-visible': {
-          borderColor: vars.color.onSurface,
+          borderColor: sys.color.foreground,
         },
 
         ':disabled': {
-          borderColor: `hsl(${vars.hsl.onSurface} / 0.12)`,
+          borderColor: `color-mix(in srgb, ${sys.color.foreground} 12%, transparent)`,
 
           vars: {
-            [labelColor]: `hsl(${vars.hsl.onSurface} / 0.38)`,
+            [labelColor]: `color-mix(in srgb, ${sys.color.foreground} 38%, transparent)`,
           },
         },
 
         vars: {
-          [labelColor]: vars.color.onSurface,
+          [labelColor]: sys.color.foreground,
           [containerColor]: 'transparent',
-          [stateLayerColor]: vars.color.onSurface,
+          [stateLayerColor]: sys.color.foreground,
         },
       },
 
       ghost: {
         ':focus, :focus-visible': {
-          borderColor: vars.color.onSurface,
+          borderColor: sys.color.foreground,
         },
 
         ':disabled': {
-          borderColor: `hsl(${vars.hsl.onSurface} / 0.12)`,
+          borderColor: `color-mix(in srgb, ${sys.color.foreground} 12%, transparent)`,
 
           vars: {
-            [labelColor]: `hsl(${vars.hsl.onSurface} / 0.38)`,
+            [labelColor]: `color-mix(in srgb, ${sys.color.foreground} 38%, transparent)`,
           },
         },
 
         selectors: {
           '&[aria-current="page"]::before': {
-            opacity: vars.state.hovered.opacity,
+            opacity: sys.state.hovered.opacity,
 
             vars: {
-              [stateLayerColor]: vars.color.onSurface,
+              [stateLayerColor]: sys.color.foreground,
             },
           },
         },
 
         vars: {
-          [labelColor]: vars.color.onSurface,
+          [labelColor]: sys.color.foreground,
           [containerColor]: 'transparent',
-          [stateLayerColor]: vars.color.onSurface,
+          [stateLayerColor]: sys.color.foreground,
         },
       },
     },
@@ -162,30 +161,30 @@ export const button = recipe({
     size: {
       sm: {
         vars: {
-          [size]: vars.spacing.lg,
-          [inlineSpace]: vars.spacing.base,
-          [spacing]: vars.spacing.sm,
+          [size]: sys.spacing[6],
+          [inlineSpace]: sys.spacing[4],
+          [spacing]: sys.spacing[3],
         },
       },
       base: {
         vars: {
-          [size]: vars.spacing.xl,
-          [inlineSpace]: vars.spacing.md,
-          [spacing]: vars.spacing.base,
+          [size]: sys.spacing[7],
+          [inlineSpace]: sys.spacing[5],
+          [spacing]: sys.spacing[4],
         },
       },
       lg: {
         vars: {
-          [size]: vars.spacing['2xl'],
-          [inlineSpace]: vars.spacing.xl,
-          [spacing]: vars.spacing.lg,
+          [size]: sys.spacing[8],
+          [inlineSpace]: sys.spacing[7],
+          [spacing]: sys.spacing[6],
         },
       },
       xl: {
         vars: {
-          [size]: vars.spacing['4xl'],
-          [inlineSpace]: vars.spacing['2xl'],
-          [spacing]: vars.spacing.xl,
+          [size]: sys.spacing[10],
+          [inlineSpace]: sys.spacing[8],
+          [spacing]: sys.spacing[7],
         },
       },
     },

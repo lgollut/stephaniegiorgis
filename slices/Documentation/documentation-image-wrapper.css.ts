@@ -1,11 +1,10 @@
+import { sys } from '@kalink-ui/seedly/styles';
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
-import { vars } from '@/styles/contract.css';
-
 export const baseImageRow = style({
   display: 'flex',
-  gap: vars.spacing.base,
+  gap: sys.spacing[4],
 });
 
 export const imageRow = recipe({

@@ -1,10 +1,9 @@
+import { sys } from '@kalink-ui/seedly/styles';
 import { globalStyle, style } from '@vanilla-extract/css';
-
-import { vars } from '@/styles/contract.css';
 
 export const linkList = style({
   display: 'flex',
-  gap: vars.spacing.base,
+  gap: sys.spacing[4],
   flexWrap: 'wrap',
   justifyContent: 'center',
   alignItems: 'center',

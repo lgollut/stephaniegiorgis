@@ -1,10 +1,11 @@
 import { isFilled } from '@prismicio/client';
+import { clsx } from 'clsx';
 import { notFound } from 'next/navigation';
 
 import { presentationPage } from '@/app/presentation/page.css';
 import { Aside } from '@/components/aside';
 import { Box } from '@/components/box';
-import { Container } from '@/components/container/container';
+import { container } from '@/components/container/container.css';
 import { Frame } from '@/components/frame/frame';
 import { Heading } from '@/components/heading';
 import { Image } from '@/components/image';
@@ -23,10 +24,15 @@ export default async function PresentationPage() {
     .catch(() => notFound());
 
   return (
-    <Container maxWidth="extraSmall" className={presentationPage}>
-      <Stack space="4xl">
+    <Box
+      className={clsx(
+        container({ space: 'lg', maxWidth: 'extraSmall' }),
+        presentationPage,
+      )}
+    >
+      <Stack spacing={10}>
         <RichText field={data.introduction} />
-        <Box space="none">
+        <Box spacing={0}>
           <Heading use="h2" color="muted" align="start">
             {'lang[ue]age et [re]présentation'}
           </Heading>
@@ -50,7 +56,8 @@ export default async function PresentationPage() {
                       target="_blank"
                       rel="noreferrer"
                       color="primary"
-                      variant="bodySmall"
+                      variant="body"
+                      size="small"
                       align="end"
                     >
                       {label}
@@ -60,14 +67,14 @@ export default async function PresentationPage() {
               },
             )}
           </Stack>
-          <Stack space="sm">
+          <Stack spacing={3}>
             <Frame use={Image} field={data.resume_image} ratio="2:3" cover />
-            <Text align="end" use="div" variant="bodySmall">
+            <Text align="end" use="div" variant="body" size="small">
               {data.resume_image.copyright}
             </Text>
           </Stack>
         </Aside>
       </Stack>
-    </Container>
+    </Box>
   );
 }

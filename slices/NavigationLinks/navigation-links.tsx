@@ -1,26 +1,26 @@
 'use client';
 
+import {
+  Box,
+  Cluster,
+  Heading,
+  Sheet,
+  SheetClose,
+  SheetPortal,
+  SheetTrigger,
+  Text,
+} from '@kalink-ui/seedly';
 import { type Content } from '@prismicio/client';
 import { PrismicNextLink } from '@prismicio/next';
 import { SliceComponentProps } from '@prismicio/react';
-import { Instagram, Menu } from 'lucide-react';
+import { Instagram, Menu, X } from 'lucide-react';
 import { Route } from 'next';
 import { useSelectedLayoutSegment } from 'next/navigation';
 import { ReactNode } from 'react';
 
-import { Box } from '@/components/box';
-import { Cluster } from '@/components/cluster';
-import { Container } from '@/components/container/container';
-import { Heading } from '@/components/heading';
 import { Hidden } from '@/components/hidden';
-import { Panel } from '@/components/panel/panel';
-import { PanelContent } from '@/components/panel/panel-content';
-import { PanelTrigger } from '@/components/panel/panel-trigger';
-import { Text } from '@/components/text';
-import {
-  logo,
-  navigationLink,
-} from '@/slices/NavigationLinks/navigation-links.css';
+
+import { logo, navigationLink } from './navigation-links.css';
 
 /**
  * Props for `NavigationLinks`.
@@ -48,7 +48,8 @@ export function NavigationLinks({ slice }: NavigationLinksProps) {
         href={item.href as Route}
         aria-current={segment === currentSegment ? 'page' : undefined}
         className={navigationLink}
-        variant="bodyMedium"
+        variant="body"
+        size="medium"
       >
         {item.label}
       </Text>,
@@ -62,38 +63,104 @@ export function NavigationLinks({ slice }: NavigationLinksProps) {
       href={'https://www.instagram.com/stephaniegiorgis'}
       target="_blank"
       className={navigationLink}
-      variant="bodyMedium"
+      variant="body"
+      size="medium"
     >
       <Instagram size="20" strokeWidth={1.5} />
     </Text>,
   );
 
   return (
-    <Container use="nav" space="none">
-      <Box space={['xl', 'base', 'none', 'base']}>
-        <Cluster justify="spaceBetween">
-          <Panel>
-            <Cluster>
-              <Hidden use={PanelTrigger} at="lgUp" icon={Menu} />
-              <PrismicNextLink
-                href={'/'}
-                title="Go to the homepage"
-                className={logo}
+    <Box
+      use="nav"
+      spacing={{ xs: 4, md: 5 }}
+      style={{ width: '100%', maxWidth: '1280px', marginInline: 'auto' }}
+    >
+      <Cluster justify="spaceBetween" align="center">
+        <Sheet>
+          <Cluster spacing={3} align="center">
+            <Hidden use={SheetTrigger} at="lgUp" asChild>
+              <Box
+                use="button"
+                aria-label="Open navigation"
+                style={{
+                  background: 'transparent',
+                  border: 'none',
+                  padding: 0,
+                }}
               >
-                <Heading variant="titleMedium">Stéphanie Giorgis</Heading>
-              </PrismicNextLink>
-            </Cluster>
-            <Hidden use={Cluster} at="mdDown" space="xl">
-              {items}
+                <Menu size="24" strokeWidth={1.5} />
+              </Box>
             </Hidden>
-            <Hidden use={PanelContent} at="lgUp">
-              {items.map((item, index) => (
-                <Box key={index}>{item}</Box>
-              ))}
-            </Hidden>
-          </Panel>
-        </Cluster>
-      </Box>
-    </Container>
+            <PrismicNextLink
+              href={'/'}
+              title="Go to the homepage"
+              className={logo}
+            >
+              <Heading variant="title" size="medium">
+                Stéphanie Giorgis
+              </Heading>
+            </PrismicNextLink>
+          </Cluster>
+
+          <Hidden use={Cluster} at="mdDown" spacing={4} align="center">
+            {items}
+          </Hidden>
+
+          <Hidden use={SheetPortal} at="lgUp">
+            <Box
+              style={{
+                position: 'fixed',
+                inset: 0,
+                display: 'flex',
+                justifyContent: 'flex-start',
+                backgroundColor: 'hsl(0 0% 0% / 0.4)',
+                backdropFilter: 'blur(4px)',
+                zIndex: 9999,
+              }}
+            >
+              <Box
+                spacing={4}
+                style={{
+                  width: '80%',
+                  maxWidth: 320,
+                  height: '100%',
+                  backgroundColor: 'var(--color-surface, white)',
+                  padding: '24px',
+                  boxShadow: '0 12px 40px rgba(0,0,0,0.25)',
+                }}
+              >
+                <Cluster justify="spaceBetween" align="center">
+                  <Heading variant="title" size="medium">
+                    Menu
+                  </Heading>
+                  <SheetClose asChild>
+                    <Box
+                      use="button"
+                      aria-label="Close navigation"
+                      style={{
+                        background: 'transparent',
+                        border: 'none',
+                        padding: 0,
+                      }}
+                    >
+                      <X size="24" strokeWidth={1.5} />
+                    </Box>
+                  </SheetClose>
+                </Cluster>
+
+                <Cluster spacing={4} direction="row">
+                  {items.map((item, index) => (
+                    <SheetClose asChild key={index}>
+                      <Box>{item}</Box>
+                    </SheetClose>
+                  ))}
+                </Cluster>
+              </Box>
+            </Box>
+          </Hidden>
+        </Sheet>
+      </Cluster>
+    </Box>
   );
 }

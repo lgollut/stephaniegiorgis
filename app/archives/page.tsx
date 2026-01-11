@@ -1,6 +1,8 @@
 import { SliceZone } from '@prismicio/react';
+import { clsx } from 'clsx';
 
-import { Container } from '@/components/container/container';
+import { Box } from '@/components/box';
+import { container } from '@/components/container/container.css';
 import { createClient } from '@/prismicio';
 import { components } from '@/slices';
 
@@ -11,8 +13,13 @@ export default async function ArchivesPage() {
   const archives = await client.getSingle('archives');
 
   return (
-    <Container className={archivesPage}>
+    <Box
+      className={clsx(
+        container({ space: 'lg', maxWidth: 'base' }),
+        archivesPage,
+      )}
+    >
       <SliceZone slices={archives.data.slices} components={components} />
-    </Container>
+    </Box>
   );
 }

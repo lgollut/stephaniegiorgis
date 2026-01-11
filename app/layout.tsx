@@ -1,17 +1,19 @@
-import '@/styles/globals.css';
-import '@/styles/layers.css';
+import '@kalink-ui/seedly/styles/reset';
+import '@kalink-ui/seedly/styles/layers';
 
+import '@/style/refs-theme.css';
+import '@/style/system-theme.css';
+
+import { Box, Text } from '@kalink-ui/seedly';
 import { PrismicPreview } from '@prismicio/next';
 import { SliceZone } from '@prismicio/react';
 import { Analytics } from '@vercel/analytics/react';
 import { clsx } from 'clsx';
 import { ReactNode } from 'react';
 
-import { Box } from '@/components/box';
-import { Text } from '@/components/text';
-import { createClient, repositoryName } from '@/prismicio';
-import { components } from '@/slices';
-import { fontClass } from '@/styles/font';
+import { createClient, repositoryName } from '../prismicio';
+import { components } from '../slices';
+import { fontClass } from '../styles/font';
 
 import { html, body, footer } from './layout.css';
 
@@ -41,8 +43,8 @@ export default async function RootLayout({
         {children}
 
         <div className={footer}>
-          <Box space="sm">
-            <Text variant="bodySmall">
+          <Box spacing={4}>
+            <Text variant="body" size="small">
               {'Stéphanie Giorgis © 2026. All Rights Reserved'}
             </Text>
           </Box>

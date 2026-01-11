@@ -22,7 +22,7 @@ const CaptionImage = ({ slice }: CaptionImageProps) => {
   return (
     <Stack
       use="section"
-      space="sm"
+      spacing={3}
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
     >

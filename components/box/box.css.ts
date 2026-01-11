@@ -1,7 +1,6 @@
+import { sys } from '@kalink-ui/seedly/styles';
 import { style, createVar } from '@vanilla-extract/css';
 import { RecipeVariants, recipe } from '@vanilla-extract/recipes';
-
-import { vars } from '@/styles/contract.css';
 
 const spaceBlockStartVar = createVar();
 const spaceInlineEndVar = createVar();
@@ -15,37 +14,37 @@ const radiusVar = createVar();
 const spaceScale = (cssVar: ReturnType<typeof createVar>) => ({
   xl: {
     vars: {
-      [cssVar]: vars.spacing.xl,
+      [cssVar]: sys.spacing[7],
     },
   },
   lg: {
     vars: {
-      [cssVar]: vars.spacing.lg,
+      [cssVar]: sys.spacing[6],
     },
   },
   md: {
     vars: {
-      [cssVar]: vars.spacing.md,
+      [cssVar]: sys.spacing[5],
     },
   },
   base: {
     vars: {
-      [cssVar]: vars.spacing.base,
+      [cssVar]: sys.spacing[4],
     },
   },
   sm: {
     vars: {
-      [cssVar]: vars.spacing.sm,
+      [cssVar]: sys.spacing[3],
     },
   },
   xs: {
     vars: {
-      [cssVar]: vars.spacing.xs,
+      [cssVar]: sys.spacing[2],
     },
   },
   none: {
     vars: {
-      [cssVar]: vars.spacing.none,
+      [cssVar]: sys.spacing[0],
     },
   },
 });
@@ -67,7 +66,7 @@ const baseBox = style({
   borderWidth: 1,
 
   vars: {
-    [colorVar]: vars.color.onSurface,
+    [colorVar]: sys.color.foreground,
     [borderColorVar]: bgVar,
   },
 });
@@ -88,48 +87,48 @@ export const box = recipe({
       },
       surfaceBright: {
         vars: {
-          [bgVar]: vars.color.surfaceBright,
+          [bgVar]: sys.color.background,
         },
       },
       surface: {
         vars: {
-          [bgVar]: vars.color.surface,
+          [bgVar]: sys.color.background,
         },
       },
       surfaceDim: {
         vars: {
-          [bgVar]: vars.color.surfaceDim,
+          [bgVar]: sys.color.background,
         },
       },
       surfaceContainerHighest: {
         vars: {
-          [bgVar]: vars.color.surfaceContainerHighest,
+          [bgVar]: sys.color.background,
         },
       },
       surfaceContainerHigh: {
         vars: {
-          [bgVar]: vars.color.surfaceContainerHigh,
+          [bgVar]: sys.color.background,
         },
       },
       surfaceContainer: {
         vars: {
-          [bgVar]: vars.color.surfaceContainer,
+          [bgVar]: sys.color.background,
         },
       },
       surfaceContainerLow: {
         vars: {
-          [bgVar]: vars.color.surfaceContainerLow,
+          [bgVar]: sys.color.background,
         },
       },
       surfaceContainerLowest: {
         vars: {
-          [bgVar]: vars.color.surfaceContainerLowest,
+          [bgVar]: sys.color.background,
         },
       },
       primary: {
         vars: {
-          [colorVar]: vars.color.onPrimary,
-          [bgVar]: vars.color.primary,
+          [colorVar]: sys.color.background,
+          [bgVar]: sys.color.foreground,
         },
       },
     },
@@ -148,42 +147,42 @@ export const box = recipe({
     rounded: {
       none: {
         vars: {
-          [radiusVar]: vars.radius.none,
+          [radiusVar]: sys.shape.corner.none,
         },
       },
       xs: {
         vars: {
-          [radiusVar]: vars.radius.xs,
+          [radiusVar]: sys.shape.corner.sharp,
         },
       },
       sm: {
         vars: {
-          [radiusVar]: vars.radius.sm,
+          [radiusVar]: sys.shape.corner.small,
         },
       },
       base: {
         vars: {
-          [radiusVar]: vars.radius.base,
+          [radiusVar]: sys.shape.corner.medium,
         },
       },
       md: {
         vars: {
-          [radiusVar]: vars.radius.md,
+          [radiusVar]: sys.shape.corner.rounded,
         },
       },
       lg: {
         vars: {
-          [radiusVar]: vars.radius.lg,
+          [radiusVar]: sys.shape.corner.rounded,
         },
       },
       xl: {
         vars: {
-          [radiusVar]: vars.radius.xl,
+          [radiusVar]: sys.shape.corner.rounded,
         },
       },
       full: {
         vars: {
-          [radiusVar]: vars.radius.full,
+          [radiusVar]: sys.shape.corner.circle,
         },
       },
     },
@@ -191,7 +190,7 @@ export const box = recipe({
     outlined: {
       true: {
         vars: {
-          [borderColorVar]: vars.color.outlineVariant,
+          [borderColorVar]: `color-mix(in srgb, ${sys.color.foreground} 20%, transparent)`,
         },
       },
     },

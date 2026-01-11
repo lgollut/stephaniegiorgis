@@ -42,20 +42,20 @@ export const ContactForm = (props: ComponentPropsWithoutRef<'form'>) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} {...props}>
-      <Stack space="lg">
-        <Stack use="label" space="xs">
+      <Stack spacing={6}>
+        <Stack use="label" spacing={2}>
           <Text>{'Votre nom'}</Text>
           <Input {...register('name', { required: true })} />
         </Stack>
-        <Stack use="label" space="xs">
+        <Stack use="label" spacing={2}>
           <Text>{'Votre email'}</Text>
           <Input type="email" {...register('email', { required: true })} />
         </Stack>
-        <Stack use="label" space="xs">
+        <Stack use="label" spacing={2}>
           <Text>{'Sujet du message'}</Text>
           <Input {...register('subject', { required: true })} />
         </Stack>
-        <Stack use="label" space="xs">
+        <Stack use="label" spacing={2}>
           <Text>{'Message'}</Text>
           <Textarea {...register('message', { required: true })} />
         </Stack>

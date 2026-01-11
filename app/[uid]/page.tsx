@@ -1,7 +1,8 @@
 import { SliceZone } from '@prismicio/react';
 import { notFound } from 'next/navigation';
 
-import { Container } from '@/components/container/container';
+import { Box } from '@/components/box';
+import { container } from '@/components/container/container.css';
 import { createClient } from '@/prismicio';
 import { components } from '@/slices';
 
@@ -46,9 +47,9 @@ export default async function StandardPage({
     .catch(() => notFound());
 
   return (
-    <Container>
+    <Box className={container({ space: 'lg', maxWidth: 'base' })}>
       <SliceZone slices={page.data.slices} components={components} />
-    </Container>
+    </Box>
   );
 }
 

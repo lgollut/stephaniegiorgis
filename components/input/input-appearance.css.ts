@@ -1,7 +1,7 @@
+import { sys } from '@kalink-ui/seedly/styles';
 import { style, createVar, globalStyle } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
-import { vars } from '@/styles/contract.css';
 import { transition } from '@/styles/transition';
 import { typography } from '@/styles/typography.css';
 
@@ -16,7 +16,7 @@ const inputAppearanceBase = style([
 
     color: inputTextColor,
 
-    backgroundColor: vars.color.surface,
+    backgroundColor: sys.color.background,
 
     transition: transition(['border-color', 'box-shadow'], {
       duration: 'shorter',
@@ -26,16 +26,16 @@ const inputAppearanceBase = style([
       '&:disabled, &:has(:disabled)': {
         cursor: 'unset',
 
-        backgroundColor: `hsl(${vars.hsl.onSurface} / 0.03)`,
+        backgroundColor: `color-mix(in srgb, ${sys.color.foreground} 3%, transparent)`,
 
         vars: {
-          [inputTextColor]: `hsl(${vars.hsl.onSurface} / 0.38)`,
+          [inputTextColor]: `color-mix(in srgb, ${sys.color.foreground} 38%, transparent)`,
         },
       },
     },
 
     vars: {
-      [inputTextColor]: vars.color.onSurface,
+      [inputTextColor]: sys.color.foreground,
     },
   },
 ]);
@@ -46,10 +46,10 @@ export const inputAppearance = recipe({
   variants: {
     outlined: {
       true: {
-        paddingInline: vars.spacing.base,
-        paddingBlock: vars.spacing.sm,
+        paddingInline: sys.spacing[4],
+        paddingBlock: sys.spacing[3],
 
-        borderRadius: vars.radius.sm,
+        borderRadius: sys.shape.corner.small,
         borderColor: outlineColor,
         borderStyle: 'solid',
         borderWidth: 1,
@@ -60,25 +60,25 @@ export const inputAppearance = recipe({
             outline: 'none',
 
             vars: {
-              [outlineColor]: vars.color.primary,
+              [outlineColor]: sys.color.foreground,
             },
           },
 
           '&:disabled, &:has(:disabled)': {
             vars: {
-              [outlineColor]: `hsl(${vars.hsl.onSurface} / 0.38)`,
+              [outlineColor]: `color-mix(in srgb, ${sys.color.foreground} 38%, transparent)`,
             },
           },
 
           '&[aria-invalid], &:has([aria-invalid])': {
             vars: {
-              [outlineColor]: vars.color.primary,
+              [outlineColor]: sys.color.foreground,
             },
           },
         },
 
         vars: {
-          [outlineColor]: vars.color.outlineVariant,
+          [outlineColor]: `color-mix(in srgb, ${sys.color.foreground} 20%, transparent)`,
         },
       },
 

@@ -1,6 +1,5 @@
+import { sys } from '@kalink-ui/seedly/styles';
 import { style } from '@vanilla-extract/css';
-
-import { vars } from '@/styles/contract.css';
 
 export const main = style({
   display: 'flex',
@@ -8,7 +7,7 @@ export const main = style({
   alignSelf: 'center',
   justifyContent: 'center',
 
-  paddingBlockEnd: vars.spacing.base,
+  paddingBlockEnd: sys.spacing[4],
 
   position: 'relative',
 });

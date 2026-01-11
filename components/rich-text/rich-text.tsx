@@ -109,7 +109,8 @@ const markdownSerializer = wrapMapSerializer({
         return (
           <Text
             use="p"
-            variant="bodySmall"
+            variant="body"
+            size="small"
             align="end"
             className={alignEnd}
             key={key}
@@ -145,7 +146,8 @@ const markdownSerializer = wrapMapSerializer({
   hyperlink: ({ node, children, key }) => (
     <Text
       use="a"
-      variant="bodySmall"
+      variant="body"
+      size="small"
       color="primary"
       href={node.data.url}
       key={key}
@@ -184,7 +186,7 @@ export function RichText({ field }: RichTextProps) {
   );
 
   return (
-    <Stack space="lg" className={richText}>
+    <Stack spacing={6} className={richText}>
       {rendered}
     </Stack>
   );

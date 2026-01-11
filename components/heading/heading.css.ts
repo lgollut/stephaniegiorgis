@@ -1,7 +1,7 @@
+import { sys } from '@kalink-ui/seedly/styles';
 import { createVar, style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
-import { vars } from '@/styles/contract.css';
 import { typography } from '@/styles/typography.css';
 
 const colorVar = createVar();
@@ -10,7 +10,7 @@ const baseHeading = style({
   color: colorVar,
 
   vars: {
-    [colorVar]: vars.color.onSurface,
+    [colorVar]: sys.color.foreground,
   },
 });
 
@@ -50,7 +50,7 @@ export const heading = recipe({
       },
       muted: {
         vars: {
-          [colorVar]: vars.color.onSurfaceMuted,
+          [colorVar]: `color-mix(in srgb, ${sys.color.foreground} 60%, transparent)`,
         },
       },
     },
@@ -60,7 +60,7 @@ export const heading = recipe({
 export const subtitleStyle = style([
   typography.titleMedium,
   {
-    color: vars.color.onSurface,
+    color: sys.color.foreground,
   },
 ]);
 
@@ -68,8 +68,8 @@ export const headingWrapper = recipe({
   variants: {
     border: {
       true: {
-        paddingBottom: vars.spacing.base,
-        borderBottom: `1px solid ${vars.color.outlineVariant}`,
+        paddingBottom: sys.spacing[4],
+        borderBottom: `1px solid color-mix(in srgb, ${sys.color.foreground} 20%, transparent)`,
       },
     },
 

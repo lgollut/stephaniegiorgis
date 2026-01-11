@@ -1,6 +1,6 @@
+import { sys } from '@kalink-ui/seedly/styles';
 import { style } from '@vanilla-extract/css';
 
-import { vars } from '@/styles/contract.css';
 import { typography } from '@/styles/typography.css';
 
 export const richText = style({});
@@ -8,7 +8,7 @@ export const richText = style({});
 export const blockquote = style([
   typography.bodyMedium,
   {
-    paddingInline: vars.spacing['2xl'],
+    paddingInline: sys.spacing[8],
     fontStyle: 'italic',
   },
 ]);

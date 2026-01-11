@@ -1,7 +1,6 @@
+import { sys } from '@kalink-ui/seedly/styles';
 import { style, createVar, globalStyle } from '@vanilla-extract/css';
 import { RecipeVariants, recipe } from '@vanilla-extract/recipes';
-
-import { vars } from '@/styles/contract.css';
 
 const spaceVar = createVar();
 export const minHeightVar = createVar();
@@ -61,37 +60,37 @@ export const cover = recipe({
     space: {
       xl: {
         vars: {
-          [spaceVar]: vars.spacing.xl,
+          [spaceVar]: sys.spacing[7],
         },
       },
       lg: {
         vars: {
-          [spaceVar]: vars.spacing.lg,
+          [spaceVar]: sys.spacing[6],
         },
       },
       md: {
         vars: {
-          [spaceVar]: vars.spacing.md,
+          [spaceVar]: sys.spacing[5],
         },
       },
       base: {
         vars: {
-          [spaceVar]: vars.spacing.base,
+          [spaceVar]: sys.spacing[4],
         },
       },
       sm: {
         vars: {
-          [spaceVar]: vars.spacing.sm,
+          [spaceVar]: sys.spacing[3],
         },
       },
       xs: {
         vars: {
-          [spaceVar]: vars.spacing.xs,
+          [spaceVar]: sys.spacing[2],
         },
       },
       none: {
         vars: {
-          [spaceVar]: vars.spacing.none,
+          [spaceVar]: sys.spacing[0],
         },
       },
     },

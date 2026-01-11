@@ -1,8 +1,8 @@
+import { Stack } from '@kalink-ui/seedly';
 import { SliceZone } from '@prismicio/react';
 
-import { Stack } from '@/components/stack';
-import { createClient } from '@/prismicio';
-import { components } from '@/slices';
+import { createClient } from '../../prismicio';
+import { components } from '../../slices';
 
 import { mainStack } from './page.css';
 
@@ -24,7 +24,7 @@ export default async function Page() {
   });
 
   return (
-    <Stack className={mainStack} space="6xl" divided="solid">
+    <Stack className={mainStack} spacing={10}>
       <SliceZone slices={artworks.data.slices} components={components} />
     </Stack>
   );

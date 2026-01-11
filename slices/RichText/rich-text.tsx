@@ -10,7 +10,7 @@ type RichTextProps = SliceComponentProps<Content.RichTextSlice>;
 
 export function RichTextSlice({ slice }: RichTextProps) {
   return (
-    <Stack use="section" space="lg" className={richText}>
+    <Stack use="section" spacing={6} className={richText}>
       <RichText field={slice.primary.content} />
     </Stack>
   );

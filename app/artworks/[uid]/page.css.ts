@@ -1,10 +1,9 @@
+import { sys } from '@kalink-ui/seedly/styles';
 import { globalStyle, style } from '@vanilla-extract/css';
-
-import { vars } from '@/styles/contract.css';
 
 export const artworkPage = style({
   display: 'flex',
-  gap: vars.spacing.xl,
+  gap: sys.spacing[7],
   width: '100%',
   alignItems: 'center',
 
@@ -32,7 +31,7 @@ export const artworkData = style({
 });
 
 export const artworkDescription = style({
-  marginTop: vars.spacing.lg,
+  marginTop: sys.spacing[6],
 
   '@media': {
     'screen and (max-width: 1023px)': {
@@ -40,7 +39,7 @@ export const artworkDescription = style({
     },
 
     'screen and (min-width: 1024px)': {
-      marginTop: `min(10vh, ${vars.spacing['6xl']})`,
+      marginTop: `min(10vh, ${sys.spacing[12]})`,
     },
   },
 });

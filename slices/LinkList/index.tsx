@@ -36,8 +36,8 @@ const LinkList = ({ slice }: LinkListProps) => {
             target="_blank"
             rel="noopener noreferrer"
             color="surfaceContainerHigh"
-            space="lg"
-            rounded="base"
+            spacing={6}
+            radius="rounded"
           >
             <Stack>
               <Image field={screenshot.Square} />

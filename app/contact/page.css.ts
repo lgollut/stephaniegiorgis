@@ -1,10 +1,9 @@
+import { sys } from '@kalink-ui/seedly/styles';
 import { style } from '@vanilla-extract/css';
-
-import { vars } from '@/styles/contract.css';
 
 export const contactPage = style({
   display: 'flex',
-  gap: vars.spacing.xl,
+  gap: sys.spacing[7],
   alignItems: 'center',
 
   '@media': {

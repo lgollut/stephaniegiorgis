@@ -1,32 +1,3 @@
-import { clsx } from 'clsx';
-import { ElementType, ForwardedRef, forwardRef } from 'react';
+import { Text } from '@kalink-ui/seedly';
 
-import { text } from './text.css';
-import { TextProps } from './text.types';
-
-type TextElement = HTMLElement;
-
-const Text = <TUse extends ElementType>(
-  props: TextProps<TUse>,
-  ref: ForwardedRef<TextElement>,
-) => {
-  const {
-    use: Comp = 'span',
-    variant = 'bodyLarge',
-    color,
-    align,
-    className,
-    ...rest
-  } = props;
-  return (
-    <Comp
-      ref={ref}
-      className={clsx(text({ variant, color, align }), className)}
-      {...rest}
-    />
-  );
-};
-
-export const WrappedText = forwardRef(Text);
-
-export { WrappedText as Text };
+export { Text };

@@ -1,7 +1,6 @@
+import { sys } from '@kalink-ui/seedly/styles';
 import { createVar } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
-
-import { vars } from '@/styles/contract.css';
 
 const aspectRatio = createVar();
 
@@ -11,7 +10,7 @@ export const videoWrapper = recipe({
     justifyContent: 'center',
     alignItems: 'center',
 
-    backgroundColor: vars.color.surfaceContainerHighest,
+    backgroundColor: sys.color.background,
     aspectRatio,
 
     vars: {

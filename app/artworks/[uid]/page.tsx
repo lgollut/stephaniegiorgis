@@ -64,11 +64,11 @@ export default async function ArtworkPage({
     <div className={artworkPage}>
       <Cover>
         <Box data-cover-center className={artworkData}>
-          <Stack space="md">
+          <Stack spacing={5}>
             <Heading variant="displaySmall" style="italic">
               {artwork.data.title}
             </Heading>
-            <Stack space="sm">
+            <Stack spacing={3}>
               <Heading variant="headlineSmall">{artwork.data.medium}</Heading>
               <Heading variant="headlineSmall">{artwork.data.measure}</Heading>
               <Heading variant="headlineSmall">{artwork.data.year}</Heading>
@@ -80,7 +80,7 @@ export default async function ArtworkPage({
               artwork={artwork as unknown as ArtworkDocument}
             />
           </Stack>
-          <Box space="none" className={artworkDescription}>
+          <Box spacing={0} className={artworkDescription}>
             <Stack>
               <RichText field={artwork.data.description} />
             </Stack>

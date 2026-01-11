@@ -12,13 +12,13 @@
     "slicemachine": "start-slicemachine",
     "lint": "eslint .",
     "lint:fix": "npm run lint -- --fix",
-    "prettier": "prettier '**/!(CHANGELOG|prismicio-types.d).@(ts|tsx|md|mdx)' --list-different",
-    "prettier:fix": "npm run prettier -- --write",
-    "tsc": "tsc --noEmit",
-    "validate": "npm-run-all lint prettier --continue-on-error",
-    "format": "npm-run-all lint:fix prettier:fix --continue-on-error"
+    "format": "prettier '**/!(CHANGELOG|prismicio-types.d).@(ts|tsx|md|mdx)' --list-different",
+    "format:fix": "npm run format -- --write",
+    "tsc": "tsc --noEmit"
   },
   "dependencies": {
+    "@kalink-ui/dibbly": "^0.5.3",
+    "@kalink-ui/seedly": "^0.33.2",
     "@prismicio/client": "^7.21.3",
     "@prismicio/next": "^2.1.1",
     "@prismicio/react": "^3.2.2",
@@ -40,6 +40,7 @@
   },
   "devDependencies": {
     "@kalink-ui/eslint-config": "^0.11.3",
+    "@kalink-ui/typescript-config": "^0.4.0",
     "@slicemachine/adapter-next": "^0.3.46",
     "@types/node": "^22.5.0",
     "@types/react": "^19.0.0",

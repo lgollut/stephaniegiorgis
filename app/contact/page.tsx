@@ -1,6 +1,7 @@
 import { ContactForm } from '@/app/contact/contact-form';
 import { contactPage, contactPageForm } from '@/app/contact/page.css';
-import { Container } from '@/components/container/container';
+import { Box } from '@/components/box';
+import { container } from '@/components/container/container.css';
 import { Image } from '@/components/image';
 import { RichText } from '@/components/rich-text/rich-text';
 import { Stack } from '@/components/stack';
@@ -11,7 +12,7 @@ export default async function ContactPage() {
   const contact = await client.getSingle('contact');
 
   return (
-    <Container>
+    <Box className={container({ space: 'lg', maxWidth: 'base' })}>
       <div className={contactPage}>
         <div>
           <Stack>
@@ -21,6 +22,6 @@ export default async function ContactPage() {
         </div>
         <ContactForm className={contactPageForm} />
       </div>
-    </Container>
+    </Box>
   );
 }

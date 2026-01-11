@@ -1,8 +1,7 @@
+import { sys } from '@kalink-ui/seedly/styles';
 import { style, globalStyle, createVar } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 import { RecipeVariants, recipe } from '@vanilla-extract/recipes';
-
-import { vars } from '@/styles/contract.css';
 
 const marginBlockStart = createVar();
 
@@ -12,7 +11,7 @@ const baseStack = style({
   justifyContent: 'flex-start',
 
   vars: {
-    [marginBlockStart]: vars.spacing.none,
+    [marginBlockStart]: sys.spacing[0],
   },
 });
 
@@ -52,73 +51,73 @@ globalStyle(`${stack.classNames.base} > * + *`, {
 
 globalStyle(`${stack.classNames.variants.space['6xl']} > * + *`, {
   vars: {
-    [marginBlockStart]: vars.spacing['6xl'],
+    [marginBlockStart]: sys.spacing[12],
   },
 });
 
 globalStyle(`${stack.classNames.variants.space['5xl']} > * + *`, {
   vars: {
-    [marginBlockStart]: vars.spacing['5xl'],
+    [marginBlockStart]: sys.spacing[11],
   },
 });
 
 globalStyle(`${stack.classNames.variants.space['4xl']} > * + *`, {
   vars: {
-    [marginBlockStart]: vars.spacing['4xl'],
+    [marginBlockStart]: sys.spacing[10],
   },
 });
 
 globalStyle(`${stack.classNames.variants.space['3xl']} > * + *`, {
   vars: {
-    [marginBlockStart]: vars.spacing['3xl'],
+    [marginBlockStart]: sys.spacing[9],
   },
 });
 
 globalStyle(`${stack.classNames.variants.space['2xl']} > * + *`, {
   vars: {
-    [marginBlockStart]: vars.spacing['2xl'],
+    [marginBlockStart]: sys.spacing[8],
   },
 });
 
 globalStyle(`${stack.classNames.variants.space.xl} > * + *`, {
   vars: {
-    [marginBlockStart]: vars.spacing.xl,
+    [marginBlockStart]: sys.spacing[7],
   },
 });
 
 globalStyle(`${stack.classNames.variants.space.lg} > * + *`, {
   vars: {
-    [marginBlockStart]: vars.spacing.lg,
+    [marginBlockStart]: sys.spacing[6],
   },
 });
 
 globalStyle(`${stack.classNames.variants.space.md} > * + *`, {
   vars: {
-    [marginBlockStart]: vars.spacing.md,
+    [marginBlockStart]: sys.spacing[5],
   },
 });
 
 globalStyle(`${stack.classNames.variants.space.base} > * + *`, {
   vars: {
-    [marginBlockStart]: vars.spacing.base,
+    [marginBlockStart]: sys.spacing[4],
   },
 });
 
 globalStyle(`${stack.classNames.variants.space.sm} > * + *`, {
   vars: {
-    [marginBlockStart]: vars.spacing.sm,
+    [marginBlockStart]: sys.spacing[3],
   },
 });
 
 globalStyle(`${stack.classNames.variants.space.xs} > * + *`, {
   vars: {
-    [marginBlockStart]: vars.spacing.xs,
+    [marginBlockStart]: sys.spacing[2],
   },
 });
 
 globalStyle(`${stack.classNames.variants.space.none} > * + *`, {
   vars: {
-    [marginBlockStart]: vars.spacing.none,
+    [marginBlockStart]: sys.spacing[0],
   },
 });
 
@@ -141,7 +140,7 @@ globalStyle(
     top: calc(marginBlockStart).divide(-2).toString(),
 
     borderBlockStartWidth: 1,
-    borderBlockStartColor: vars.color.outlineVariant,
+    borderBlockStartColor: `color-mix(in srgb, ${sys.color.foreground} 20%, transparent)`,
   },
 );
 

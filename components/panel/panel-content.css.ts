@@ -1,8 +1,8 @@
+import { sys } from '@kalink-ui/seedly/styles';
 import { style } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 import { recipe } from '@vanilla-extract/recipes';
 
-import { vars } from '@/styles/contract.css';
 import { transition } from '@/styles/transition';
 
 const panelContentBase = style({
@@ -10,11 +10,11 @@ const panelContentBase = style({
   top: 0,
   insetInlineStart: 0,
   height: '100vh',
-  width: calc.multiply(vars.spacing.base, 20),
+  width: calc.multiply(sys.spacing[4], 20),
   maxWidth: '90%',
   zIndex: 9999,
 
-  backgroundColor: vars.color.surfaceContainerHighest,
+  backgroundColor: sys.color.background,
 
   transform: 'translateX(-100%)',
   transition: transition(['transform'], { duration: 'base' }),
@@ -40,7 +40,7 @@ const panelOverlayBase = style({
   height: '100vh',
 
   opacity: 0,
-  backgroundColor: `hsl(${vars.hsl.onSurface} / 0.5)`,
+  backgroundColor: `color-mix(in srgb, ${sys.color.foreground} 50%, transparent)`,
   backdropFilter: 'blur(10px)',
 
   transition: transition(['opacity'], { duration: 'base' }),

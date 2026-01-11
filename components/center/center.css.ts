@@ -1,8 +1,7 @@
+import { sys } from '@kalink-ui/seedly/styles';
 import { style, createVar } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 import { RecipeVariants, recipe } from '@vanilla-extract/recipes';
-
-import { vars } from '@/styles/contract.css';
 
 const size = createVar();
 
@@ -23,32 +22,32 @@ export const center = recipe({
     maxSize: {
       xl: {
         vars: {
-          [size]: calc.multiply(vars.spacing.base, 48),
+          [size]: calc.multiply(sys.spacing[4], 48),
         },
       },
       lg: {
         vars: {
-          [size]: calc.multiply(vars.spacing.base, 32),
+          [size]: calc.multiply(sys.spacing[4], 32),
         },
       },
       md: {
         vars: {
-          [size]: calc.multiply(vars.spacing.base, 20),
+          [size]: calc.multiply(sys.spacing[4], 20),
         },
       },
       base: {
         vars: {
-          [size]: calc.multiply(vars.spacing.base, 16),
+          [size]: calc.multiply(sys.spacing[4], 16),
         },
       },
       sm: {
         vars: {
-          [size]: calc.multiply(vars.spacing.base, 12),
+          [size]: calc.multiply(sys.spacing[4], 12),
         },
       },
       xs: {
         vars: {
-          [size]: calc.multiply(vars.spacing.base, 8),
+          [size]: calc.multiply(sys.spacing[4], 8),
         },
       },
     },

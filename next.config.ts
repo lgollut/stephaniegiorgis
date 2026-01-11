@@ -1,15 +1,14 @@
-// @ts-check
+import { createVanillaExtractPlugin } from '@vanilla-extract/next-plugin';
 
-const { createVanillaExtractPlugin } = require('@vanilla-extract/next-plugin');
+import type { NextConfig } from 'next';
 
 const withVanillaExtract = createVanillaExtractPlugin();
 
-/**
- * @type {import('next').NextConfig}
- */
-const nextConfig = {
+const nextConfig: NextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
+
+  transpilePackages: ['@kalink-ui/seedly'],
 
   async redirects() {
     return [
@@ -22,4 +21,4 @@ const nextConfig = {
   },
 };
 
-module.exports = withVanillaExtract(nextConfig);
+export default withVanillaExtract(nextConfig);

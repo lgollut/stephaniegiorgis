@@ -1,1 +1,1 @@
-export { Stack } from './stack';
+export { Stack } from '@kalink-ui/seedly';

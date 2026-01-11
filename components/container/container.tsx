@@ -4,9 +4,11 @@ import { ElementType, ForwardedRef, forwardRef } from 'react';
 import { container } from '@/components/container/container.css';
 import { ContainerProps } from '@/components/container/container.types';
 
+type ContainerElement = HTMLElement;
+
 const Container = <TUse extends ElementType = 'div'>(
   props: ContainerProps<TUse>,
-  ref: ForwardedRef<any>,
+  ref: ForwardedRef<ContainerElement>,
 ) => {
   const {
     use: Comp = 'div',

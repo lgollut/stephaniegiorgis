@@ -1,6 +1,6 @@
 import { wrapMapSerializer, serialize } from '@prismicio/richtext';
 import Image from 'next/image';
-import { ReactNode, useMemo } from 'react';
+import { Children, ReactNode, useMemo } from 'react';
 
 import { Heading } from '@/components/heading';
 import { Stack } from '@/components/stack';
@@ -30,7 +30,7 @@ function replaceSpaces(text: string, nb: number) {
 
 function parseText(text: unknown): ReactNode {
   if (Array.isArray(text)) {
-    return text.map(parseText);
+    return Children.toArray(text.map(parseText));
   }
 
   if (typeof text !== 'string') {
@@ -46,70 +46,132 @@ function parseText(text: unknown): ReactNode {
   return replaceSpaces(formattedText, 2);
 }
 
+const toChildrenArray = (value: unknown) => Children.toArray(parseText(value));
+
 const markdownSerializer = wrapMapSerializer({
-  heading1: ({ children }) => <Heading use="h1">{parseText(children)}</Heading>,
-  heading2: ({ children }) => <Heading use="h2">{parseText(children)}</Heading>,
-  heading3: ({ children }) => <Heading use="h3">{parseText(children)}</Heading>,
-  heading4: ({ children }) => <Heading use="h4">{parseText(children)}</Heading>,
-  heading5: ({ children }) => <Heading use="h5">{parseText(children)}</Heading>,
-  heading6: ({ children }) => <Heading use="h6">{parseText(children)}</Heading>,
-  paragraph: ({ node, children }) => {
+  heading1: ({ children, key }) => (
+    <Heading key={key} use="h1">
+      {toChildrenArray(children)}
+    </Heading>
+  ),
+  heading2: ({ children, key }) => (
+    <Heading key={key} use="h2">
+      {toChildrenArray(children)}
+    </Heading>
+  ),
+  heading3: ({ children, key }) => (
+    <Heading key={key} use="h3">
+      {toChildrenArray(children)}
+    </Heading>
+  ),
+  heading4: ({ children, key }) => (
+    <Heading key={key} use="h4">
+      {toChildrenArray(children)}
+    </Heading>
+  ),
+  heading5: ({ children, key }) => (
+    <Heading key={key} use="h5">
+      {toChildrenArray(children)}
+    </Heading>
+  ),
+  heading6: ({ children, key }) => (
+    <Heading key={key} use="h6">
+      {toChildrenArray(children)}
+    </Heading>
+  ),
+  paragraph: ({ node, children, key }) => {
     const labelSpan = node.spans.find((span) => span.type === 'label');
 
-    const parsedText = parseText(children) as NonNullable<ReactNode>;
+    const parsedText = toChildrenArray(children) as NonNullable<ReactNode>;
 
     if (!labelSpan || labelSpan.type !== 'label') {
-      return <Text use="p">{parsedText}</Text>;
+      return (
+        <Text use="p" key={key}>
+          {parsedText}
+        </Text>
+      );
     }
 
     switch (labelSpan.data.label) {
       case 'quote':
         return (
-          <Text use="blockquote" className={blockquote}>
+          <Text use="blockquote" className={blockquote} key={key}>
             {parsedText}
           </Text>
         );
       case 'align-end':
         return (
-          <Text use="p" className={alignEnd}>
+          <Text use="p" className={alignEnd} key={key}>
             {parsedText}
           </Text>
         );
       case 'legend':
         return (
-          <Text use="p" variant="bodySmall" align="end" className={alignEnd}>
+          <Text
+            use="p"
+            variant="bodySmall"
+            align="end"
+            className={alignEnd}
+            key={key}
+          >
             {parsedText}
           </Text>
         );
       default:
-        return <Text use="p">{parsedText}</Text>;
+        return (
+          <Text use="p" key={key}>
+            {parsedText}
+          </Text>
+        );
     }
   },
-  preformatted: ({ text }) => <pre>{text}</pre>,
-  strong: ({ children }) => <strong>{parseText(children)}</strong>,
-  em: ({ children }) => <em>{parseText(children)}</em>,
-  listItem: ({ children }) => <li>{parseText(children)}</li>,
-  oListItem: ({ children }) => <li>{parseText(children)}</li>,
-  list: ({ children }) => <ul>{parseText(children)}</ul>,
-  oList: ({ children }) => <ol>{parseText(children)}</ol>,
-  image: ({ node }) => <Image alt={node.alt ?? ''} src={node.url} />,
+  preformatted: ({ text, key }) => <pre key={key}>{text}</pre>,
+  strong: ({ children, key }) => (
+    <strong key={key}>{toChildrenArray(children)}</strong>
+  ),
+  em: ({ children, key }) => <em key={key}>{toChildrenArray(children)}</em>,
+  listItem: ({ children, key }) => (
+    <li key={key}>{toChildrenArray(children)}</li>
+  ),
+  oListItem: ({ children, key }) => (
+    <li key={key}>{toChildrenArray(children)}</li>
+  ),
+  list: ({ children, key }) => <ul key={key}>{toChildrenArray(children)}</ul>,
+  oList: ({ children, key }) => <ol key={key}>{toChildrenArray(children)}</ol>,
+  image: ({ node, key }) => (
+    <Image key={key} alt={node.alt ?? ''} src={node.url} />
+  ),
   embed: ({ node }) => `${node.oembed.html}\n\n`,
-  hyperlink: ({ node, children }) => (
-    <Text use="a" variant="bodySmall" color="primary" href={node.data.url}>
-      {parseText(children)}
+  hyperlink: ({ node, children, key }) => (
+    <Text
+      use="a"
+      variant="bodySmall"
+      color="primary"
+      href={node.data.url}
+      key={key}
+    >
+      {toChildrenArray(children)}
     </Text>
   ),
-  label: ({ node, children }) => {
+  label: ({ node, children, key }) => {
     switch (node.data.label) {
       case 'codespan':
-        return <Text use="code">{parseText(children)}</Text>;
+        return (
+          <Text use="code" key={key}>
+            {toChildrenArray(children)}
+          </Text>
+        );
       case 'quote':
       case 'align-end':
       case 'legend':
       case 'link':
-        return <>{parseText(children)}</>;
+        return <Text key={key}>{toChildrenArray(children)}</Text>;
       default:
-        return <Text className={node.data.label}>{parseText(children)}</Text>;
+        return (
+          <Text key={key} className={node.data.label}>
+            {toChildrenArray(children)}
+          </Text>
+        );
     }
   },
   span: ({ text }) => text.replace('\n', '<br/>'),

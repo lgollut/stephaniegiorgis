@@ -12,7 +12,7 @@ export interface UISchemaBaseElement {
   /**
    * Any additional options.
    */
-  options?: { [key: string]: any };
+  options?: Record<string, unknown>;
 }
 
 export interface UiSchemaElement extends UISchemaBaseElement {

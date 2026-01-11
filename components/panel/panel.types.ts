@@ -1,12 +1,12 @@
 import { ReactNode, SyntheticEvent } from 'react';
 
-export type PanelProps = {
+export interface PanelProps {
   children: ReactNode;
   open?: boolean;
-};
+}
 
-export type PanelContext = {
+export interface PanelContext {
   open: boolean;
   onOpen: (e?: SyntheticEvent | Event) => void;
   onClose: (e?: SyntheticEvent | Event) => void;
-};
+}

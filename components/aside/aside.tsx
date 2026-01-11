@@ -7,9 +7,11 @@ import { ElementType, ForwardedRef, forwardRef } from 'react';
 import { aside, sideWidthVar, contentMinWidthVar } from './aside.css';
 import { AsideProps } from './aside.types';
 
+type AsideElement = HTMLElement;
+
 const Aside = <TUse extends ElementType>(
   props: AsideProps<TUse>,
-  ref: ForwardedRef<any>,
+  ref: ForwardedRef<AsideElement>,
 ) => {
   const {
     use: Comp = 'div',

@@ -31,7 +31,7 @@ export default async function RootLayout({
   const client = createClient();
 
   const { data } = await client.getSingle('main_navigation', {
-    fetchOptions: { next: { tags: ['main-navigation'] } },
+    fetchOptions: { cache: 'force-cache' },
   });
 
   return (

@@ -21,14 +21,14 @@ import { clsx } from 'clsx';
 
 import { maxWidthVar, mediaPlayer } from './media-player.css';
 
-type MediaPlayerProps = {
+interface MediaPlayerProps {
   poster?: PrismicImageProps['field'];
   src: VideoSrc[] | string;
   title?: string;
   ratio?: '16/9' | '4/3' | '1/1';
   className?: string;
   maxWidth?: string | null;
-};
+}
 
 export const MediaPlayer = ({
   poster,

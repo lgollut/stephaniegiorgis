@@ -31,7 +31,7 @@ export type NavigationLinksProps =
 export function NavigationLinks({ slice }: NavigationLinksProps) {
   const segment = useSelectedLayoutSegment();
 
-  let items: ReactNode[] = [];
+  const items: ReactNode[] = [];
 
   for (const item of slice.items) {
     if (!item.href) {

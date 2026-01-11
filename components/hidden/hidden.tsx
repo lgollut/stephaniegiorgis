@@ -7,13 +7,13 @@ import { HiddenProps } from '@/components/hidden/hidden.types';
 
 const Hidden = <TUse extends ElementType>(
   props: HiddenProps<TUse>,
-  ref: ForwardedRef<'any'>,
+  ref: ForwardedRef<HTMLElement>,
 ) => {
   const {
     use: Comp = 'div',
     at = 'never',
     useCss = false,
-    isSlice = false,
+    isSlice: _isSlice = false,
     className,
     ...rest
   } = props;

@@ -1,16 +1,15 @@
 import { SliceZone } from '@prismicio/react';
-import { Metadata } from 'next';
 
 import { Container } from '@/components/container/container';
 import { Stack } from '@/components/stack';
 import { createClient } from '@/prismicio';
 import { components } from '@/slices';
 
+import type { Metadata } from 'next';
+
 export default async function Homepage() {
   const client = createClient();
-  const page = await client.getSingle('homepage', {
-    fetchOptions: { next: { tags: ['prismic', 'homepage'] } },
-  });
+  const page = await client.getSingle('homepage');
 
   return (
     <Container>

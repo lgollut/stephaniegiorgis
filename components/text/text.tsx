@@ -4,9 +4,11 @@ import { ElementType, ForwardedRef, forwardRef } from 'react';
 import { text } from './text.css';
 import { TextProps } from './text.types';
 
+type TextElement = HTMLElement;
+
 const Text = <TUse extends ElementType>(
   props: TextProps<TUse>,
-  ref: ForwardedRef<any>,
+  ref: ForwardedRef<TextElement>,
 ) => {
   const {
     use: Comp = 'span',

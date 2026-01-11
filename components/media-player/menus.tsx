@@ -11,6 +11,7 @@ import {
   ClosedCaptionsIcon,
   SettingsIcon,
 } from '@vidstack/react/icons';
+import { ElementType } from 'react';
 
 import { button } from './buttons.css';
 import {
@@ -90,7 +91,7 @@ export interface SubmenuButtonProps {
   label: string;
   hint: string;
   disabled?: boolean;
-  icon: JSX.ElementType;
+  icon: ElementType;
 }
 
 function SubmenuButton({

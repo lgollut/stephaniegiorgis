@@ -1,7 +1,7 @@
 import {
   isFilled,
   type Content,
-  type ContentRelationshipField,
+  type FilledContentRelationshipField,
 } from '@prismicio/client';
 import { PrismicLink, SliceComponentProps } from '@prismicio/react';
 import { useMemo } from 'react';
@@ -15,36 +15,46 @@ import { Image } from '@/components/image';
  */
 export type GridProps = SliceComponentProps<Content.GridSlice>;
 
-const hasArtworkData = <
-  TContentRelationshipField extends ContentRelationshipField,
->(
-  contentRelationshipField: TContentRelationshipField,
-): contentRelationshipField is TContentRelationshipField &
-  Content.ArtworkDocument => {
+type ArtworkRelationship = FilledContentRelationshipField<
+  'artwork',
+  Content.ArtworkDocument['lang'],
+  Content.ArtworkDocument['data']
+>;
+
+const hasArtworkData = (
+  field: unknown,
+): field is ArtworkRelationship & Content.ArtworkDocument => {
+  if (!field || typeof field !== 'object') {
+    return false;
+  }
+
+  const content = field as FilledContentRelationshipField;
+
   return (
-    isFilled.contentRelationship(contentRelationshipField) &&
-    typeof contentRelationshipField.data === 'object' &&
-    contentRelationshipField.data !== null &&
-    contentRelationshipField.id !== null &&
-    contentRelationshipField.uid !== null
+    isFilled.contentRelationship(content) &&
+    content.type === 'artwork' &&
+    content.uid !== null &&
+    content.id !== null &&
+    typeof content.data === 'object' &&
+    content.data !== null
   );
 };
-/**
- * Component for "Grid" Slices.
- */
-const GridSlice = ({ slice }: GridProps): JSX.Element => {
+
+const GridSlice = ({ slice }: GridProps) => {
   const items = useMemo(() => {
     return slice.items.reverse().map(({ artwork }) => {
       if (!hasArtworkData(artwork)) {
         return null;
       }
+
+      const image = artwork.data.cover_image['1:1'];
+      if (!image) {
+        return null;
+      }
+
       return (
         <PrismicLink key={artwork.id} href={`/artworks/${artwork.uid}`}>
-          <Frame
-            use={Image}
-            field={artwork.data.cover_image['1:1']}
-            ratio="1:1"
-          />
+          <Frame use={Image} field={image} ratio="1:1" />
         </PrismicLink>
       );
     });

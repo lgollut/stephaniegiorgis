@@ -18,7 +18,7 @@ export default async function PresentationPage() {
 
   const { data } = await client
     .getSingle('presentation', {
-      fetchOptions: { next: { tags: ['prismic', 'presentation'] } },
+      fetchOptions: { cache: 'force-cache' },
     })
     .catch(() => notFound());
 
@@ -38,23 +38,27 @@ export default async function PresentationPage() {
         >
           <Stack>
             <RichText field={data.resume} />
-            {data.links.map(({ link, label }) => {
-              return (
-                isFilled.linkToMedia(link) && (
-                  <Text
-                    use="a"
-                    href={link.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    color="primary"
-                    variant="bodySmall"
-                    align="end"
-                  >
-                    {label}
-                  </Text>
-                )
-              );
-            })}
+            {data.links.map(
+              (item: (typeof data.links)[number], index: number) => {
+                const { link, label } = item;
+                return (
+                  isFilled.linkToMedia(link) && (
+                    <Text
+                      key={`${link.id ?? link.url ?? label ?? index}`}
+                      use="a"
+                      href={link.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      color="primary"
+                      variant="bodySmall"
+                      align="end"
+                    >
+                      {label}
+                    </Text>
+                  )
+                );
+              },
+            )}
           </Stack>
           <Stack space="sm">
             <Frame use={Image} field={data.resume_image} ratio="2:3" cover />

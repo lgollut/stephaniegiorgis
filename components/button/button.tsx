@@ -12,7 +12,7 @@ const iconSizes = [14, 18, 24, 32];
 
 const Button = <TUse extends ElementType, TRoute extends string>(
   props: ButtonProps<TUse, TRoute>,
-  ref: ForwardedRef<any>,
+  ref: ForwardedRef<unknown>,
 ) => {
   const {
     variant = 'filled',

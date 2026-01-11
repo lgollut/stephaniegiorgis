@@ -6,9 +6,11 @@ import { Stack } from '@/components/stack';
 import { heading, headingWrapper, subtitleStyle } from './heading.css';
 import { HeadingProps, HeadingTypes } from './heading.types';
 
+type HeadingElement = HTMLElement;
+
 const Heading = <TUse extends HeadingTypes>(
   props: HeadingProps<TUse>,
-  ref: ForwardedRef<any>,
+  ref: ForwardedRef<HeadingElement>,
 ) => {
   const {
     use: Comp = 'h1',

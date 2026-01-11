@@ -1,5 +1,5 @@
 import { RichTextField } from '@prismicio/client';
 
-export type RichTextProps = {
+export interface RichTextProps {
   field: RichTextField;
-};
+}

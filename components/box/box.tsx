@@ -4,6 +4,8 @@ import { ElementType, ForwardedRef, forwardRef } from 'react';
 import { box } from './box.css';
 import { BoxProps, Space } from './box.types';
 
+type BoxElement = HTMLElement;
+
 const Box = <TUse extends ElementType = 'div'>(
   {
     className,
@@ -13,7 +15,7 @@ const Box = <TUse extends ElementType = 'div'>(
     outlined,
     ...props
   }: BoxProps<TUse>,
-  ref: ForwardedRef<any>,
+  ref: ForwardedRef<BoxElement>,
 ) => {
   const { use: Comp = 'div', ...rest } = props;
   let spaceBlockStart: Space = 'base';

@@ -7,6 +7,8 @@ import { ForwardedRef, forwardRef } from 'react';
 import { cover, minHeightVar } from './cover.css';
 import { CoverProps } from './cover.types';
 
+type CoverElement = HTMLDivElement;
+
 const Cover = (
   {
     space = 'base',
@@ -15,7 +17,7 @@ const Cover = (
     className,
     ...props
   }: CoverProps,
-  ref: ForwardedRef<any>,
+  ref: ForwardedRef<CoverElement>,
 ) => {
   return (
     <div

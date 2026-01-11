@@ -4,9 +4,11 @@ import { ElementType, ForwardedRef, forwardRef } from 'react';
 import { frame } from './frame.css';
 import { FrameProps } from './frame.types';
 
+type FrameElement = HTMLElement;
+
 const Frame = <TUse extends ElementType>(
   props: FrameProps<TUse>,
-  ref: ForwardedRef<any>,
+  ref: ForwardedRef<FrameElement>,
 ) => {
   const { use: Comp = 'div', ratio, className, ...rest } = props;
 

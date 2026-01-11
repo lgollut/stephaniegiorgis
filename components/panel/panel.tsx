@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useSyncExternalStore, useState } from 'react';
 
 import { PanelContextProvider } from '@/components/panel/panel-context';
 import { PanelProps } from '@/components/panel/panel.types';
@@ -19,9 +19,21 @@ export const Panel = ({ children }: PanelProps) => {
     setOpen(false);
   }, [setOpen]);
 
-  useEffect(() => {
-    onClose();
-  }, [pathname, onClose]);
+  useSyncExternalStore(
+    (onStoreChange) => {
+      onStoreChange();
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
+      return () => {};
+    },
+    () => pathname,
+    () => pathname,
+  );
+
+  if (open && pathname) {
+    queueMicrotask(() => {
+      setOpen(false);
+    });
+  }
 
   return (
     <PanelContextProvider value={{ open, onOpen, onClose }}>

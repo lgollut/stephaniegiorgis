@@ -4,9 +4,11 @@ import { ElementType, ForwardedRef, forwardRef } from 'react';
 import { stack } from './stack.css';
 import { StackProps } from './stack.types';
 
+type StackElement = HTMLElement;
+
 const Stack = <TUse extends ElementType = 'div'>(
   props: StackProps<TUse>,
-  ref: ForwardedRef<any>,
+  ref: ForwardedRef<StackElement>,
 ) => {
   const {
     use: Comp = 'div',

@@ -4,9 +4,11 @@ import { ForwardedRef, forwardRef } from 'react';
 import { grid } from './grid.css';
 import { GridProps } from './grid.types';
 
+type GridElement = HTMLDivElement;
+
 const Grid = (
   { minWidth = 'base', space, className, fullWidth, ...props }: GridProps,
-  ref: ForwardedRef<any>,
+  ref: ForwardedRef<GridElement>,
 ) => {
   return (
     <div

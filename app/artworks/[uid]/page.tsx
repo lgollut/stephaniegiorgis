@@ -1,4 +1,3 @@
-import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { RenderedDocumentation } from '@/app/artworks/[uid]/documentation';
@@ -14,23 +13,27 @@ import { Hidden } from '@/components/hidden';
 import { RichText } from '@/components/rich-text/rich-text';
 import { Stack } from '@/components/stack';
 import { createClient } from '@/prismicio';
+import { ArtworkDocument } from '@/prismicio-types';
 
-type Params = { uid: string };
+import type { Metadata } from 'next';
+
+interface Params {
+  uid: string;
+}
 
 export async function generateMetadata({
   params,
 }: {
-  params: Params;
+  params: Promise<Params>;
 }): Promise<Metadata> {
   const client = createClient();
-  const artwork = await client
-    .getByUID('artwork', params.uid, {
-      fetchOptions: { next: { tags: ['prismic', params.uid] } },
-    })
-    .catch(() => notFound());
+  const { uid } = await params;
+
+  const artwork = await client.getByUID('artwork', uid).catch(() => notFound());
 
   return {
     title: artwork.data.meta_title,
+
     description: artwork.data.meta_description,
     openGraph: {
       title: artwork.data.meta_title || undefined,
@@ -43,14 +46,19 @@ export async function generateMetadata({
   };
 }
 
-export default async function ArtworkPage({ params }: { params: Params }) {
+export default async function ArtworkPage({
+  params,
+}: {
+  params: Promise<Params>;
+}) {
   const client = createClient();
+  const { uid } = await params;
 
-  const artwork = await client
-    .getByUID('artwork', params.uid, {
-      fetchOptions: { next: { tags: ['prismic', params.uid] } },
-    })
-    .catch(() => notFound());
+  const artwork = await client.getByUID('artwork', uid).catch(() => notFound());
+
+  if (!artwork.uid) {
+    notFound();
+  }
 
   return (
     <div className={artworkPage}>
@@ -69,7 +77,7 @@ export default async function ArtworkPage({ params }: { params: Params }) {
               use={RenderedDocumentation}
               at="lgUp"
               useCss
-              artwork={artwork}
+              artwork={artwork as unknown as ArtworkDocument}
             />
           </Stack>
           <Box space="none" className={artworkDescription}>
@@ -83,7 +91,7 @@ export default async function ArtworkPage({ params }: { params: Params }) {
         use={RenderedDocumentation}
         at="mdDown"
         useCss
-        artwork={artwork}
+        artwork={artwork as unknown as ArtworkDocument}
       />
     </div>
   );

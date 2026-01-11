@@ -1,5 +1,5 @@
 import { LucideIcon } from 'lucide-react';
 
-export type PanelTriggerProps = {
+export interface PanelTriggerProps {
   icon: LucideIcon;
-};
+}

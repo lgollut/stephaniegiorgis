@@ -5,15 +5,15 @@ import { MediaPlayer } from '@/components/media-player';
 import { DocumentationSliceSound } from '@/prismicio-types';
 import { assertSliceVariation } from '@/utils/assert-variation';
 
-type DocumentationSoundProps = {
+interface DocumentationSoundProps {
   slice: DocumentationSliceSound;
-};
+}
 
 export const DocumentationSound = ({ slice }: DocumentationSoundProps) => {
   assertSliceVariation('sound', slice);
 
   const audioElements = useMemo(() => {
-    let players: ReactNode[] = [];
+    const players: ReactNode[] = [];
 
     for (const { sound } of slice.items) {
       if (!sound || !isFilled.linkToMedia(sound)) {

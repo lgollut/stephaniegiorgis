@@ -8,9 +8,7 @@ import { archivesPage } from './page.css';
 
 export default async function ArchivesPage() {
   const client = createClient();
-  const archives = await client.getSingle('archives', {
-    fetchOptions: { next: { tags: ['prismic', 'archives'] } },
-  });
+  const archives = await client.getSingle('archives');
 
   return (
     <Container className={archivesPage}>

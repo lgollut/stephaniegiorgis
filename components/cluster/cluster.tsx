@@ -4,9 +4,11 @@ import { forwardRef, ForwardedRef, ElementType } from 'react';
 import { cluster } from './cluster.css';
 import { ClusterProps } from './cluster.types';
 
+type ClusterElement = HTMLElement;
+
 const Cluster = <TUse extends ElementType>(
   props: ClusterProps<TUse>,
-  ref: ForwardedRef<any>,
+  ref: ForwardedRef<ClusterElement>,
 ) => {
   const {
     use: Comp = 'div',

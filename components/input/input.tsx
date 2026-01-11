@@ -5,7 +5,7 @@ import { inputAppearance } from '@/components/input/input-appearance.css';
 
 const Input = (
   { className, ...props }: InputHTMLAttributes<HTMLInputElement>,
-  ref: ForwardedRef<any>,
+  ref: ForwardedRef<HTMLInputElement>,
 ) => {
   return (
     <input

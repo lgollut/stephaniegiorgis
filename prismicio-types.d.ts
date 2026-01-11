@@ -1241,12 +1241,10 @@ type VideoSliceVariation = VideoSliceDefault;
 export type VideoSlice = prismic.SharedSlice<'video', VideoSliceVariation>;
 
 declare module '@prismicio/client' {
-  interface CreateClient {
-    (
+  type CreateClient = (
       repositoryNameOrEndpoint: string,
       options?: prismic.ClientConfig,
-    ): prismic.Client<AllDocumentTypes>;
-  }
+    ) => prismic.Client<AllDocumentTypes>;
 
   namespace Content {
     export type {

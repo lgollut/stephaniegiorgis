@@ -16,20 +16,20 @@ type OverriddenLinkProps<TRoute extends string> = Omit<
   href: Route<TRoute> | UrlObject;
 };
 
-type MayBeLinkProps<TRoute extends string> = {
+interface MayBeLinkProps<TRoute extends string> {
   use?: never;
   icon?: LucideIcon;
   href?: Route<TRoute> | UrlObject;
-};
+}
 
-type NonLinkProps<TUse> = {
+interface NonLinkProps<TUse> {
   use?: TUse;
   icon?: LucideIcon;
   /**
    * `href` is only allowed without the `use` prop
    */
   href?: never;
-};
+}
 
 export type ButtonProps<
   TUse extends ElementType,

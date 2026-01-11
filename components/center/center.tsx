@@ -4,9 +4,11 @@ import { ForwardedRef, forwardRef } from 'react';
 import { center } from './center.css';
 import { CenterProps } from './center.types';
 
+type CenterElement = HTMLDivElement;
+
 const Center = (
   { maxSize = 'base', centerText = false, className, ...props }: CenterProps,
-  ref: ForwardedRef<any>,
+  ref: ForwardedRef<CenterElement>,
 ) => {
   return (
     <div

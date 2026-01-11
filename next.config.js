@@ -10,9 +10,7 @@ const withVanillaExtract = createVanillaExtractPlugin();
 const nextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
-  experimental: {
-    typedRoutes: true,
-  },
+
   async redirects() {
     return [
       {

@@ -5,15 +5,15 @@ import { MediaPlayer } from '@/components/media-player';
 import { DocumentationSliceVideo } from '@/prismicio-types';
 import { assertSliceVariation } from '@/utils/assert-variation';
 
-type DocumentationVideoProps = {
+interface DocumentationVideoProps {
   slice: DocumentationSliceVideo;
-};
+}
 
 export const DocumentationVideo = ({ slice }: DocumentationVideoProps) => {
   assertSliceVariation('video', slice);
 
   const videoElements = useMemo(() => {
-    let players: ReactNode[] = [];
+    const players: ReactNode[] = [];
 
     for (const { video, poster, ratio } of slice.items) {
       if (!video || !isFilled.linkToMedia(video)) {

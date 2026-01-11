@@ -4,12 +4,12 @@ import { Resend } from 'resend';
 
 import { Message } from '@/app/contact/Message';
 
-type SendFormData = {
+interface SendFormData {
   name: string;
   email: string;
   subject: string;
   message: string;
-};
+}
 
 export async function sendForm({
   name,

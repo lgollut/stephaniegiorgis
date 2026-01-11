@@ -1,5 +1,4 @@
 import { SliceZone } from '@prismicio/react';
-import { Metadata } from 'next';
 
 import { Stack } from '@/components/stack';
 import { createClient } from '@/prismicio';
@@ -8,6 +7,7 @@ import { components } from '@/slices';
 import { mainStack } from './page.css';
 
 import type { Content } from '@prismicio/client';
+import type { Metadata } from 'next';
 
 export default async function Page() {
   const client = createClient();
@@ -21,7 +21,6 @@ export default async function Page() {
     }
   >('artworks', {
     fetchLinks: ['artwork.title', 'artwork.cover_image'],
-    fetchOptions: { next: { tags: ['prismic', 'artworks'] } },
   });
 
   return (

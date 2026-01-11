@@ -15,7 +15,7 @@ export type LinkListProps = SliceComponentProps<Content.LinkListSlice>;
 /**
  * Component for "LinkList" Slices.
  */
-const LinkList = ({ slice }: LinkListProps): JSX.Element => {
+const LinkList = ({ slice }: LinkListProps) => {
   return (
     <Cluster
       space="lg"

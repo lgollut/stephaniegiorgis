@@ -12,7 +12,7 @@ import { mergeRefs } from '@/utils/merge-refs';
 
 const PanelContent = (
   { children }: PanelContentProps,
-  forwardedRef: ForwardedRef<any>,
+  forwardedRef: ForwardedRef<Element>,
 ) => {
   const { open, onClose } = usePanelContext();
   const ref = useClickAway(onClose);

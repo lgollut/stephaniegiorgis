@@ -18,7 +18,7 @@ export type CaptionImageProps = SliceComponentProps<
 /**
  * Component for "CaptionImage" Slices.
  */
-const CaptionImage = ({ slice }: CaptionImageProps): JSX.Element => {
+const CaptionImage = ({ slice }: CaptionImageProps) => {
   return (
     <Stack
       use="section"

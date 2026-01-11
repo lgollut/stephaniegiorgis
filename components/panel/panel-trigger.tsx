@@ -5,9 +5,11 @@ import { Button } from '@/components/button';
 import { usePanelContext } from '@/components/panel/panel-context';
 import { PanelTriggerProps } from '@/components/panel/panel-trigger.types';
 
+type PanelTriggerElement = HTMLButtonElement;
+
 const PanelTrigger = (
   { icon: Icon = Menu }: PanelTriggerProps,
-  ref: ForwardedRef<any>,
+  ref: ForwardedRef<PanelTriggerElement>,
 ) => {
   const { onOpen } = usePanelContext();
 

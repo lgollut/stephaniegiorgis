@@ -5,7 +5,7 @@ import { textarea } from '@/components/textarea/textarea.css';
 
 const Textarea = (
   { className, ...props }: TextareaHTMLAttributes<HTMLTextAreaElement>,
-  ref: ForwardedRef<any>,
+  ref: ForwardedRef<HTMLTextAreaElement>,
 ) => {
   return (
     <textarea ref={ref} className={clsx(textarea, className)} {...props} />

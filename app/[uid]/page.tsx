@@ -7,16 +7,20 @@ import { components } from '@/slices';
 
 import type { Metadata } from 'next';
 
-type Params = { uid: string };
+interface Params {
+  uid: string;
+}
 
 export async function generateMetadata({
   params,
 }: {
-  params: Params;
+  params: Promise<Params>;
 }): Promise<Metadata> {
   const client = createClient();
+  const { uid } = await params;
+
   const page = await client
-    .getByUID('standardPage', params.uid)
+    .getByUID('standardPage', uid)
     .catch(() => notFound());
 
   return {
@@ -29,13 +33,16 @@ export async function generateMetadata({
   };
 }
 
-export default async function StandardPage({ params }: { params: Params }) {
+export default async function StandardPage({
+  params,
+}: {
+  params: Promise<Params>;
+}) {
   const client = createClient();
+  const { uid } = await params;
 
   const page = await client
-    .getByUID('standardPage', params.uid, {
-      fetchOptions: { next: { tags: ['prismic', params.uid] } },
-    })
+    .getByUID('standardPage', uid)
     .catch(() => notFound());
 
   return (

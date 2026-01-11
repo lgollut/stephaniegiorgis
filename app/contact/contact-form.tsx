@@ -1,6 +1,13 @@
 'use client';
 
-import { Button, Cluster, Stack, Text } from '@kalink-ui/seedly';
+import {
+  Button,
+  Cluster,
+  Stack,
+  Text,
+  TextField,
+  Textarea,
+} from '@kalink-ui/seedly';
 import { Check } from 'lucide-react';
 import {
   ComponentPropsWithoutRef,
@@ -12,14 +19,32 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 
 import { MessageInputs } from '@/app/contact/page.types';
 import { sendForm } from '@/app/contact/send-form';
-import { Input } from '@/components/input/input';
-import { Textarea } from '@/components/textarea/textarea';
 
 export const ContactForm = (props: ComponentPropsWithoutRef<'form'>) => {
-  const { register, handleSubmit, reset } = useForm<MessageInputs>();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<MessageInputs>();
   const [sent, setSent] = useState(false);
 
   const [isPending, startTransition] = useTransition();
+  const requiredMessage = 'Ce champ est requis';
+  const getErrorMessage = (field: keyof MessageInputs) =>
+    errors[field] ? requiredMessage : undefined;
+  const { name: _name, ...nameInputProps } = register('name', {
+    required: true,
+  });
+  const { name: _email, ...emailInputProps } = register('email', {
+    required: true,
+  });
+  const { name: _subject, ...subjectInputProps } = register('subject', {
+    required: true,
+  });
+  const { name: _message, ...messageInputProps } = register('message', {
+    required: true,
+  });
 
   const onSubmit: SubmitHandler<MessageInputs> = useCallback(
     (formData) => {
@@ -40,22 +65,31 @@ export const ContactForm = (props: ComponentPropsWithoutRef<'form'>) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} {...props}>
       <Stack spacing={6}>
-        <Stack use="label" spacing={2}>
-          <Text>{'Votre nom'}</Text>
-          <Input {...register('name', { required: true })} />
-        </Stack>
-        <Stack use="label" spacing={2}>
-          <Text>{'Votre email'}</Text>
-          <Input type="email" {...register('email', { required: true })} />
-        </Stack>
-        <Stack use="label" spacing={2}>
-          <Text>{'Sujet du message'}</Text>
-          <Input {...register('subject', { required: true })} />
-        </Stack>
-        <Stack use="label" spacing={2}>
-          <Text>{'Message'}</Text>
-          <Textarea {...register('message', { required: true })} />
-        </Stack>
+        <TextField
+          label="Votre nom"
+          name="name"
+          errors={getErrorMessage('name')}
+          {...nameInputProps}
+        />
+        <TextField
+          label="Votre email"
+          name="email"
+          type="email"
+          errors={getErrorMessage('email')}
+          {...emailInputProps}
+        />
+        <TextField
+          label="Sujet du message"
+          name="subject"
+          errors={getErrorMessage('subject')}
+          {...subjectInputProps}
+        />
+        <Textarea
+          label="Message"
+          name="message"
+          errors={getErrorMessage('message') ?? ''}
+          {...messageInputProps}
+        />
 
         <Cluster spacing={6}>
           <Button type="submit" disabled={isPending}>

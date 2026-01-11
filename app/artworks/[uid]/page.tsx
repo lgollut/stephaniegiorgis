@@ -1,3 +1,4 @@
+import { Box, Cover, Heading, Stack } from '@kalink-ui/seedly';
 import { notFound } from 'next/navigation';
 
 import { RenderedDocumentation } from '@/app/artworks/[uid]/documentation';
@@ -6,12 +7,8 @@ import {
   artworkDescription,
   artworkPage,
 } from '@/app/artworks/[uid]/page.css';
-import { Box } from '@/components/box';
-import { Cover } from '@/components/cover';
-import { Heading } from '@/components/heading';
 import { Hidden } from '@/components/hidden';
 import { RichText } from '@/components/rich-text/rich-text';
-import { Stack } from '@/components/stack';
 import { createClient } from '@/prismicio';
 import { ArtworkDocument } from '@/prismicio-types';
 
@@ -65,13 +62,23 @@ export default async function ArtworkPage({
       <Cover>
         <Box data-cover-center className={artworkData}>
           <Stack spacing={5}>
-            <Heading variant="displaySmall" style="italic">
+            <Heading
+              variant="display"
+              size="small"
+              style={{ fontStyle: 'italic' }}
+            >
               {artwork.data.title}
             </Heading>
             <Stack spacing={3}>
-              <Heading variant="headlineSmall">{artwork.data.medium}</Heading>
-              <Heading variant="headlineSmall">{artwork.data.measure}</Heading>
-              <Heading variant="headlineSmall">{artwork.data.year}</Heading>
+              <Heading variant="headline" size="small">
+                {artwork.data.medium}
+              </Heading>
+              <Heading variant="headline" size="small">
+                {artwork.data.measure}
+              </Heading>
+              <Heading variant="headline" size="small">
+                {artwork.data.year}
+              </Heading>
             </Stack>
             <Hidden
               use={RenderedDocumentation}

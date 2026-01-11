@@ -1,18 +1,17 @@
-import { clsx } from 'clsx';
+import { Center } from '@kalink-ui/seedly';
 import { ReactNode } from 'react';
-
-import { Box } from '@/components/box';
-import { container } from '@/components/container/container.css';
 
 import { main } from './layout.css';
 
 export default function ArtworksLayout({ children }: { children: ReactNode }) {
   return (
-    <Box
+    <Center
       use="main"
-      className={clsx(container({ space: 'lg', maxWidth: 'base' }), main)}
+      className={main}
+      gutters={6}
+      style={{ maxInlineSize: '1280px', width: '100%' }}
     >
       {children}
-    </Box>
+    </Center>
   );
 }

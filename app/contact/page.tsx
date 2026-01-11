@@ -1,10 +1,9 @@
+import { Center, Stack } from '@kalink-ui/seedly';
+
 import { ContactForm } from '@/app/contact/contact-form';
 import { contactPage, contactPageForm } from '@/app/contact/page.css';
-import { Box } from '@/components/box';
-import { container } from '@/components/container/container.css';
 import { Image } from '@/components/image';
 import { RichText } from '@/components/rich-text/rich-text';
-import { Stack } from '@/components/stack';
 import { createClient } from '@/prismicio';
 
 export default async function ContactPage() {
@@ -12,7 +11,7 @@ export default async function ContactPage() {
   const contact = await client.getSingle('contact');
 
   return (
-    <Box className={container({ space: 'lg', maxWidth: 'base' })}>
+    <Center gutters={6} style={{ maxInlineSize: '1280px', width: '100%' }}>
       <div className={contactPage}>
         <div>
           <Stack>
@@ -22,6 +21,6 @@ export default async function ContactPage() {
         </div>
         <ContactForm className={contactPageForm} />
       </div>
-    </Box>
+    </Center>
   );
 }

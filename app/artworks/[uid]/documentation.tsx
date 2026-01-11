@@ -1,8 +1,8 @@
 'use client';
 
+import { Stack } from '@kalink-ui/seedly';
 import { SliceZone } from '@prismicio/react';
 
-import { Stack } from '@/components/stack';
 import { ArtworkDocument } from '@/prismicio-types';
 import { components } from '@/slices';
 

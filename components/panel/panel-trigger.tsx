@@ -1,23 +1,19 @@
+import { Button } from '@kalink-ui/seedly';
 import { Menu } from 'lucide-react';
-import { ForwardedRef, forwardRef } from 'react';
 
-import { Button } from '@/components/button';
 import { usePanelContext } from '@/components/panel/panel-context';
 import { PanelTriggerProps } from '@/components/panel/panel-trigger.types';
 
-type PanelTriggerElement = HTMLButtonElement;
-
-const PanelTrigger = (
-  { icon: Icon = Menu }: PanelTriggerProps,
-  ref: ForwardedRef<PanelTriggerElement>,
-) => {
+export const PanelTrigger = ({ icon: Icon = Menu }: PanelTriggerProps) => {
   const { onOpen } = usePanelContext();
 
   return (
-    <Button ref={ref} variant="bare" icon={Icon} onClick={onOpen} iconOnly />
+    <Button
+      variant="bare"
+      size="sm"
+      startSlot={<Icon size={24} />}
+      aria-label="Open panel"
+      onClick={onOpen}
+    />
   );
 };
-
-const WrappedPanelTrigger = forwardRef(PanelTrigger);
-
-export { WrappedPanelTrigger as PanelTrigger };

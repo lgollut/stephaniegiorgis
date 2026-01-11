@@ -1,8 +1,8 @@
+import { Stack } from '@kalink-ui/seedly';
 import { SliceComponentProps } from '@prismicio/react';
 
 import { richText } from '../../components/rich-text/rich-text.css';
 import { RichText } from '@/components/rich-text/rich-text';
-import { Stack } from '@/components/stack';
 
 import type { Content } from '@prismicio/client';
 

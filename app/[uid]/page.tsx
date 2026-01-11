@@ -1,8 +1,7 @@
+import { Center } from '@kalink-ui/seedly';
 import { SliceZone } from '@prismicio/react';
 import { notFound } from 'next/navigation';
 
-import { Box } from '@/components/box';
-import { container } from '@/components/container/container.css';
 import { createClient } from '@/prismicio';
 import { components } from '@/slices';
 
@@ -47,9 +46,9 @@ export default async function StandardPage({
     .catch(() => notFound());
 
   return (
-    <Box className={container({ space: 'lg', maxWidth: 'base' })}>
+    <Center gutters={6} style={{ maxInlineSize: '1280px', width: '100%' }}>
       <SliceZone slices={page.data.slices} components={components} />
-    </Box>
+    </Center>
   );
 }
 

@@ -1,10 +1,7 @@
+import { Heading, Stack, Text } from '@kalink-ui/seedly';
 import { wrapMapSerializer, serialize } from '@prismicio/richtext';
 import Image from 'next/image';
 import { Children, ReactNode, useMemo } from 'react';
-
-import { Heading } from '@/components/heading';
-import { Stack } from '@/components/stack';
-import { Text } from '@/components/text';
 
 import { alignEnd, blockquote, richText } from './rich-text.css';
 import { RichTextProps } from './rich-text.types';

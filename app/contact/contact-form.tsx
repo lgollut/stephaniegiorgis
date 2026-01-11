@@ -1,5 +1,6 @@
 'use client';
 
+import { Button, Cluster, Stack, Text } from '@kalink-ui/seedly';
 import { Check } from 'lucide-react';
 import {
   ComponentPropsWithoutRef,
@@ -11,11 +12,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 
 import { MessageInputs } from '@/app/contact/page.types';
 import { sendForm } from '@/app/contact/send-form';
-import { Button } from '@/components/button';
-import { Cluster } from '@/components/cluster';
 import { Input } from '@/components/input/input';
-import { Stack } from '@/components/stack';
-import { Text } from '@/components/text';
 import { Textarea } from '@/components/textarea/textarea';
 
 export const ContactForm = (props: ComponentPropsWithoutRef<'form'>) => {
@@ -60,12 +57,12 @@ export const ContactForm = (props: ComponentPropsWithoutRef<'form'>) => {
           <Textarea {...register('message', { required: true })} />
         </Stack>
 
-        <Cluster space="lg">
+        <Cluster spacing={6}>
           <Button type="submit" disabled={isPending}>
             {'Envoyer'}
           </Button>
           {sent && (
-            <Cluster space="sm">
+            <Cluster spacing={3}>
               <Check size={24} />
               <Text>{'Message envoyé'}</Text>
             </Cluster>

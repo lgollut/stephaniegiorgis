@@ -1,17 +1,12 @@
+import { Box, Center, Heading, Stack, Text } from '@kalink-ui/seedly';
 import { isFilled } from '@prismicio/client';
-import { clsx } from 'clsx';
 import { notFound } from 'next/navigation';
 
 import { presentationPage } from '@/app/presentation/page.css';
 import { Aside } from '@/components/aside';
-import { Box } from '@/components/box';
-import { container } from '@/components/container/container.css';
 import { Frame } from '@/components/frame/frame';
-import { Heading } from '@/components/heading';
 import { Image } from '@/components/image';
 import { RichText } from '@/components/rich-text/rich-text';
-import { Stack } from '@/components/stack';
-import { Text } from '@/components/text';
 import { createClient } from '@/prismicio';
 
 export default async function PresentationPage() {
@@ -24,16 +19,15 @@ export default async function PresentationPage() {
     .catch(() => notFound());
 
   return (
-    <Box
-      className={clsx(
-        container({ space: 'lg', maxWidth: 'extraSmall' }),
-        presentationPage,
-      )}
+    <Center
+      className={presentationPage}
+      gutters={6}
+      style={{ maxInlineSize: '768px', width: '100%' }}
     >
       <Stack spacing={10}>
         <RichText field={data.introduction} />
         <Box spacing={0}>
-          <Heading use="h2" color="muted" align="start">
+          <Heading use="h2" align="start">
             {'lang[ue]age et [re]présentation'}
           </Heading>
         </Box>
@@ -55,7 +49,6 @@ export default async function PresentationPage() {
                       href={link.url}
                       target="_blank"
                       rel="noreferrer"
-                      color="primary"
                       variant="body"
                       size="small"
                       align="end"
@@ -75,6 +68,6 @@ export default async function PresentationPage() {
           </Stack>
         </Aside>
       </Stack>
-    </Box>
+    </Center>
   );
 }

@@ -1,3 +1,4 @@
+import { Grid } from '@kalink-ui/seedly';
 import {
   isFilled,
   type Content,
@@ -7,7 +8,6 @@ import { PrismicLink, SliceComponentProps } from '@prismicio/react';
 import { useMemo } from 'react';
 
 import { Frame } from '@/components/frame/frame';
-import { Grid } from '@/components/grid';
 import { Image } from '@/components/image';
 
 /**
@@ -64,8 +64,9 @@ const GridSlice = ({ slice }: GridProps) => {
     <Grid
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      minWidth="sm"
-      fullWidth
+      minSize="12rem"
+      autoLayout="fill"
+      style={{ width: '100%' }}
     >
       {items}
     </Grid>

@@ -1,7 +1,7 @@
+import { Stack } from '@kalink-ui/seedly';
 import { useMemo } from 'react';
 import { Gallery } from 'react-photoswipe-gallery';
 
-import { Stack } from '@/components/stack';
 import {
   DocumentationSliceImage,
   DocumentationSliceImageItem,

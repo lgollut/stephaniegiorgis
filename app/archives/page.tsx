@@ -1,8 +1,6 @@
+import { Center } from '@kalink-ui/seedly';
 import { SliceZone } from '@prismicio/react';
-import { clsx } from 'clsx';
 
-import { Box } from '@/components/box';
-import { container } from '@/components/container/container.css';
 import { createClient } from '@/prismicio';
 import { components } from '@/slices';
 
@@ -13,13 +11,12 @@ export default async function ArchivesPage() {
   const archives = await client.getSingle('archives');
 
   return (
-    <Box
-      className={clsx(
-        container({ space: 'lg', maxWidth: 'base' }),
-        archivesPage,
-      )}
+    <Center
+      className={archivesPage}
+      gutters={6}
+      style={{ maxInlineSize: '1280px', width: '100%' }}
     >
       <SliceZone slices={archives.data.slices} components={components} />
-    </Box>
+    </Center>
   );
 }

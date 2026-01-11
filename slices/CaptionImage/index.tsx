@@ -1,9 +1,9 @@
+import { Stack } from '@kalink-ui/seedly';
 import { SliceComponentProps } from '@prismicio/react';
 
 import { Frame } from '@/components/frame/frame';
 import { Image } from '@/components/image';
 import { RichText } from '@/components/rich-text/rich-text';
-import { Stack } from '@/components/stack';
 import { CaptionImageSlice } from '@/prismicio-types';
 import { Ratio } from '@/slices/Documentation/documentation.types';
 

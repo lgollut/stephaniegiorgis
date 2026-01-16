@@ -18,6 +18,7 @@ import { Route } from 'next';
 import { useSelectedLayoutSegment } from 'next/navigation';
 import { ReactNode } from 'react';
 
+import { Center } from '@/components/center';
 import { Hidden } from '@/components/hidden';
 
 import { logo, navigationLink } from './navigation-links.css';
@@ -71,11 +72,7 @@ export function NavigationLinks({ slice }: NavigationLinksProps) {
   );
 
   return (
-    <Box
-      use="nav"
-      spacing={{ xs: 4, md: 5 }}
-      style={{ width: '100%', maxWidth: '1280px', marginInline: 'auto' }}
-    >
+    <Center use="nav" gutters={{ xs: 4, md: 5 }}>
       <Cluster justify="spaceBetween" align="center">
         <Sheet>
           <Cluster spacing={3} align="center">
@@ -161,6 +158,6 @@ export function NavigationLinks({ slice }: NavigationLinksProps) {
           </Hidden>
         </Sheet>
       </Cluster>
-    </Box>
+    </Center>
   );
 }

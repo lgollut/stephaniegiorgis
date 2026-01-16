@@ -11,8 +11,6 @@ const sysFluidityMin = createVar();
 const sysFluidityMax = createVar();
 const sysFluidityInterpolation = createVar();
 
-// Keep fluidity available (even if not previously used) to mirror format-romand
-// and allow responsive typography/spacing mappings.
 globalStyle(':root', {
   vars: {
     [sysFluidityMin]: '23.5',

@@ -1,5 +1,6 @@
-import { Center, Stack } from '@kalink-ui/seedly';
+import { Stack } from '@kalink-ui/seedly';
 
+import { Center } from '@/components/center';
 import { ContactForm } from '@/app/contact/contact-form';
 import { contactPage, contactPageForm } from '@/app/contact/page.css';
 import { Image } from '@/components/image';
@@ -11,7 +12,7 @@ export default async function ContactPage() {
   const contact = await client.getSingle('contact');
 
   return (
-    <Center gutters={6} style={{ maxInlineSize: '1280px', width: '100%' }}>
+    <Center gutters={6}>
       <div className={contactPage}>
         <div>
           <Stack>

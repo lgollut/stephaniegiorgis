@@ -40,6 +40,7 @@ export default async function RootLayout({
     <html lang="en" className={clsx(fontClass, html)}>
       <body className={body}>
         <SliceZone slices={data.slices} components={components} />
+
         {children}
 
         <div className={footer}>

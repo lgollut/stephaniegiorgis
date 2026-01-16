@@ -1,20 +1,7 @@
 import { recipe } from '@vanilla-extract/recipes';
 
+import { screen } from '@/style/breakpoints';
 import { utilities } from '@/styles/layers.css';
-
-export const breakpoints = {
-  always: 0,
-  xsUp: 376,
-  xsDown: 567,
-  smUp: 568,
-  smDown: 767,
-  mdUp: 768,
-  mdDown: 1023,
-  lgUp: 1024,
-  lgDown: 1279,
-  xlUp: 1280,
-  never: Infinity,
-} as const;
 
 export const hidden = recipe({
   variants: {
@@ -29,7 +16,7 @@ export const hidden = recipe({
         '@layer': {
           [utilities]: {
             '@media': {
-              [`screen and (min-width: ${breakpoints.xsUp}px)`]: {
+              [screen.sm]: {
                 display: 'none',
               },
             },
@@ -41,7 +28,7 @@ export const hidden = recipe({
         '@layer': {
           [utilities]: {
             '@media': {
-              [`screen and (max-width: ${breakpoints.xsDown}px)`]: {
+              [screen.maxXs]: {
                 display: 'none',
               },
             },
@@ -53,7 +40,7 @@ export const hidden = recipe({
         '@layer': {
           [utilities]: {
             '@media': {
-              [`screen and (min-width: ${breakpoints.smUp}px)`]: {
+              [screen.sm]: {
                 display: 'none',
               },
             },
@@ -65,7 +52,7 @@ export const hidden = recipe({
         '@layer': {
           [utilities]: {
             '@media': {
-              [`screen and (max-width: ${breakpoints.smDown}px)`]: {
+              [screen.maxSm]: {
                 display: 'none',
               },
             },
@@ -77,7 +64,7 @@ export const hidden = recipe({
         '@layer': {
           [utilities]: {
             '@media': {
-              [`screen and (min-width: ${breakpoints.mdUp}px)`]: {
+              [screen.md]: {
                 display: 'none',
               },
             },
@@ -89,7 +76,7 @@ export const hidden = recipe({
         '@layer': {
           [utilities]: {
             '@media': {
-              [`screen and (max-width: ${breakpoints.mdDown}px)`]: {
+              [screen.maxMd]: {
                 display: 'none',
               },
             },
@@ -101,7 +88,7 @@ export const hidden = recipe({
         '@layer': {
           [utilities]: {
             '@media': {
-              [`screen and (min-width: ${breakpoints.lgUp}px)`]: {
+              [screen.lg]: {
                 display: 'none',
               },
             },
@@ -113,7 +100,7 @@ export const hidden = recipe({
         '@layer': {
           [utilities]: {
             '@media': {
-              [`screen and (max-width: ${breakpoints.lgDown}px)`]: {
+              [screen.maxLg]: {
                 display: 'none',
               },
             },
@@ -125,7 +112,7 @@ export const hidden = recipe({
         '@layer': {
           [utilities]: {
             '@media': {
-              [`screen and (min-width: ${breakpoints.xlUp}px)`]: {
+              [screen.xl]: {
                 display: 'none',
               },
             },

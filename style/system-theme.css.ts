@@ -3,7 +3,6 @@ import { createGlobalTheme } from '@vanilla-extract/css';
 
 import { refs } from './refs.css';
 
-// Map existing tokens into Seedly's system contract to preserve visuals
 createGlobalTheme(':root', sys, {
   layout: {
     measure: '75ch',

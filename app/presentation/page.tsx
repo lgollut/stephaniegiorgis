@@ -1,7 +1,9 @@
-import { Box, Center, Heading, Stack, Text } from '@kalink-ui/seedly';
+import { Box, Heading, Stack, Text } from '@kalink-ui/seedly';
 import { isFilled } from '@prismicio/client';
 import { notFound } from 'next/navigation';
 
+import { Center } from '@/components/center';
+import { breakpoints } from '@/style/breakpoints';
 import { presentationPage } from '@/app/presentation/page.css';
 import { Aside } from '@/components/aside';
 import { Frame } from '@/components/frame/frame';
@@ -22,7 +24,7 @@ export default async function PresentationPage() {
     <Center
       className={presentationPage}
       gutters={6}
-      style={{ maxInlineSize: '768px', width: '100%' }}
+      maxInlineSize={breakpoints.md}
     >
       <Stack spacing={10}>
         <RichText field={data.introduction} />

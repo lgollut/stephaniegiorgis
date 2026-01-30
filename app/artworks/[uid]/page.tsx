@@ -61,24 +61,25 @@ export default async function ArtworkPage({
     <div className={artworkPage}>
       <Cover>
         <Box data-cover-center className={artworkData}>
-          <Stack spacing={5}>
+          <Stack spacing={5} align="end">
             <Heading
               variant="display"
               size="small"
+              align="end"
               style={{ fontStyle: 'italic' }}
             >
               {artwork.data.title}
             </Heading>
-            <Stack spacing={3}>
-              <Heading variant="headline" size="small">
-                {artwork.data.medium}
-              </Heading>
-              <Heading variant="headline" size="small">
-                {artwork.data.measure}
-              </Heading>
-              <Heading variant="headline" size="small">
-                {artwork.data.year}
-              </Heading>
+            <Stack
+              use={Heading}
+              spacing={3}
+              variant="headline"
+              size="small"
+              align="end"
+            >
+              <div>{artwork.data.medium}</div>
+              <div>{artwork.data.measure}</div>
+              <div>{artwork.data.year}</div>
             </Stack>
             <Hidden
               use={RenderedDocumentation}
@@ -88,9 +89,7 @@ export default async function ArtworkPage({
             />
           </Stack>
           <Box spacing={0} className={artworkDescription}>
-            <Stack>
-              <RichText field={artwork.data.description} />
-            </Stack>
+            <RichText field={artwork.data.description} />
           </Box>
         </Box>
       </Cover>

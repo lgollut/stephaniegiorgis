@@ -13,10 +13,8 @@ export const RenderedDocumentation = ({
   artwork: ArtworkDocument;
 }) => {
   return (
-    <div {...props}>
-      <Stack>
-        <SliceZone slices={artwork.data.slices} components={components} />
-      </Stack>
-    </div>
+    <Stack spacing={4} {...props}>
+      <SliceZone slices={artwork.data.slices} components={components} />
+    </Stack>
   );
 };

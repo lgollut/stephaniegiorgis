@@ -24,7 +24,7 @@ export default async function Page() {
   });
 
   return (
-    <Stack className={mainStack} spacing={10}>
+    <Stack className={mainStack} spacing={10} align="stretch">
       <SliceZone slices={artworks.data.slices} components={components} />
     </Stack>
   );

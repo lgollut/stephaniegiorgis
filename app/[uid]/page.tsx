@@ -46,7 +46,7 @@ export default async function StandardPage({
     .catch(() => notFound());
 
   return (
-    <Center gutters={6}>
+    <Center gutters={{ xs: 4, md: 5 }}>
       <SliceZone slices={page.data.slices} components={components} />
     </Center>
   );

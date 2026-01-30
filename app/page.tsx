@@ -1,9 +1,9 @@
 import { Stack } from '@kalink-ui/seedly';
 import { SliceZone } from '@prismicio/react';
 
-import { Center } from '@/components/center';
 import { createClient } from '../prismicio';
 import { components } from '../slices';
+import { Center } from '@/components/center';
 
 import type { Metadata } from 'next';
 
@@ -12,7 +12,7 @@ export default async function Homepage() {
   const page = await client.getSingle('homepage');
 
   return (
-    <Center use="main" gutters={{ xs: 4, md: 6 }}>
+    <Center use="main" gutters={{ xs: 4, md: 5 }}>
       <Stack spacing={8}>
         <SliceZone slices={page.data.slices} components={components} />
       </Stack>

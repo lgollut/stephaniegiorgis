@@ -35,7 +35,7 @@ export const DocumentationImageWrapper = ({
   }, [slice]);
 
   return (
-    <Stack>
+    <Stack spacing={4} align="stretch">
       <Gallery>
         <div key="upperRow" className={imageRow({ column: cells[0] !== '2' })}>
           {upperRow.map((item, index) => (

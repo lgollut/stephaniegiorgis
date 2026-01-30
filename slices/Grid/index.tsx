@@ -66,7 +66,7 @@ const GridSlice = ({ slice }: GridProps) => {
       data-slice-variation={slice.variation}
       minSize="12rem"
       autoLayout="fill"
-      // style={{ width: '100%' }}
+      spacing={4}
     >
       {items}
     </Grid>

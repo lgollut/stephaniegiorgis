@@ -10,7 +10,7 @@ createGlobalTheme(':root', sys, {
   },
 
   color: {
-    background: refs.colors.palette.neutral98,
+    background: refs.colors.palette.neutral94,
     foreground: refs.colors.palette.neutral20,
   },
 

@@ -6,7 +6,7 @@ export const html = style({
 });
 
 export const body = style([
-  typography.body.medium,
+  typography.body.large,
   {
     display: 'flex',
     flexDirection: 'column',
@@ -16,6 +16,7 @@ export const body = style([
     minHeight: '100vh',
 
     backgroundColor: sys.color.background,
+    color: sys.color.foreground,
   },
 ]);
 

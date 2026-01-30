@@ -36,7 +36,7 @@ const LinkList = ({ slice }: LinkListProps) => {
             spacing={6}
             radius="rounded"
           >
-            <Stack>
+            <Stack align="stretch" spacing={4}>
               <Image field={screenshot.Square} />
               <Text>{label}</Text>
             </Stack>

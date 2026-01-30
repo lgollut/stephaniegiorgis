@@ -64,11 +64,12 @@ export const ContactForm = (props: ComponentPropsWithoutRef<'form'>) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} {...props}>
-      <Stack spacing={6}>
+      <Stack spacing={6} align="stretch">
         <TextField
           label="Votre nom"
           name="name"
           errors={getErrorMessage('name')}
+          className={formField}
           {...nameInputProps}
         />
         <TextField

@@ -11,7 +11,7 @@ export default async function ArchivesPage() {
   const archives = await client.getSingle('archives');
 
   return (
-    <Center className={archivesPage} gutters={6}>
+    <Center className={archivesPage} gutters={{ xs: 4, md: 5 }}>
       <SliceZone slices={archives.data.slices} components={components} />
     </Center>
   );

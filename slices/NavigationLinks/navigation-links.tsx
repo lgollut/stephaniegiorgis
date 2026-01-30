@@ -1,14 +1,19 @@
 'use client';
 
 import {
-  Box,
+  ButtonIcon,
   Cluster,
   Heading,
+  menuItem,
   Sheet,
-  SheetClose,
-  SheetPortal,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
   SheetTrigger,
+  SheetBody,
+  Stack,
   Text,
+  SheetFooter,
 } from '@kalink-ui/seedly';
 import { type Content } from '@prismicio/client';
 import { PrismicNextLink } from '@prismicio/next';
@@ -16,12 +21,18 @@ import { SliceComponentProps } from '@prismicio/react';
 import { Instagram, Menu, X } from 'lucide-react';
 import { Route } from 'next';
 import { useSelectedLayoutSegment } from 'next/navigation';
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
 
 import { Center } from '@/components/center';
 import { Hidden } from '@/components/hidden';
 
-import { logo, navigationLink } from './navigation-links.css';
+import {
+  logo,
+  navigation,
+  navigationLink,
+  navigationLinks,
+  navigationPanelBodyLinks,
+} from './navigation-links.css';
 
 /**
  * Props for `NavigationLinks`.
@@ -31,6 +42,7 @@ export type NavigationLinksProps =
 
 export function NavigationLinks({ slice }: NavigationLinksProps) {
   const segment = useSelectedLayoutSegment();
+  const [open, setOpen] = useState(false);
 
   const items: ReactNode[] = [];
 
@@ -57,106 +69,86 @@ export function NavigationLinks({ slice }: NavigationLinksProps) {
     );
   }
 
-  items.push(
-    <Text
-      use={'a'}
-      key={'instagram'}
-      href={'https://www.instagram.com/stephaniegiorgis'}
-      target="_blank"
-      className={navigationLink}
-      variant="body"
-      size="medium"
-    >
-      <Instagram size="20" strokeWidth={1.5} />
-    </Text>,
-  );
-
   return (
-    <Center use="nav" gutters={{ xs: 4, md: 5 }}>
+    <Center use="nav" gutters={{ xs: 4, md: 5 }} className={navigation}>
       <Cluster justify="spaceBetween" align="center">
-        <Sheet>
-          <Cluster spacing={3} align="center">
+        <Cluster spacing={4} align="center">
+          <Sheet onOpenChange={setOpen} open={open}>
             <Hidden use={SheetTrigger} at="lgUp" asChild>
-              <Box
-                use="button"
-                aria-label="Open navigation"
-                style={{
-                  background: 'transparent',
-                  border: 'none',
-                  padding: 0,
-                }}
-              >
+              <ButtonIcon label="Open navigation" variant="ghost" size="sm">
                 <Menu size="24" strokeWidth={1.5} />
-              </Box>
+              </ButtonIcon>
             </Hidden>
-            <PrismicNextLink
-              href={'/'}
-              title="Go to the homepage"
-              className={logo}
-            >
-              <Heading variant="title" size="medium">
-                Stéphanie Giorgis
-              </Heading>
-            </PrismicNextLink>
-          </Cluster>
-
-          <Hidden use={Cluster} at="mdDown" spacing={4} align="center">
-            {items}
-          </Hidden>
-
-          <Hidden use={SheetPortal} at="lgUp">
-            <Box
-              style={{
-                position: 'fixed',
-                inset: 0,
-                display: 'flex',
-                justifyContent: 'flex-start',
-                backgroundColor: 'hsl(0 0% 0% / 0.4)',
-                backdropFilter: 'blur(4px)',
-                zIndex: 9999,
-              }}
-            >
-              <Box
-                spacing={4}
-                style={{
-                  width: '80%',
-                  maxWidth: 320,
-                  height: '100%',
-                  backgroundColor: 'var(--color-surface, white)',
-                  padding: '24px',
-                  boxShadow: '0 12px 40px rgba(0,0,0,0.25)',
-                }}
+            <SheetContent side="left" size="sm">
+              <SheetHeader
+                side="left"
+                closeBtn={
+                  <ButtonIcon
+                    label="Close navigation"
+                    variant="ghost"
+                    size="sm"
+                  >
+                    <X size="24" strokeWidth={1.5} />
+                  </ButtonIcon>
+                }
               >
-                <Cluster justify="spaceBetween" align="center">
-                  <Heading variant="title" size="medium">
-                    Menu
-                  </Heading>
-                  <SheetClose asChild>
-                    <Box
-                      use="button"
-                      aria-label="Close navigation"
-                      style={{
-                        background: 'transparent',
-                        border: 'none',
-                        padding: 0,
-                      }}
-                    >
-                      <X size="24" strokeWidth={1.5} />
-                    </Box>
-                  </SheetClose>
-                </Cluster>
+                <SheetTitle variant="title" size="medium">
+                  Navigation
+                </SheetTitle>
+              </SheetHeader>
+              <SheetBody>
+                <Stack
+                  spacing={6}
+                  align="stretch"
+                  className={navigationPanelBodyLinks}
+                >
+                  <Stack
+                    use="ul"
+                    spacing={4}
+                    align="stretch"
+                    className={navigationLinks}
+                  >
+                    {items.map((item, index) => (
+                      <li
+                        key={index}
+                        className={menuItem()}
+                        onClick={() => setOpen(false)}
+                      >
+                        {item}
+                      </li>
+                    ))}
+                  </Stack>
+                </Stack>
+              </SheetBody>
+              <SheetFooter>
+                <Center>
+                  <ButtonIcon
+                    use="a"
+                    href={'https://www.instagram.com/stephaniegiorgis'}
+                    label="Instagram"
+                    variant="ghost"
+                    size="sm"
+                  >
+                    <Instagram size="20" strokeWidth={1.5} />
+                  </ButtonIcon>
+                </Center>
+              </SheetFooter>
+            </SheetContent>
+          </Sheet>
+          <PrismicNextLink
+            href={'/'}
+            title="Go to the homepage"
+            className={logo}
+          >
+            <Heading variant="title" size="medium">
+              Stéphanie Giorgis
+            </Heading>
+          </PrismicNextLink>
+        </Cluster>
 
-                <Cluster spacing={4} direction="row">
-                  {items.map((item, index) => (
-                    <SheetClose asChild key={index}>
-                      <Box>{item}</Box>
-                    </SheetClose>
-                  ))}
-                </Cluster>
-              </Box>
-            </Box>
-          </Hidden>
-        </Sheet>
+        <Hidden use={Cluster} at="mdDown" spacing={8} align="center">
+          {items}
+        </Hidden>
       </Cluster>
     </Center>
   );

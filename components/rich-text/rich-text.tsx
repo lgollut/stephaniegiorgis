@@ -3,7 +3,7 @@ import { wrapMapSerializer, serialize } from '@prismicio/richtext';
 import Image from 'next/image';
 import { Children, ReactNode, useMemo } from 'react';
 
-import { alignEnd, blockquote, richText } from './rich-text.css';
+import { blockquote, richText } from './rich-text.css';
 import { RichTextProps } from './rich-text.types';
 
 const replaceMap = {
@@ -14,16 +14,6 @@ const replaceMap = {
   ' !': '\u202F!',
   ' ?': '\u202F?',
 };
-
-function replaceSpaces(text: string, nb: number) {
-  const regex = /\u{0020}(?=[\u{00A0}\u{202F}\S]*$)/gu;
-
-  for (let i = 0; i < nb; i++) {
-    text = text.replace(regex, '\u00A0');
-  }
-
-  return text;
-}
 
 function parseText(text: unknown): ReactNode {
   if (Array.isArray(text)) {
@@ -40,7 +30,7 @@ function parseText(text: unknown): ReactNode {
     formattedText = formattedText.replaceAll(key, value);
   }
 
-  return replaceSpaces(formattedText, 2);
+  return formattedText;
 }
 
 const toChildrenArray = (value: unknown) => Children.toArray(parseText(value));
@@ -83,7 +73,7 @@ const markdownSerializer = wrapMapSerializer({
 
     if (!labelSpan || labelSpan.type !== 'label') {
       return (
-        <Text use="p" key={key}>
+        <Text use="p" key={key} variant="body" size="large">
           {parsedText}
         </Text>
       );
@@ -92,13 +82,19 @@ const markdownSerializer = wrapMapSerializer({
     switch (labelSpan.data.label) {
       case 'quote':
         return (
-          <Text use="blockquote" className={blockquote} key={key}>
+          <Text
+            use="blockquote"
+            className={blockquote}
+            key={key}
+            variant="body"
+            size="large"
+          >
             {parsedText}
           </Text>
         );
       case 'align-end':
         return (
-          <Text use="p" className={alignEnd} key={key}>
+          <Text use="p" align="end" key={key} variant="body" size="large">
             {parsedText}
           </Text>
         );
@@ -107,9 +103,8 @@ const markdownSerializer = wrapMapSerializer({
           <Text
             use="p"
             variant="body"
-            size="small"
-            align="end"
-            className={alignEnd}
+            size="medium"
+            align={{ xs: 'start', md: 'end' }}
             key={key}
           >
             {parsedText}
@@ -117,7 +112,7 @@ const markdownSerializer = wrapMapSerializer({
         );
       default:
         return (
-          <Text use="p" key={key}>
+          <Text use="p" key={key} variant="body" size="large">
             {parsedText}
           </Text>
         );
@@ -144,7 +139,7 @@ const markdownSerializer = wrapMapSerializer({
     <Text
       use="a"
       variant="body"
-      size="small"
+      size="large"
       color="primary"
       href={node.data.url}
       key={key}
@@ -156,7 +151,7 @@ const markdownSerializer = wrapMapSerializer({
     switch (node.data.label) {
       case 'codespan':
         return (
-          <Text use="code" key={key}>
+          <Text use="code" key={key} variant="body" size="large">
             {toChildrenArray(children)}
           </Text>
         );
@@ -164,7 +159,7 @@ const markdownSerializer = wrapMapSerializer({
       case 'align-end':
       case 'legend':
       case 'link':
-        return <Text key={key}>{toChildrenArray(children)}</Text>;
+        return toChildrenArray(children);
       default:
         return (
           <Text key={key} className={node.data.label}>
@@ -183,7 +178,7 @@ export function RichText({ field }: RichTextProps) {
   );
 
   return (
-    <Stack spacing={6} className={richText}>
+    <Stack spacing={6} align="stretch" className={richText}>
       {rendered}
     </Stack>
   );

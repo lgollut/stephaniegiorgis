@@ -1,0 +1,20 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: staging
+
+resources:
+  - ../../base
+  - sealedsecret.yaml
+
+patches:
+  - path: ingress-patch.yaml
+  - path: hpa-patch.yaml
+
+images:
+  - name: ghcr.io/kalink-studio/stephaniegiorgis
+    newTag: latest
+
+replicas:
+  - name: stephaniegiorgis
+    count: 1

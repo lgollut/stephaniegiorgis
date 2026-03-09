@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stephaniegiorgis
+  labels:
+    app: stephaniegiorgis
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: stephaniegiorgis
+  template:
+    metadata:
+      labels:
+        app: stephaniegiorgis
+    spec:
+      containers:
+        - name: stephaniegiorgis
+          image: ghcr.io/kalink-studio/stephaniegiorgis:latest
+          ports:
+            - containerPort: 3000
+              protocol: TCP
+          env:
+            - name: NODE_ENV
+              value: production
+            - name: RESEND_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: stephaniegiorgis-secrets
+                  key: RESEND_KEY
+                  optional: true
+            - name: REVALIDATE_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: stephaniegiorgis-secrets
+                  key: REVALIDATE_SECRET
+                  optional: true
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+          livenessProbe:
+            httpGet:
+              path: /api/health
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /api/health
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 3

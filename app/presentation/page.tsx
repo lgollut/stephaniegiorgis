@@ -1,4 +1,12 @@
-import { Box, Grid, GridChild, Heading, Stack, Text } from '@kalink-ui/seedly';
+import { breakpoints } from '@kalink-ui/seedly/styles';
+import {
+  Box,
+  Grid,
+  GridChild,
+  Heading,
+  Stack,
+  Text,
+} from '@kalink-ui/seedly-react';
 import { isFilled } from '@prismicio/client';
 import { notFound } from 'next/navigation';
 
@@ -12,7 +20,6 @@ import { Frame } from '@/components/frame/frame';
 import { Image } from '@/components/image';
 import { RichText } from '@/components/rich-text/rich-text';
 import { createClient } from '@/prismicio';
-import { breakpoints } from '@/style/breakpoints';
 
 export default async function PresentationPage() {
   const client = createClient();
@@ -26,17 +33,23 @@ export default async function PresentationPage() {
   return (
     <Center
       className={presentationPage}
-      gutters={6}
+      gutters={10}
       maxInlineSize={breakpoints.md}
     >
       <Stack spacing={10}>
         <RichText field={data.introduction} />
         <Box spacing={0}>
-          <Heading use="h2" align="start" className={resumeHeading}>
+          <Heading.Root
+            level="h2"
+            align="start"
+            variant="headline"
+            size="medium"
+            className={resumeHeading}
+          >
             {'lang[ue]age et [re]présentation'}
-          </Heading>
+          </Heading.Root>
         </Box>
-        <Grid spacing={{ xs: 10, md: 6, lg: 8 }}>
+        <Grid spacing={6}>
           <GridChild colSpan={{ xs: 4, md: 4, lg: 8 }}>
             <Stack align="stretch" spacing={6}>
               <RichText field={data.resume} />
@@ -49,12 +62,15 @@ export default async function PresentationPage() {
                       isFilled.linkToMedia(link) && (
                         <Text
                           key={`${link.id ?? link.url ?? label ?? index}`}
-                          use="a"
-                          href={link.url}
-                          target="_blank"
-                          rel="noreferrer"
+                          render={
+                            <a
+                              href={link.url}
+                              target="_blank"
+                              rel="noreferrer"
+                            />
+                          }
                           variant="body"
-                          size="medium"
+                          size="small"
                           className={resumeLink}
                         >
                           {label}
@@ -70,7 +86,7 @@ export default async function PresentationPage() {
             <Stack spacing={3}>
               <Frame use={Image} field={data.resume_image} ratio="2:3" cover />
 
-              <Text align="end" use="div" variant="body" size="small">
+              <Text align="end" render={<div />} variant="body" size="small">
                 {data.resume_image.copyright}
               </Text>
             </Stack>

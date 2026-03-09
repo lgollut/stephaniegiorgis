@@ -17,5 +17,3 @@ export const contactPageForm = style({
   flex: '1 1 70%',
   width: '100%',
 });
-
-export const formField = style({});

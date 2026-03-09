@@ -1,4 +1,4 @@
-import { Grid } from '@kalink-ui/seedly';
+import { Grid, GridChild } from '@kalink-ui/seedly-react';
 import {
   isFilled,
   type Content,
@@ -53,9 +53,12 @@ const GridSlice = ({ slice }: GridProps) => {
       }
 
       return (
-        <PrismicLink key={artwork.id} href={`/artworks/${artwork.uid}`}>
+        <GridChild
+          key={artwork.id}
+          render={<PrismicLink href={`/artworks/${artwork.uid}`} />}
+        >
           <Frame use={Image} field={image} ratio="1:1" />
-        </PrismicLink>
+        </GridChild>
       );
     });
   }, [slice]);
@@ -66,7 +69,8 @@ const GridSlice = ({ slice }: GridProps) => {
       data-slice-variation={slice.variation}
       minSize="12rem"
       autoLayout="fill"
-      spacing={4}
+      spacing={8}
+      columns={6}
     >
       {items}
     </Grid>

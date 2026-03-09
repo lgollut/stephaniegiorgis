@@ -3,7 +3,7 @@ import { globalStyle, style } from '@vanilla-extract/css';
 
 export const artworkPage = style({
   display: 'flex',
-  gap: sys.spacing[7],
+  gap: sys.spacing[10],
   width: '100%',
   alignItems: 'center',
 
@@ -31,7 +31,7 @@ export const artworkData = style({
 });
 
 export const artworkDescription = style({
-  marginTop: sys.spacing[6],
+  marginTop: sys.spacing[10],
 
   '@media': {
     'screen and (max-width: 1023px)': {

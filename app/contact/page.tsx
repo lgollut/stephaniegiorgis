@@ -1,4 +1,4 @@
-import { Stack } from '@kalink-ui/seedly';
+import { Stack } from '@kalink-ui/seedly-react';
 
 import { ContactForm } from '@/app/contact/contact-form';
 import { contactPage, contactPageForm } from '@/app/contact/page.css';
@@ -12,7 +12,7 @@ export default async function ContactPage() {
   const contact = await client.getSingle('contact');
 
   return (
-    <Center gutters={{ xs: 4, md: 5 }}>
+    <Center gutters={10}>
       <div className={contactPage}>
         <Stack spacing={6} align="stretch">
           <Image field={contact.data.image['2/3']} />

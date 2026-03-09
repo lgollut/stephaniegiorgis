@@ -1,13 +1,6 @@
 'use client';
 
-import {
-  Button,
-  Cluster,
-  Stack,
-  Text,
-  TextField,
-  Textarea,
-} from '@kalink-ui/seedly';
+import { Button, Cluster, Field, Stack, Text } from '@kalink-ui/seedly-react';
 import { Check } from 'lucide-react';
 import {
   ComponentPropsWithoutRef,
@@ -15,36 +8,25 @@ import {
   useState,
   useTransition,
 } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
 import { MessageInputs } from '@/app/contact/page.types';
 import { sendForm } from '@/app/contact/send-form';
 
-export const ContactForm = (props: ComponentPropsWithoutRef<'form'>) => {
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<MessageInputs>();
-  const [sent, setSent] = useState(false);
+const REQUIRED_RULE = { required: 'Ce champ est requis' } as const;
 
+export const ContactForm = (props: ComponentPropsWithoutRef<'form'>) => {
+  const { control, handleSubmit, reset } = useForm<MessageInputs>({
+    defaultValues: {
+      name: '',
+      email: '',
+      subject: '',
+      message: '',
+    },
+  });
+
+  const [sent, setSent] = useState(false);
   const [isPending, startTransition] = useTransition();
-  const requiredMessage = 'Ce champ est requis';
-  const getErrorMessage = (field: keyof MessageInputs) =>
-    errors[field] ? requiredMessage : undefined;
-  const { name: _name, ...nameInputProps } = register('name', {
-    required: true,
-  });
-  const { name: _email, ...emailInputProps } = register('email', {
-    required: true,
-  });
-  const { name: _subject, ...subjectInputProps } = register('subject', {
-    required: true,
-  });
-  const { name: _message, ...messageInputProps } = register('message', {
-    required: true,
-  });
 
   const onSubmit: SubmitHandler<MessageInputs> = useCallback(
     (formData) => {
@@ -65,35 +47,120 @@ export const ContactForm = (props: ComponentPropsWithoutRef<'form'>) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} {...props}>
       <Stack spacing={6} align="stretch">
-        <TextField
-          label="Votre nom"
+        <Controller
           name="name"
-          errors={getErrorMessage('name')}
-          className={formField}
-          {...nameInputProps}
+          control={control}
+          rules={REQUIRED_RULE}
+          render={({
+            field,
+            fieldState: { invalid, isTouched, isDirty, error },
+          }) => (
+            <Field.Root
+              name={field.name}
+              invalid={invalid}
+              touched={isTouched}
+              dirty={isDirty}
+            >
+              <Field.Label>Votre nom</Field.Label>
+              <Field.Control
+                ref={field.ref}
+                value={field.value}
+                onBlur={field.onBlur}
+                onValueChange={field.onChange}
+              />
+              <Field.Error match={!!error}>{error?.message}</Field.Error>
+            </Field.Root>
+          )}
         />
-        <TextField
-          label="Votre email"
+
+        <Controller
           name="email"
-          type="email"
-          errors={getErrorMessage('email')}
-          {...emailInputProps}
+          control={control}
+          rules={REQUIRED_RULE}
+          render={({
+            field,
+            fieldState: { invalid, isTouched, isDirty, error },
+          }) => (
+            <Field.Root
+              name={field.name}
+              invalid={invalid}
+              touched={isTouched}
+              dirty={isDirty}
+            >
+              <Field.Label>Votre email</Field.Label>
+              <Field.Control
+                ref={field.ref}
+                type="email"
+                value={field.value}
+                onBlur={field.onBlur}
+                onValueChange={field.onChange}
+              />
+              <Field.Error match={!!error}>{error?.message}</Field.Error>
+            </Field.Root>
+          )}
         />
-        <TextField
-          label="Sujet du message"
+
+        <Controller
           name="subject"
-          errors={getErrorMessage('subject')}
-          {...subjectInputProps}
+          control={control}
+          rules={REQUIRED_RULE}
+          render={({
+            field,
+            fieldState: { invalid, isTouched, isDirty, error },
+          }) => (
+            <Field.Root
+              name={field.name}
+              invalid={invalid}
+              touched={isTouched}
+              dirty={isDirty}
+            >
+              <Field.Label>Sujet du message</Field.Label>
+              <Field.Control
+                ref={field.ref}
+                value={field.value}
+                onBlur={field.onBlur}
+                onValueChange={field.onChange}
+              />
+              <Field.Error match={!!error}>{error?.message}</Field.Error>
+            </Field.Root>
+          )}
         />
-        <Textarea
-          label="Message"
+
+        <Controller
           name="message"
-          errors={getErrorMessage('message') ?? ''}
-          {...messageInputProps}
+          control={control}
+          rules={REQUIRED_RULE}
+          render={({
+            field,
+            fieldState: { invalid, isTouched, isDirty, error },
+          }) => (
+            <Field.Root
+              name={field.name}
+              invalid={invalid}
+              touched={isTouched}
+              dirty={isDirty}
+            >
+              <Field.Label>Message</Field.Label>
+              <Field.Control
+                ref={field.ref}
+                render={<textarea />}
+                value={field.value}
+                onBlur={field.onBlur}
+                onValueChange={field.onChange}
+              />
+              <Field.Error match={!!error}>{error?.message}</Field.Error>
+            </Field.Root>
+          )}
         />
 
         <Cluster spacing={6}>
-          <Button type="submit" disabled={isPending}>
+          <Button
+            shape="small"
+            variant="solid"
+            tone="neutral"
+            type="submit"
+            disabled={isPending}
+          >
             {'Envoyer'}
           </Button>
           {sent && (

@@ -1,4 +1,4 @@
-import { Stack } from '@kalink-ui/seedly';
+import { Stack } from '@kalink-ui/seedly-react';
 import { SliceZone } from '@prismicio/react';
 
 import { createClient } from '../../prismicio';

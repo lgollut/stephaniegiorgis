@@ -1,4 +1,4 @@
-import { Heading, Stack, Text } from '@kalink-ui/seedly';
+import { Heading, Stack, Text } from '@kalink-ui/seedly-react';
 import { wrapMapSerializer, serialize } from '@prismicio/richtext';
 import Image from 'next/image';
 import { Children, ReactNode, useMemo } from 'react';
@@ -37,34 +37,34 @@ const toChildrenArray = (value: unknown) => Children.toArray(parseText(value));
 
 const markdownSerializer = wrapMapSerializer({
   heading1: ({ children, key }) => (
-    <Heading key={key} use="h1">
+    <Heading.Root key={key} level="h1">
       {toChildrenArray(children)}
-    </Heading>
+    </Heading.Root>
   ),
   heading2: ({ children, key }) => (
-    <Heading key={key} use="h2">
+    <Heading.Root key={key} level="h2">
       {toChildrenArray(children)}
-    </Heading>
+    </Heading.Root>
   ),
   heading3: ({ children, key }) => (
-    <Heading key={key} use="h3">
+    <Heading.Root key={key} level="h3">
       {toChildrenArray(children)}
-    </Heading>
+    </Heading.Root>
   ),
   heading4: ({ children, key }) => (
-    <Heading key={key} use="h4">
+    <Heading.Root key={key} level="h4">
       {toChildrenArray(children)}
-    </Heading>
+    </Heading.Root>
   ),
   heading5: ({ children, key }) => (
-    <Heading key={key} use="h5">
+    <Heading.Root key={key} level="h5">
       {toChildrenArray(children)}
-    </Heading>
+    </Heading.Root>
   ),
   heading6: ({ children, key }) => (
-    <Heading key={key} use="h6">
+    <Heading.Root key={key} level="h6">
       {toChildrenArray(children)}
-    </Heading>
+    </Heading.Root>
   ),
   paragraph: ({ node, children, key }) => {
     const labelSpan = node.spans.find((span) => span.type === 'label');
@@ -73,7 +73,7 @@ const markdownSerializer = wrapMapSerializer({
 
     if (!labelSpan || labelSpan.type !== 'label') {
       return (
-        <Text use="p" key={key} variant="body" size="large">
+        <Text render={<p />} key={key}>
           {parsedText}
         </Text>
       );
@@ -82,28 +82,21 @@ const markdownSerializer = wrapMapSerializer({
     switch (labelSpan.data.label) {
       case 'quote':
         return (
-          <Text
-            use="blockquote"
-            className={blockquote}
-            key={key}
-            variant="body"
-            size="large"
-          >
+          <Text render={<blockquote />} className={blockquote} key={key}>
             {parsedText}
           </Text>
         );
       case 'align-end':
         return (
-          <Text use="p" align="end" key={key} variant="body" size="large">
+          <Text render={<p />} align="end" key={key}>
             {parsedText}
           </Text>
         );
       case 'legend':
         return (
           <Text
-            use="p"
-            variant="body"
-            size="medium"
+            render={<p />}
+            size="small"
             align={{ xs: 'start', md: 'end' }}
             key={key}
           >
@@ -112,7 +105,7 @@ const markdownSerializer = wrapMapSerializer({
         );
       default:
         return (
-          <Text use="p" key={key} variant="body" size="large">
+          <Text render={<p />} key={key}>
             {parsedText}
           </Text>
         );
@@ -136,14 +129,7 @@ const markdownSerializer = wrapMapSerializer({
   ),
   embed: ({ node }) => `${node.oembed.html}\n\n`,
   hyperlink: ({ node, children, key }) => (
-    <Text
-      use="a"
-      variant="body"
-      size="large"
-      color="primary"
-      href={node.data.url}
-      key={key}
-    >
+    <Text render={<a href={node.data.url} />} key={key}>
       {toChildrenArray(children)}
     </Text>
   ),
@@ -151,7 +137,7 @@ const markdownSerializer = wrapMapSerializer({
     switch (node.data.label) {
       case 'codespan':
         return (
-          <Text use="code" key={key} variant="body" size="large">
+          <Text render={<code />} key={key}>
             {toChildrenArray(children)}
           </Text>
         );
@@ -178,7 +164,7 @@ export function RichText({ field }: RichTextProps) {
   );
 
   return (
-    <Stack spacing={6} align="stretch" className={richText}>
+    <Stack spacing={8} align="stretch" className={richText}>
       {rendered}
     </Stack>
   );

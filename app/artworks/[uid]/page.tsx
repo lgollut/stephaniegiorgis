@@ -1,4 +1,4 @@
-import { Box, Cover, Heading, Stack } from '@kalink-ui/seedly';
+import { Box, Cover, Heading, Stack, Text } from '@kalink-ui/seedly-react';
 import { notFound } from 'next/navigation';
 
 import { RenderedDocumentation } from '@/app/artworks/[uid]/documentation';
@@ -61,25 +61,24 @@ export default async function ArtworkPage({
     <div className={artworkPage}>
       <Cover>
         <Box data-cover-center className={artworkData}>
-          <Stack spacing={5} align="end">
-            <Heading
+          <Stack spacing={8} align="stretch">
+            <Heading.Root
               variant="display"
               size="small"
-              align="end"
               style={{ fontStyle: 'italic' }}
             >
               {artwork.data.title}
-            </Heading>
-            <Stack
-              use={Heading}
-              spacing={3}
-              variant="headline"
-              size="small"
-              align="end"
-            >
-              <div>{artwork.data.medium}</div>
-              <div>{artwork.data.measure}</div>
-              <div>{artwork.data.year}</div>
+            </Heading.Root>
+            <Stack spacing={8} align="stretch">
+              <Text variant="headline" size="small">
+                {artwork.data.medium}
+              </Text>
+              <Text variant="headline" size="small">
+                {artwork.data.measure}
+              </Text>
+              <Text variant="headline" size="small">
+                {artwork.data.year}
+              </Text>
             </Stack>
             <Hidden
               use={RenderedDocumentation}
@@ -89,7 +88,9 @@ export default async function ArtworkPage({
             />
           </Stack>
           <Box spacing={0} className={artworkDescription}>
-            <RichText field={artwork.data.description} />
+            <Stack>
+              <RichText field={artwork.data.description} />
+            </Stack>
           </Box>
         </Box>
       </Cover>

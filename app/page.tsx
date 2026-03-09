@@ -1,4 +1,4 @@
-import { Stack } from '@kalink-ui/seedly';
+import { Stack } from '@kalink-ui/seedly-react';
 import { SliceZone } from '@prismicio/react';
 
 import { createClient } from '../prismicio';
@@ -12,8 +12,8 @@ export default async function Homepage() {
   const page = await client.getSingle('homepage');
 
   return (
-    <Center use="main" gutters={{ xs: 4, md: 5 }}>
-      <Stack spacing={8}>
+    <Center render={<main />} gutters={5}>
+      <Stack spacing={8} align="stretch">
         <SliceZone slices={page.data.slices} components={components} />
       </Stack>
     </Center>

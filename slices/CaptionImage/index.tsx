@@ -1,4 +1,4 @@
-import { Stack } from '@kalink-ui/seedly';
+import { Stack } from '@kalink-ui/seedly-react';
 import { SliceComponentProps } from '@prismicio/react';
 
 import { Frame } from '@/components/frame/frame';
@@ -21,8 +21,9 @@ export type CaptionImageProps = SliceComponentProps<
 const CaptionImage = ({ slice }: CaptionImageProps) => {
   return (
     <Stack
-      use="section"
+      render={<section />}
       spacing={3}
+      align="stretch"
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
     >

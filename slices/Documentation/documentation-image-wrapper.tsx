@@ -1,4 +1,4 @@
-import { Stack } from '@kalink-ui/seedly';
+import { Stack } from '@kalink-ui/seedly-react';
 import { useMemo } from 'react';
 import { Gallery } from 'react-photoswipe-gallery';
 

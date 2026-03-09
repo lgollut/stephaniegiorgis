@@ -1,4 +1,4 @@
-import { Box, Cluster, Stack, Text } from '@kalink-ui/seedly';
+import { Box, Cluster, Stack, Text } from '@kalink-ui/seedly-react';
 import { isFilled, type Content } from '@prismicio/client';
 import { SliceComponentProps } from '@prismicio/react';
 
@@ -27,14 +27,15 @@ const LinkList = ({ slice }: LinkListProps) => {
 
         return (
           <Box
-            use="a"
+            render={
+              <a href={link.url} target="_blank" rel="noopener noreferrer" />
+            }
             key={link.url}
-            href={link.url}
-            target="_blank"
-            rel="noopener noreferrer"
             variant="solid"
+            colorSource="container"
+            colorKey="high"
             spacing={6}
-            radius="rounded"
+            corner="small"
           >
             <Stack align="stretch" spacing={4}>
               <Image field={screenshot.Square} />

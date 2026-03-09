@@ -1,7 +1,7 @@
 import { sys } from '@kalink-ui/seedly/styles';
 import { style } from '@vanilla-extract/css';
 
-import { refs } from '@/style/refs.css';
+import { refs } from '@/styles/refs.css';
 
 export const presentationPage = style({
   textAlign: 'justify',
@@ -14,10 +14,13 @@ export const resumeSection = style({
 });
 
 export const resumeLink = style({
-  color: refs.colors.palette.primary30,
+  color: refs.colors.light.primary13,
+
+  ':hover': {
+    textDecoration: 'underline',
+  },
 });
 
 export const resumeHeading = style({
-  color: refs.colors.palette.neutral40,
-  fontSize: sys.typography.headline.medium.size,
+  color: refs.colors.light.neutral14,
 });

@@ -10,7 +10,7 @@ export const videoWrapper = recipe({
     justifyContent: 'center',
     alignItems: 'center',
 
-    backgroundColor: sys.color.background,
+    backgroundColor: sys.color.surface.base,
     aspectRatio,
 
     vars: {

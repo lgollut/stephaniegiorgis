@@ -14,6 +14,8 @@ spec:
       labels:
         app: stephaniegiorgis
     spec:
+      imagePullSecrets:
+        - name: ghcr-credentials
       containers:
         - name: stephaniegiorgis
           image: ghcr.io/kalink-studio/stephaniegiorgis:latest

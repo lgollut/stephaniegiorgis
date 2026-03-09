@@ -1,9 +1,9 @@
 name: Release
 
 on:
-  pull_request:
-    branches: [main]
-    types: [closed]
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
   workflow_dispatch:
     inputs:
       image_tag:
@@ -23,9 +23,53 @@ env:
   IMAGE_NAME: ghcr.io/kalink-studio/stephaniegiorgis
 
 jobs:
+  detect-release:
+    name: Detect Release Commit
+    if: github.event_name == 'workflow_run'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+
+    outputs:
+      should_deploy: ${{ steps.detect.outputs.should_deploy }}
+      release_sha: ${{ steps.detect.outputs.release_sha }}
+
+    steps:
+      - name: Detect merged changeset release commit
+        id: detect
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const run = context.payload.workflow_run
+
+            if (run.conclusion !== 'success' || run.event !== 'push' || run.head_branch !== 'main') {
+              core.setOutput('should_deploy', 'false')
+              core.setOutput('release_sha', '')
+              return
+            }
+
+            const { data: pulls } = await github.rest.repos.listPullRequestsAssociatedWithCommit({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              commit_sha: run.head_sha,
+            })
+
+            const releasePr = pulls.find((pull) => {
+              return pull.merged_at &&
+                pull.base?.ref === 'main' &&
+                pull.head?.ref?.startsWith('changeset-release/') &&
+                pull.merge_commit_sha === run.head_sha
+            })
+
+            core.setOutput('should_deploy', releasePr ? 'true' : 'false')
+            core.setOutput('release_sha', releasePr ? run.head_sha : '')
+
   deploy-production:
     name: Deploy to Production
-    if: github.event_name == 'pull_request' && github.event.pull_request.merged == true && startsWith(github.event.pull_request.head.ref, 'changeset-release/')
+    if: github.event_name == 'workflow_run' && needs.detect-release.outputs.should_deploy == 'true'
+    needs: detect-release
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -37,7 +81,7 @@ jobs:
         with:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
-          ref: ${{ github.event.pull_request.merge_commit_sha }}
+          ref: ${{ needs.detect-release.outputs.release_sha }}
 
       - name: Get version from package
         id: version
@@ -60,22 +104,6 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Wait for source image
-        run: |
-          SOURCE_TAG="${{ steps.sha.outputs.short }}"
-          for attempt in {1..20}; do
-            if docker manifest inspect "${{ env.IMAGE_NAME }}:$SOURCE_TAG" > /dev/null 2>&1; then
-              echo "Found source image ${{ env.IMAGE_NAME }}:$SOURCE_TAG"
-              exit 0
-            fi
-
-            echo "Waiting for source image ${{ env.IMAGE_NAME }}:$SOURCE_TAG (attempt $attempt/20)"
-            sleep 15
-          done
-
-          echo "Source image not found after waiting: ${{ env.IMAGE_NAME }}:$SOURCE_TAG"
-          exit 1
 
       - name: Re-tag image with version
         run: |

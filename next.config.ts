@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
 
-  transpilePackages: ['@kalink-ui/seedly'],
+  transpilePackages: ['@kalink-ui/seedly', '@kalink-ui/seedly-react'],
 
   async redirects() {
     return [

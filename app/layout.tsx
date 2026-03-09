@@ -1,10 +1,11 @@
 import '@kalink-ui/seedly/styles/reset';
 import '@kalink-ui/seedly/styles/layers';
 
-import '@/style/refs-theme.css';
-import '@/style/system-theme.css';
+import '@/styles/refs.css';
+import '@/styles/system-theme.css';
+import '@/styles/input-overrides.css';
 
-import { Box, Text } from '@kalink-ui/seedly';
+import { Box, Text } from '@kalink-ui/seedly-react';
 import { PrismicPreview } from '@prismicio/next';
 import { SliceZone } from '@prismicio/react';
 import { Analytics } from '@vercel/analytics/react';
@@ -43,13 +44,17 @@ export default async function RootLayout({
 
         {children}
 
-        <div className={footer}>
-          <Box spacing={4}>
-            <Text variant="body" size="small">
-              {'Stéphanie Giorgis © 2026. All Rights Reserved'}
-            </Text>
-          </Box>
-        </div>
+        <Box
+          colorSource="container"
+          colorKey="low"
+          variant="solid"
+          spacing={2}
+          className={footer}
+        >
+          <Text variant="body" size="small">
+            {'Stéphanie Giorgis © 2026. All Rights Reserved'}
+          </Text>
+        </Box>
 
         <Analytics />
         <PrismicPreview repositoryName={repositoryName} />

@@ -1,13 +1,12 @@
-import { gutterSize } from '@kalink-ui/seedly';
+import { centerVars } from '@kalink-ui/seedly/components/center';
+import { breakpoints } from '@kalink-ui/seedly/styles';
 import { createVar, style } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
-
-import { breakpoints } from '@/style/breakpoints';
 
 export const centerMaxInlineSize = createVar();
 
 export const center = style({
-  inlineSize: `min(${centerMaxInlineSize}, ${calc('100vw').subtract(calc.multiply(gutterSize, 2)).toString()})`,
+  inlineSize: `min(${centerMaxInlineSize}, ${calc('100vw').subtract(calc.multiply(centerVars.spacing.rootGutters, 2)).toString()})`,
   maxInlineSize: centerMaxInlineSize,
 
   vars: {

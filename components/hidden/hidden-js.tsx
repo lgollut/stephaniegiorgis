@@ -1,8 +1,7 @@
 'use client';
 
+import { breakpoints } from '@kalink-ui/seedly/styles';
 import { useWindowSize } from '@uidotdev/usehooks';
-
-import { breakpoints } from '@/style/breakpoints';
 
 import { HiddenJsProps } from './hidden-js.types';
 

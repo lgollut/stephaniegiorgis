@@ -1,28 +1,29 @@
 import { sys, typography } from '@kalink-ui/seedly/styles';
-import { style } from '@vanilla-extract/css';
+import { globalStyle, style } from '@vanilla-extract/css';
 
 export const html = style({
-  minHeight: '100vh',
+  minHeight: '100dvh',
 });
 
 export const body = style([
-  typography.body.large,
+  typography.body.medium,
   {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    gap: sys.spacing[8],
+    gap: sys.spacing[15],
 
-    minHeight: '100vh',
+    minHeight: '100dvh',
 
-    backgroundColor: sys.color.background,
-    color: sys.color.foreground,
+    backgroundColor: sys.color.surface.base,
+    color: sys.color.content.base,
   },
 ]);
 
 export const footer = style({
-  display: 'flex',
-  justifyContent: 'center',
+  textAlign: 'center',
+});
 
-  backgroundColor: sys.color.background,
+globalStyle(`a`, {
+  textDecoration: 'none',
 });

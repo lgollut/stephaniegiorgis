@@ -1,6 +1,6 @@
+import { screen } from '@kalink-ui/seedly/styles';
 import { recipe } from '@vanilla-extract/recipes';
 
-import { screen } from '@/style/breakpoints';
 import { utilities } from '@/styles/layers.css';
 
 export const hidden = recipe({

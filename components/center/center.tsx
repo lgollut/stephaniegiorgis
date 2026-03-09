@@ -1,24 +1,23 @@
 'use client';
 
-import { Center as SeedlyCenter, CenterProps } from '@kalink-ui/seedly';
+import { breakpoints } from '@kalink-ui/seedly/styles';
+import { Center as SeedlyCenter } from '@kalink-ui/seedly-react';
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 import { clsx } from 'clsx';
-import { ElementType } from 'react';
-
-import { breakpoints } from '@/style/breakpoints';
+import { type ComponentProps } from 'react';
 
 import { center, centerMaxInlineSize } from './center.css';
 
-type CenterOverrideProps<TUse extends ElementType> = CenterProps<TUse> & {
+type CenterOverrideProps = ComponentProps<typeof SeedlyCenter> & {
   maxInlineSize?: number;
 };
 
-export function Center<TUse extends ElementType>({
+export function Center({
   className,
   maxInlineSize = breakpoints.xl,
   style,
   ...props
-}: CenterOverrideProps<TUse>) {
+}: CenterOverrideProps) {
   const inlineVars = assignInlineVars({
     [centerMaxInlineSize]: `${maxInlineSize}px`,
   });

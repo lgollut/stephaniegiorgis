@@ -6,7 +6,6 @@
       "@/*": ["./*"],
       "@/components/*": ["components/*"],
       "@/slices/*": ["slices/*"],
-      "@/style/*": ["style/*"],
       "@/styles/*": ["styles/*"],
       "@/types/*": ["types/*"]
     },

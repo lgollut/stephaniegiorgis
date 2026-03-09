@@ -8,7 +8,6 @@ import '@/styles/input-overrides.css';
 import { Box, Text } from '@kalink-ui/seedly-react';
 import { PrismicPreview } from '@prismicio/next';
 import { SliceZone } from '@prismicio/react';
-import { Analytics } from '@vercel/analytics/react';
 import { clsx } from 'clsx';
 import { ReactNode } from 'react';
 
@@ -56,7 +55,6 @@ export default async function RootLayout({
           </Text>
         </Box>
 
-        <Analytics />
         <PrismicPreview repositoryName={repositoryName} />
       </body>
     </html>

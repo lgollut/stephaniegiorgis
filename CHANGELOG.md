@@ -1,5 +1,11 @@
 # stephaniegiorgis
 
+## 0.1.2
+
+### Patch Changes
+
+- 7acf6df: Ensure Kubernetes deployments use the GHCR pull secret so staging and production pods can authenticate and start successfully on Naima.
+
 ## 0.1.1
 
 ### Patch Changes

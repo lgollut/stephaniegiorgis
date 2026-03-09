@@ -8,23 +8,27 @@
 FROM node:24-alpine AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
+ENV SCARF_ANALYTICS=false
 
 # Enable corepack for pnpm
 RUN corepack enable pnpm
 
 # Install dependencies based on the preferred package manager
-COPY package.json pnpm-lock.yaml* package-lock.json* ./
+COPY package.json pnpm-lock.yaml* pnpm-workspace.yaml* package-lock.json* ./
 RUN \
   if [ -f pnpm-lock.yaml ]; then pnpm i --frozen-lockfile; \
   elif [ -f package-lock.json ]; then npm ci; \
   else echo "No lockfile found. Please use pnpm or npm." && exit 1; \
   fi
 
+RUN node -e "require('sharp'); console.log('sharp ok')"
+
 # =============================================================================
 # Stage 2: Builder
 # =============================================================================
 FROM node:24-alpine AS builder
 WORKDIR /app
+ENV SCARF_ANALYTICS=false
 
 # Enable corepack for pnpm
 RUN corepack enable pnpm
@@ -53,6 +57,7 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
+ENV SCARF_ANALYTICS=false
 
 # Create non-root user
 RUN addgroup --system --gid 1001 nodejs

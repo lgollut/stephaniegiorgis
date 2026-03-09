@@ -9,6 +9,7 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ghcr.io/kalink-studio/stephaniegiorgis
+  SCARF_ANALYTICS: 'false'
 
 jobs:
   test:
@@ -31,6 +32,9 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: Verify sharp
+        run: node -e "require('sharp'); console.log('sharp ok')"
 
       - name: Run tests
         run: pnpm test
@@ -66,6 +70,9 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: Verify sharp
+        run: node -e "require('sharp'); console.log('sharp ok')"
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -139,6 +146,9 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: Verify sharp
+        run: node -e "require('sharp'); console.log('sharp ok')"
 
       - name: Create Release Pull Request
         uses: changesets/action@v1
